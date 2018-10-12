@@ -2,6 +2,11 @@ package Model;
 
 public class Heros extends Dynamique {
 
-    public Heros(int x, int y) {}
+    private int posX;
+    private int posY;
+
+    public Heros(int posX, int posY) {
+        super(posX,posY);
+    }
 
 }
