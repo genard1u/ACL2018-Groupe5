@@ -1,4 +1,8 @@
 package Model;
 
-public class Composant {
+public abstract class Composant {
+
+    protected int posX;
+    protected int posY;
+
 }
