@@ -26,22 +26,21 @@ public class Plateau {
                 heros.deplacementHaut();
                 return true;
             case SUD:
-                if(!canMoveNORD(x,y))
+                if(!canMoveSUD(x,y))
                     return false;
-                heros.deplacementHaut();
+                heros.deplacementBas();
                 return true;
             case EST:
-                if(!canMoveNORD(x,y))
+                if(!canMoveEST(x,y))
                     return false;
-                heros.deplacementHaut();
+                heros.deplacementDroite();
                 return true;
             case OUEST:
-                if(!canMoveNORD(x,y))
+                if(!canMoveOUEST(x,y))
                     return false;
-                heros.deplacementHaut();
+                heros.deplacementGauche();
                 return true;
             default:
-                System.out.println("Le heros ne peut pas se deplacer");
                 return false;
         }
     }
