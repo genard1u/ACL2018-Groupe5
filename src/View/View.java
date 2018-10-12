@@ -17,6 +17,11 @@ public class View implements Observer {
         this.jeu = jeu;
         this.ctrl = ctrl;
         jeu.addObserver(this);
+
+        // first display
+        Plateau pl = this.jeu.getPlateau();
+        Heros hero = this.jeu.getHeros();
+        this.DisplayPlateaux(pl.getLargeur(), pl.getHauteur(), hero.getPosX(), hero.getPosY());
     }
 
     public void DisplayPlateaux(int width, int height, int heroX, int heroY) {
