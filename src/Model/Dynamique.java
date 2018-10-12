@@ -1,4 +1,8 @@
 package Model;
 
-public abstract class Dynamique extends Composant{
+import Model.Composant;
+
+public abstract class Dynamique extends Composant {
+
+    public abstract void deplacement(int direction);
 }
