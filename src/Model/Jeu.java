@@ -13,7 +13,7 @@ public class Jeu extends Observable {
     }
 
     public Heros getHeros() {
-        return heros;
+        return this.heros;
     }
     public Plateau getPlateau() { return this.plateau; }
 
