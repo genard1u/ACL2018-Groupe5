@@ -10,13 +10,17 @@ import java.util.Scanner;
  * @author walidone
  */
 public class Controleur {
+
     private Jeu jeux;
     private int derection;
+
+    public Controleur(Jeu jeu) {
+        this.jeux = jeu;
+    }
 
     public Jeu getJeux() {
         return jeux;
     }
-
     public void setJeux(Jeu jeux) {
         this.jeux = jeux;
     }
