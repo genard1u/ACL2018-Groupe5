@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package acl2018.groupe5;
+package Controleur;
+
+import Model.Dynamique;
+import Model.Jeu;
 
 import java.util.Scanner;
 
@@ -12,38 +10,38 @@ import java.util.Scanner;
  * @author walidone
  */
 public class Controleur {
-    private Jeux jeux;
+    private Jeu jeux;
     private int derection;
 
-    public Jeux getJeux() {
+    public Jeu getJeux() {
         return jeux;
     }
 
-    public void setJeux(Jeux jeux) {
+    public void setJeux(Jeu jeux) {
         this.jeux = jeux;
     }
      
-     void getDirection(){
+     public void getDirection(){
          Scanner s = new Scanner(System.in);
-         char c =s.nextLine().charAt(0);
-         if(c=="z"){
-          jeux.deplacement(Dynamique.NORD);  
+         char c =s.nextLine().toLowerCase().charAt(0);
+         if(c=='z'){
+          jeux.deplacement(Dynamique.NORD);
          }
-         if(c=="s"){
+         if(c=='s'){
           jeux.deplacement(Dynamique.SUD);
          }
-         if(c=="d"){
+         if(c=='d'){
           jeux.deplacement(Dynamique.EST);
          }
-         if(c=="q"){
+         if(c=='q'){
           jeux.deplacement(Dynamique.OUEST);
          }
-         return 0;
+         return ;
      }
      
      void start(){
-          while(true){
-        getDirection();
+        while(true){
+            getDirection();
         }
      }
      
