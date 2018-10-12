@@ -1,6 +1,7 @@
+import Model.Jeu;
+import View.View;
+
 public class Main {
-
-    Jeux jeux = new Jeux();
-    View view = new View(jeux);
-
+    Jeu jeu = new Jeu();
+    View view = new View(jeu);
 }
