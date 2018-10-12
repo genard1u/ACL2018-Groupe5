@@ -1,4 +1,4 @@
 package Model;
 
-public class Heros {
+public class Heros extends Dynamique{
 }

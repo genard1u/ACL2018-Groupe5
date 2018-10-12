@@ -1,4 +1,4 @@
 package Model;
 
-public class Dynamique {
+public abstract class Dynamique extends Composant{
 }

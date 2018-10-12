@@ -1,4 +1,4 @@
 package Model;
 
-public class Statique {
+public abstract class Statique extends Composant{
 }
