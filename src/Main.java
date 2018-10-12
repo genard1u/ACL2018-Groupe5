@@ -5,8 +5,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Jeu jeux = new Jeu();
-        View view = new View(jeux);
+        Jeu jeu = new Jeu();
+        View view = new View(jeu);
 
         controleur.start();
     }

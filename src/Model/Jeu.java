@@ -1,6 +1,8 @@
 package Model;
 
-public class Jeu {
+import java.util.Observable;
+
+public class Jeu extends Observable {
 
     private Heros heros;
     private Plateau plateau;
@@ -13,5 +15,11 @@ public class Jeu {
     public Heros getHeros() {
         return heros;
     }
+    public Plateau getPlateau() { return this.plateau; }
+
+    public void deplacement(int direction) {
+
+    }
+
 
 }

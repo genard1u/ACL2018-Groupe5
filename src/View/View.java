@@ -13,9 +13,10 @@ public class View implements Observer {
     private Controleur ctrl;
     private Jeu jeu;
 
-    public View(Jeu jeu){
+    public View(Jeu jeu, Controleur ctrl){
         this.jeu = jeu;
-        this.ctrl = new Controleur();
+        this.ctrl = ctrl;
+        jeu.addObserver(this);
     }
 
     public void DisplayPlateaux(int width, int height, int heroX, int heroY) {
@@ -35,8 +36,8 @@ public class View implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-//        Plateau pl = this.jeu.getPlateau();
-//        Heros hero = this.jeu.getHeros();
-//        this.DisplayPlateaux(pl.getWidth, pl.getHeight, hero.getX, hero.getY);
+        Plateau pl = this.jeu.getPlateau();
+        Heros hero = this.jeu.getHeros();
+        this.DisplayPlateaux(pl.getLargeur(), pl.getHauteur(), hero.getPosX(), hero.getPosY());
     }
 }
