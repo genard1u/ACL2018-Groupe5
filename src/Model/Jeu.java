@@ -10,6 +10,8 @@ public class Jeu extends Observable {
     public Jeu(int largeur, int hauteur) {
         heros = new Heros(0, 0);
         plateau = new Plateau(largeur, hauteur);
+        setChanged();
+        notifyObservers();
     }
 
     public Heros getHeros() {
