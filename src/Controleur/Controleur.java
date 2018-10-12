@@ -26,21 +26,25 @@ public class Controleur {
     }
      
      public void getDirection(){
-         Scanner s = new Scanner(System.in);
-         char c =s.nextLine().toLowerCase().charAt(0);
-         if(c=='z'){
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.print("Tapez (S/Z/Q/D) : ");
+
+        char c =s.nextLine().toLowerCase().charAt(0);
+        if(c=='z'){
           jeux.deplacement(Dynamique.NORD);
-         }
-         if(c=='s'){
+        }
+        if(c=='s'){
           jeux.deplacement(Dynamique.SUD);
-         }
-         if(c=='d'){
+        }
+        if(c=='d'){
           jeux.deplacement(Dynamique.EST);
-         }
-         if(c=='q'){
+        }
+        if(c=='q'){
           jeux.deplacement(Dynamique.OUEST);
-         }
-         return ;
+        }
+        return ;
      }
      
      public void start(){
