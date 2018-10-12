@@ -1,5 +1,7 @@
 package Model;
 
+import static Model.Dynamique.*;
+
 public class Plateau {
 
     private int hauteur;
@@ -15,13 +17,13 @@ public class Plateau {
         int y = heros.getPosY();
 
         switch (direction) {
-            case 0:
+            case NORD:
                 return true;
-            case 1:
+            case SUD:
                 return true;
-            case 2:
+            case EST:
                 return true;
-            case 3:
+            case OUEST:
                 return true;
             default:
                 return false;
