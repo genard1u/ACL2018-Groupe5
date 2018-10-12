@@ -13,15 +13,9 @@ public abstract class Dynamique extends Composant {
         super(posX,posY);
     }
 
-    public void deplacementGauche(){
-        posX -= 1;
-    }
-    public void deplacementDroite(){
-        posX += 1;
-    }
-    public void deplacementHaut(){ posY += 1; }
-    public void deplacementBas(){
-        posY -= 1;
-    }
+    public void deplacementGauche(){ posX -= 1; }
+    public void deplacementHaut(){ posY -= 1; }
+    public void deplacementDroite(){ posX += 1; }
+    public void deplacementBas(){ posY += 1; }
 
 }
