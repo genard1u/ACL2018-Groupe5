@@ -43,7 +43,7 @@ public class Controleur {
          return ;
      }
      
-     void start(){
+     public void start(){
         while(true){
             getDirection();
         }
