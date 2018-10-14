@@ -20,7 +20,10 @@ public class Jeu extends Observable {
     public Plateau getPlateau() { return this.plateau; }
 
     public void deplacement(int direction) {
-
+        if(!plateau.deplacement(heros, direction));
+            System.out.println("Commande Out of Range !!");
+        setChanged();
+        notifyObservers();
     }
 
 
