@@ -20,8 +20,24 @@ public class Jeu extends Observable {
         return this.heros;
     }
     
+    public int herosPosX() {
+    	return heros.getPosX();
+    }
+    
+    public int herosPosY() {
+    	return heros.getPosY();
+    }
+    
     public Plateau getPlateau() { return this.plateau; }
 
+    public int hauteurPlateau() {
+    	return plateau.getHauteur();
+    }
+    
+    public int largeurPlateau() {
+    	return plateau.getLargeur();
+    }
+    
     public void deplacement(int direction) {
         if (!plateau.deplacement(heros, direction)) {
             System.out.println(SORTIE_LABYRINTHE);

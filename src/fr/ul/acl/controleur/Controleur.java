@@ -26,32 +26,37 @@ public class Controleur {
         this.jeu = jeu;
     }
      
-    public void getDirection() {
+    public void prochainDeplacement() {
         System.out.println(ECRIRE_COMMANDE);
         		
-        Scanner entree = new Scanner(System.in);
-        char touche = entree.nextLine().toLowerCase().charAt(0);
+        Scanner scan = new Scanner(System.in);
+        String entree = scan.nextLine();
         
-        // il faut encore gérer le cas où l'entrée n'est pas bonne
-        switch (touche) {
-            case 'z':
-        	    jeu.deplacement(Dynamique.NORD);
-        	    break;
-            case 's':
-        	    jeu.deplacement(Dynamique.SUD);
-        	    break;
-            case 'd':
-        	    jeu.deplacement(Dynamique.EST);
-        	    break;
-            case 'q':
-        	    jeu.deplacement(Dynamique.OUEST);
-        	    break;
+        if (!entree.isEmpty()) {
+        	deplacement(entree.toLowerCase().charAt(0));
         }
+     }
+     
+     private void deplacement(char touche) {
+    	 switch (touche) {
+             case 'z':
+     	         jeu.deplacement(Dynamique.NORD);
+     	         break;
+             case 's':
+     	         jeu.deplacement(Dynamique.SUD);
+     	         break;
+             case 'd':
+     	         jeu.deplacement(Dynamique.EST);
+     	         break;
+             case 'q':
+     	         jeu.deplacement(Dynamique.OUEST);
+     	         break;
+         }
      }
      
      public void start() {
         while (true) {
-            getDirection();
+            prochainDeplacement();
         }
      }
      

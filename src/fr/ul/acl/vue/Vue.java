@@ -19,15 +19,38 @@ public class Vue implements Observer {
         jeu.addObserver(this);
 
         // first display
-        Plateau pl = this.jeu.getPlateau();
-        Heros heros = this.jeu.getHeros();
-        
-        afficherPlateau(pl.getLargeur(), pl.getHauteur(), heros.getPosX(), heros.getPosY());
+        afficherPlateau();
     }
 
+    public void afficherPlateau() {    	
+        int largeur = jeu.largeurPlateau();
+        int hauteur = jeu.hauteurPlateau();
+        int herosX = jeu.herosPosX();
+        int herosY = jeu.herosPosY();
+              
+        System.out.println(construirePlateau(largeur, hauteur, herosX, herosY));
+    }
+    
+    private String construirePlateau(int largeur, int hauteur, int herosX, int herosY) {
+    	StringBuilder affichagePlateau = new StringBuilder(50);
+    	
+    	for (int y = 0; y < hauteur; y ++) {
+        	for (int x = 0; x < largeur; x ++) {
+        		if (x == herosX && y == herosY) {
+        			affichagePlateau.append(" X ");
+        		}
+        		else {
+        			affichagePlateau.append(" . ");
+        		}
+        	}
+        	
+        	affichagePlateau.append("\n");
+        }
+    	
+    	return affichagePlateau.toString();
+    }
+    
     public void afficherPlateau(int width, int height, int heroX, int heroY) {
-        // String[][] plateau = new String[width][height];
-
         for (int y=0;y<height;y++) {
             for (int x = 0; x < width; x++)
                 if (x == heroX && y == heroY)
@@ -40,9 +63,7 @@ public class Vue implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        Plateau pl = this.jeu.getPlateau();
-        Heros hero = this.jeu.getHeros();
-        this.afficherPlateau(pl.getLargeur(), pl.getHauteur(), hero.getPosX(), hero.getPosY());
+    	afficherPlateau();            
     }
     
 }

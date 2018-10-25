@@ -50,11 +50,11 @@ public class Plateau {
     }
 
     private boolean allerSud(int x, int y) {
-    	return y < this.hauteur;
+    	return (y + 1) < this.hauteur;
     }
 
     private boolean allerEst(int x, int y) {
-        return x < this.largeur;
+        return (x + 1) < this.largeur;
     }
 
     private boolean allerOuest(int x, int y) {
