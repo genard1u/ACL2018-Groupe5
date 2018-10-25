@@ -1,7 +1,5 @@
 package fr.ul.acl.modele;
 
-import static fr.ul.acl.modele.Dynamique.*;
-
 public class Plateau {
 
     private int hauteur;
