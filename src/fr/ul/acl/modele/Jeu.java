@@ -39,7 +39,7 @@ public class Jeu extends Observable {
     }
     
     public void deplacement(int direction) {
-        if (!plateau.deplacement(heros, direction)) {
+        if (!heros.deplacement(plateau, direction)) {
             System.out.println(SORTIE_LABYRINTHE);
         }
         
