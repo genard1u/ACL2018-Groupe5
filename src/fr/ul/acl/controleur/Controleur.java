@@ -10,7 +10,7 @@ import fr.ul.acl.modele.Jeu;
  */
 public class Controleur {
 
-	private static final String ECRIRE_COMMANDE = "ecrire Commande (S/Z/Q/D)";
+	private final static String ECRIRE_COMMANDE = "ecrire Commande (S/Z/Q/D)";
 	
     private Jeu jeu;
     

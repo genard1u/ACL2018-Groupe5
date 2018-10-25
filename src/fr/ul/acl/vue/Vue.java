@@ -4,9 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import fr.ul.acl.controleur.Controleur;
-import fr.ul.acl.modele.Heros;
 import fr.ul.acl.modele.Jeu;
-import fr.ul.acl.modele.Plateau;
 
 public class Vue implements Observer {
 
@@ -31,25 +29,39 @@ public class Vue implements Observer {
         System.out.println(construirePlateau(largeur, hauteur, herosX, herosY));
     }
     
+    /**
+     * @param largeur
+     * @param hauteur
+     * @param herosX
+     * @param herosY
+     * @return plateau en chaîne
+     */
     private String construirePlateau(int largeur, int hauteur, int herosX, int herosY) {
-    	StringBuilder affichagePlateau = new StringBuilder(50);
+    	StringBuilder plateau = new StringBuilder(50);
     	
     	for (int y = 0; y < hauteur; y ++) {
         	for (int x = 0; x < largeur; x ++) {
         		if (x == herosX && y == herosY) {
-        			affichagePlateau.append(" X ");
+        			plateau.append(" X ");
         		}
         		else {
-        			affichagePlateau.append(" . ");
+        			plateau.append(" . ");
         		}
         	}
         	
-        	affichagePlateau.append("\n");
+        	plateau.append("\n");
         }
     	
-    	return affichagePlateau.toString();
+    	return plateau.toString();
     }
     
+    /**
+     * @deprecated
+     * @param width
+     * @param height
+     * @param heroX
+     * @param heroY
+     */
     public void afficherPlateau(int width, int height, int heroX, int heroY) {
         for (int y=0;y<height;y++) {
             for (int x = 0; x < width; x++)
