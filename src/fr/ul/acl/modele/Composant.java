@@ -1,4 +1,4 @@
-package Model;
+package fr.ul.acl.modele;
 
 public abstract class Composant {
 
@@ -13,6 +13,7 @@ public abstract class Composant {
     public int getPosX() {
         return posX;
     }
+    
     public int getPosY() {
         return posY;
     }

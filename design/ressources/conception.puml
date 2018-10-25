@@ -1,0 +1,53 @@
+@startuml
+
+class Main
+
+package Model {
+
+  class Jeu
+  class Plateau
+  class Heros 
+
+  abstract class Composant {
+    # int posX
+    # int posY
+  }
+
+  abstract class Statique
+
+  abstract class Dynamique {
+    + void deplacement(int direction)
+  }
+
+  Jeu *-- Plateau
+  Jeu *-- Heros
+  Plateau *-- Statique
+  
+  Composant <|-- Statique
+  Composant <|-- Dynamique
+  Dynamique <|-- Heros
+  
+}
+
+package Vue {
+  class View
+}
+
+package Controleur {
+  class Controleur
+}
+
+interface Observer
+class Observable
+
+Observer <|.. View : "<<realizes>>"
+Observable <|-- Jeu
+
+Controleur "0..*" <-- View
+Observer "0..*" <-- Observable
+
+Jeu "1" <-- Main
+Jeu "1" <-- View
+Jeu "1" <-- Controleur
+
+@enduml

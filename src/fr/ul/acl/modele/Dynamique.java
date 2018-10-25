@@ -1,6 +1,6 @@
-package Model;
+package fr.ul.acl.modele;
 
-import Model.Composant;
+import fr.ul.acl.modele.Composant;
 
 public abstract class Dynamique extends Composant {
 
@@ -10,7 +10,7 @@ public abstract class Dynamique extends Composant {
     public final static int OUEST = 3;
 
     public Dynamique(int posX, int posY) {
-        super(posX,posY);
+        super(posX, posY);
     }
 
     public void deplacementGauche(){ posX -= 1; }

@@ -1,6 +1,6 @@
-package Model;
+package fr.ul.acl.modele;
 
-import static Model.Dynamique.*;
+import static fr.ul.acl.modele.Dynamique.*;
 
 public class Plateau {
 
@@ -21,22 +21,22 @@ public class Plateau {
 
         switch (direction) {
             case NORD:
-                if(!canMoveNORD(x,y))
+                if(!allerNord(x,y))
                     return false;
                 heros.deplacementHaut();
                 return true;
             case SUD:
-                if(!canMoveSUD(x,y))
+                if(!allerSud(x,y))
                     return false;
                 heros.deplacementBas();
                 return true;
             case EST:
-                if(!canMoveEST(x,y))
+                if(!allerEst(x,y))
                     return false;
                 heros.deplacementDroite();
                 return true;
             case OUEST:
-                if(!canMoveOUEST(x,y))
+                if(!allerOuest(x,y))
                     return false;
                 heros.deplacementGauche();
                 return true;
@@ -45,28 +45,20 @@ public class Plateau {
         }
     }
 
-    private boolean canMoveNORD(int x, int y) {
-        if(y-1 < 0)
-            return false;
-        return true;
+    private boolean allerNord(int x, int y) {
+        return y > 0;
     }
 
-    private boolean canMoveSUD(int x, int y) {
-        if(y+1 >= this.hauteur)
-            return false;
-        return true;
+    private boolean allerSud(int x, int y) {
+    	return y < this.hauteur;
     }
 
-    private boolean canMoveEST(int x, int y) {
-        if(x+1 >= this.largeur)
-            return false;
-        return true;
+    private boolean allerEst(int x, int y) {
+        return x < this.largeur;
     }
 
-    private boolean canMoveOUEST(int x, int y) {
-        if(x-1 < 0)
-            return false;
-        return true;
+    private boolean allerOuest(int x, int y) {
+    	return x > 0;
     }
 
 }

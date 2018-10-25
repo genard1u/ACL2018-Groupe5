@@ -1,9 +1,11 @@
-package Model;
+package fr.ul.acl.modele;
 
 import java.util.Observable;
 
 public class Jeu extends Observable {
 
+	public static final String SORTIE_LABYRINTHE = "Restez dans le labyrinthe !";
+	
     private Heros heros;
     private Plateau plateau;
 
@@ -17,14 +19,16 @@ public class Jeu extends Observable {
     public Heros getHeros() {
         return this.heros;
     }
+    
     public Plateau getPlateau() { return this.plateau; }
 
     public void deplacement(int direction) {
-        if(!plateau.deplacement(heros, direction));
-            System.out.println("Commande Out of Range !!");
+        if (!plateau.deplacement(heros, direction)) {
+            System.out.println(SORTIE_LABYRINTHE);
+        }
+        
         setChanged();
         notifyObservers();
     }
-
 
 }
