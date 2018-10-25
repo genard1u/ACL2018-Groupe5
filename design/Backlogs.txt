@@ -1,0 +1,31 @@
+Objectifs du projet :
+
+L'objectif est de développer une application "jeux" ou un héros pourra se déplacer dans un labyrinthe,
+combattre des monstres et interragir avec divers objets.
+
+Backlogs :
+
+- Afficher une "carte" représentant l'air de jeux, contenant tout les éléments necessaires au jeux (heros, decors, objets pour les interractions ..etc)
+- Permettre le déplacement du héros
+- Ajouter les "murs" du labyrinthe
+- Générer le labyrinthe de manière aléatoire
+- Ajouter une entrée et une sortie au labyrinthe
+- Ajouter des monstres dans le labyrinthe
+- Ajouter des pièges
+- Ajouter un système de point de vie au héros
+- Ajouter des téléporteurs dans le labyrinthe
+- Ajouter des cases magiques a effets divers
+- Ajouter différentes manières de ce déplacer pour les monstres (aléatoire, suit le héros ..etc)
+- Ajouter différents niveaux de labyrinthe lors de la création de la partie
+- Ajouter ecran de Game Over et de Victoire
+
+
+Version 1 :
+
+- Afficher une carte en version console
+- Permettre le déplacement du héros
+
+Version 2 :
+
+- Ajouter les "murs" du labyrinthe
+- Afficher la carte de manière graphique
