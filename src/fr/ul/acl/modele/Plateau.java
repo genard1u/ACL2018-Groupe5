@@ -5,7 +5,9 @@ public class Plateau {
     private int hauteur;
     private int largeur;
 
-    public Plateau(int largeur, int hauteur) {
+    public Plateau(int largeur, int hauteur) throws IllegalArgumentException{
+        if (largeur<=0 || hauteur<=0)
+            throw new IllegalArgumentException();
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
