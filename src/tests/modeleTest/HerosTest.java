@@ -1,11 +1,17 @@
 package tests.modeleTest;
 
+import fr.ul.acl.modele.Dynamique;
 import fr.ul.acl.modele.Heros;
+import fr.ul.acl.modele.Plateau;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HerosTest {
 
+
+    /**
+     * Test de constructeur de l'heros.
+     */
     @org.junit.jupiter.api.Test
     void Heros() {
 
@@ -25,36 +31,31 @@ class HerosTest {
         x=-1;y=-3;
         try {
             h = new Heros(x,y);
-            fail("valeurs negatives non gerées!");
+            fail("valeurs négatives non gérées!");
         } catch (IllegalArgumentException e) {}
 
     }
 
+
+    /**
+     * Test de la methode de deplacement de l'heros.
+     */
     @org.junit.jupiter.api.Test
     void deplacement() {
-    }
+        Heros h = new Heros(3,3);
+        Plateau p = new Plateau(10,10);
+        assertTrue(h.deplacement(p, Dynamique.NORD));
+        assertTrue(h.deplacement(p,Dynamique.SUD));
+        assertTrue(h.deplacement(p,Dynamique.EST));
+        assertTrue(h.deplacement(p,Dynamique.OUEST));
 
-    @org.junit.jupiter.api.Test
-    void deplacementGauche() {
-    }
+        h = new Heros(0,0);
+        p = new Plateau(1,1);
+        assertFalse(h.deplacement(p, Dynamique.NORD));
+        assertFalse(h.deplacement(p,Dynamique.SUD));
+        assertFalse(h.deplacement(p,Dynamique.EST));
+        assertFalse(h.deplacement(p,Dynamique.OUEST));
 
-    @org.junit.jupiter.api.Test
-    void deplacementHaut() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void deplacementDroite() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void deplacementBas() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getPosX() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getPosY() {
+        // Exception non gérée.
     }
 }
