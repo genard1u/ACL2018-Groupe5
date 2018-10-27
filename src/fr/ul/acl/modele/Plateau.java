@@ -15,19 +15,19 @@ public class Plateau {
     public int getHauteur() { return this.hauteur; }
     public int getLargeur() { return this.largeur; }
 
-    public boolean allerNord(int x, int y) {
+    protected boolean allerNord(int x, int y) {
         return y > 0;
     }
 
-    public boolean allerSud(int x, int y) {
+    protected boolean allerSud(int x, int y) {
     	return (y + 1) < this.hauteur;
     }
 
-    public boolean allerEst(int x, int y) {
+    protected boolean allerEst(int x, int y) {
         return (x + 1) < this.largeur;
     }
 
-    public boolean allerOuest(int x, int y) {
+    protected boolean allerOuest(int x, int y) {
     	return x > 0;
     }
 
