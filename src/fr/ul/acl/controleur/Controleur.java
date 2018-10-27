@@ -14,7 +14,9 @@ public class Controleur {
 	
     private Jeu jeu;
     
-    public Controleur(Jeu jeu) {
+    public Controleur(Jeu jeu) throws NullPointerException {
+        if(jeu == null)
+            throw new NullPointerException();
         this.jeu = jeu;
     }
 
