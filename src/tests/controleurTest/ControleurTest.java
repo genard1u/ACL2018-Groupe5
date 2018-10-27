@@ -20,11 +20,4 @@ class ControleurTest {
 
     }
 
-    @org.junit.jupiter.api.Test
-    void prochainDeplacement() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void start() {
-    }
 }
