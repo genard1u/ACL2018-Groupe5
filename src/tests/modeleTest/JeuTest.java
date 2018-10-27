@@ -1,42 +1,40 @@
 package tests.modeleTest;
 
+import fr.ul.acl.modele.Jeu;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class JeuTest {
 
-    @org.junit.jupiter.api.BeforeEach
-    void setUp() {
-    }
 
-    @org.junit.jupiter.api.AfterEach
-    void tearDown() {
-    }
-
+    /**
+     * Test de constructeur.
+     */
     @org.junit.jupiter.api.Test
-    void getHeros() {
-    }
+    void Jeu(){
+        int l=10, h=10;
+        Jeu j = new Jeu(l,h);
+        assertNotNull(j.getHeros());
+        assertNotNull(j.getPlateau());
+        assertEquals(l,j.largeurPlateau());
+        assertEquals(h,j.hauteurPlateau());
 
-    @org.junit.jupiter.api.Test
-    void herosPosX() {
-    }
+        try {
+            l=0; h=0;
+            j = new Jeu(l,h);
+            fail("valeur 0 non gérée!");
+        } catch (IllegalArgumentException e) {}
 
-    @org.junit.jupiter.api.Test
-    void herosPosY() {
-    }
+        try {
+            l=-5; h=-2;
+            j = new Jeu(l,h);
+            fail("valeur negative non gérée!");
+        } catch (IllegalArgumentException e) {}
 
-    @org.junit.jupiter.api.Test
-    void getPlateau() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void hauteurPlateau() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void largeurPlateau() {
     }
 
     @org.junit.jupiter.api.Test
     void deplacement() {
+        fail("Not implemented yet!");
     }
 }
