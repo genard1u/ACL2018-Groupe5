@@ -77,5 +77,16 @@ public class Vue implements Observer {
     public void update(Observable observable, Object o) {
     	afficherPlateau();            
     }
-    
+
+
+
+    /* Ajouté pour faire les tests */
+    public Controleur getControleur() {
+        return this.controleur;
+    }
+
+    /* Ajouté pour faire les tests */
+    public Jeu getJeu() {
+        return this.jeu;
+    }
 }
