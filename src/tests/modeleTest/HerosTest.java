@@ -1,15 +1,33 @@
 package tests.modeleTest;
 
+import fr.ul.acl.modele.Heros;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HerosTest {
 
-    @org.junit.jupiter.api.BeforeEach
-    void setUp() {
-    }
+    @org.junit.jupiter.api.Test
+    void Heros() {
 
-    @org.junit.jupiter.api.AfterEach
-    void tearDown() {
+        // valeur positives
+        int x=1, y=2;
+        Heros h = new Heros(x,y);
+        assertEquals(x, h.getPosX());
+        assertEquals(y, h.getPosY());
+
+        // valeur 0
+        x=0; y=0;
+        h = new Heros(x,y);
+        assertEquals(x, h.getPosX());
+        assertEquals(y, h.getPosY());
+
+        // valeur negative
+        x=-1;y=-3;
+        try {
+            h = new Heros(x,y);
+            fail("valeurs negatives non gerées!");
+        } catch (IllegalArgumentException e) {}
+
     }
 
     @org.junit.jupiter.api.Test
