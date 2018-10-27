@@ -33,8 +33,4 @@ class JeuTest {
 
     }
 
-    @org.junit.jupiter.api.Test
-    void deplacement() {
-        fail("Not implemented yet!");
-    }
 }
