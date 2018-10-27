@@ -3,10 +3,11 @@ package tests.modeleTest;
 import fr.ul.acl.modele.Dynamique;
 import fr.ul.acl.modele.Heros;
 import fr.ul.acl.modele.Plateau;
+import junit.framework.TestCase;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HerosTest {
+class HerosTest extends TestCase {
 
 
     /**

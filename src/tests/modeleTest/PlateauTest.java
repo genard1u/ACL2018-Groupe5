@@ -1,12 +1,13 @@
 package tests.modeleTest;
 
 import fr.ul.acl.modele.Plateau;
+import junit.framework.TestCase;
 
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PlateauTest {
+class PlateauTest extends TestCase {
 
     @org.junit.jupiter.api.Test
     void Plateau(){

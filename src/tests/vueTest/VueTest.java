@@ -3,10 +3,11 @@ package tests.vueTest;
 import fr.ul.acl.controleur.Controleur;
 import fr.ul.acl.modele.Jeu;
 import fr.ul.acl.vue.Vue;
+import junit.framework.TestCase;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class VueTest {
+class VueTest extends TestCase {
 
 
     /**
