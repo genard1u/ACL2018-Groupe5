@@ -17,7 +17,6 @@ class ControleurTest {
             c = new Controleur(null);
             fail("valeur null non gérée.");
         } catch (NullPointerException e) {}
-
     }
 
 }
