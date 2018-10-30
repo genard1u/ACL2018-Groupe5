@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import fr.ul.acl.controleur.Controleur;
 import fr.ul.acl.modele.Jeu;
+import fr.ul.acl.modele.Plateau;
 
 public class Vue implements Observer {
 
@@ -17,9 +18,28 @@ public class Vue implements Observer {
         jeu.addObserver(this);
 
         // first display
-        afficherPlateau();
+        //afficherPlateau();
+        //affichage version 2
+        affichagePlateau();
     }
-
+    
+    public void affichagePlateau(){
+        Plateau p = jeu.getPlateau();
+        int h=p.getHauteur();
+        int w=p.getLargeur();
+        int herosx=jeu.herosPosX();
+        int herosy=jeu.herosPosY();
+         System.out.println();
+        for(int i=0;i<h;i++){
+            for (int j=0;j<w;j++){ 
+               String s= p.getAffichage(j,i);
+               if(j==herosx&&i==herosy)s=" H ";
+               System.out.print(s);
+            }
+         System.out.println();
+        }
+    }
+    
     public void afficherPlateau() {    	
         int largeur = jeu.largeurPlateau();
         int hauteur = jeu.hauteurPlateau();
@@ -28,14 +48,7 @@ public class Vue implements Observer {
               
         System.out.println(construirePlateau(largeur, hauteur, herosX, herosY));
     }
-    
-    /**
-     * @param largeur
-     * @param hauteur
-     * @param herosX
-     * @param herosY
-     * @return plateau en chaîne
-     */
+      
     private String construirePlateau(int largeur, int hauteur, int herosX, int herosY) {
     	StringBuilder plateau = new StringBuilder(50);
     	
@@ -55,13 +68,7 @@ public class Vue implements Observer {
     	return plateau.toString();
     }
     
-    /**
-     * @deprecated
-     * @param width
-     * @param height
-     * @param heroX
-     * @param heroY
-     */
+
     public void afficherPlateau(int width, int height, int heroX, int heroY) {
         for (int y=0;y<height;y++) {
             for (int x = 0; x < width; x++)
@@ -75,18 +82,8 @@ public class Vue implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-    	afficherPlateau();            
+    	//afficherPlateau(); 
+        affichagePlateau();
     }
-
-
-
-    /* Ajouté pour faire les tests */
-    public Controleur getControleur() {
-        return this.controleur;
-    }
-
-    /* Ajouté pour faire les tests */
-    public Jeu getJeu() {
-        return this.jeu;
-    }
+    
 }

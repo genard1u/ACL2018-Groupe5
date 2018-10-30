@@ -10,8 +10,10 @@ public class Jeu extends Observable {
     private Plateau plateau;
 
     public Jeu(int largeur, int hauteur) {
-        heros = new Heros(0, 0);
         plateau = new Plateau(largeur, hauteur);
+        int[] casevide = plateau.GetPositionVide();
+        if(casevide != null)
+            heros = new Heros(casevide[0],casevide[1]);
         setChanged();
         notifyObservers();
     }
@@ -46,5 +48,5 @@ public class Jeu extends Observable {
         setChanged();
         notifyObservers();
     }
-
+    
 }
