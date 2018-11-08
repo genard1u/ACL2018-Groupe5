@@ -1,8 +1,10 @@
 package fr.ul.acl.modele;
 
+import fr.ul.acl.engine.Game;
+
 import java.util.Observable;
 
-public class Jeu extends Observable {
+public class Jeu extends Observable implements Game{
 
 	public static final String SORTIE_LABYRINTHE = "Restez dans le labyrinthe !";
 	
@@ -48,5 +50,34 @@ public class Jeu extends Observable {
         setChanged();
         notifyObservers();
     }
-    
+
+    @Override
+    public void evolve(String userCmd) {
+
+        int d;
+        switch (userCmd){
+            case "q":
+                d = Dynamique.OUEST;
+                break;
+            case "z":
+                d = Dynamique.NORD;
+                break;
+            case "d":
+                d = Dynamique.EST;
+                break;
+            case "s":
+                d = Dynamique.SUD;
+                break;
+            default:
+                d = Dynamique.VIDE;
+                break;
+        }
+
+        boolean b = heros.deplacement(plateau,d);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

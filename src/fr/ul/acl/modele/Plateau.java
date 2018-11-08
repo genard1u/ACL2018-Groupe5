@@ -72,6 +72,10 @@ public class Plateau {
                     return new int[]{i,j};
         return null;
     }
+
+    public Statique getElement(int x, int y){
+        return Matrice[x][y];
+    }
     
 
 }

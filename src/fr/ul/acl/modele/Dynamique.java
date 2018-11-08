@@ -4,6 +4,7 @@ import fr.ul.acl.modele.Composant;
 
 public abstract class Dynamique extends Composant {
 
+    public final static int VIDE = -1;
     public final static int NORD = 0;
     public final static int SUD = 1;
     public final static int EST = 2;
