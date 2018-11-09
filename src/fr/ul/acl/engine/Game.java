@@ -14,7 +14,7 @@ public interface Game {
 	 * @param userCmd
 	 *            commande utilisateur
 	 */
-	public void evolve(String userCmd);
+	public void evolve(Cmd userCmd);
 
 	/**
 	 * @return true si et seulement si le jeu est fini

@@ -4,19 +4,13 @@ import fr.ul.acl.model.Composant;
 
 public abstract class Dynamique extends Composant {
 
-    public final static int VIDE = -1;
-    public final static int NORD = 0;
-    public final static int SUD = 1;
-    public final static int EST = 2;
-    public final static int OUEST = 3;
-
     public Dynamique(int posX, int posY) {
         super(posX, posY);
     }
 
-    protected void deplacementGauche(){ posX --; }
-    protected void deplacementHaut(){ posY --; }
-    protected void deplacementDroite(){ posX ++; }
-    protected void deplacementBas(){ posY ++; }
-
+    protected void up(){ posY --; }
+    protected void down(){ posY ++; }
+    protected void left(){ posX --; }
+    protected void right(){ posX ++; }
+    
 }

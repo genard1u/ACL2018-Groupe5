@@ -50,18 +50,20 @@ public class GameEngineGraphical {
 	 * permet de lancer le game
 	 */
 	public void run() throws InterruptedException {
-
 		// creation de l'interface graphique
 		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
 
 		// boucle de game
 		while (!this.game.isFinished()) {
 			// demande controle utilisateur
-			String c = this.gameController.getCommand();
+			Cmd c = this.gameController.getCommand();
+			
 			// fait evoluer le game
 			this.game.evolve(c);
+			
 			// affiche le game
 			this.gui.paint();
+			
 			// met en attente
 			Thread.sleep(100);
 		}

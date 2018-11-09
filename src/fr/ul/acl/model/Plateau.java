@@ -33,7 +33,7 @@ public class Plateau {
     }
 
     private void buildBorders(int largeur, int hauteur) {
-    	int border;
+    	int border = 0;
     	
         for (int i = 0; i < largeur; i ++){
         	border = largeur - 1;
@@ -51,26 +51,23 @@ public class Plateau {
     public int getHauteur() { return this.hauteur; }
     public int getLargeur() { return this.largeur; }
 
-    public boolean allerNord(int x, int y) {
-        return y > 0;
-    }
-
-    public boolean allerSud(int x, int y) {
-    	return (y + 1) < this.hauteur;
-    }
-
-    public boolean allerEst(int x, int y) {
-        return (x + 1) < this.largeur;
-    }
-
-    public boolean allerOuest(int x, int y) {
-    	return x > 0;
+    public boolean isAccessible(int x, int y) {
+    	boolean isAccessible = false;
+    	String typeCase = getTypeCase(x, y);
+    			
+    	if (!typeCase.equals(Mur.MUR)) {
+    		isAccessible = true;
+    	}
+    	return isAccessible;
     }
     
     public String getTypeCase(int x ,int y) {
-        if (matrice[x][y] != null)
+        if (matrice[x][y] != null) {
         	return matrice[x][y].getType();
-        else return "";
+        }
+        else {
+        	return "";
+        }
     }
     
     /**
@@ -80,9 +77,12 @@ public class Plateau {
      * @return
      */
     public String getAffichage(int x, int y){
-        if (matrice[x][y] != null)
+        if (matrice[x][y] != null) {
             return matrice[x][y].getAffichage();
-        else return " . ";
+        }
+        else {
+        	return " . ";
+        }
     }
     
     /**

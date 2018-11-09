@@ -1,5 +1,6 @@
 package fr.ul.acl.controller;
 
+import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.GameController;
 
 import java.awt.event.KeyEvent;
@@ -13,13 +14,13 @@ public class LabyController implements GameController {
     /**
      * commande en cours
      */
-    private String commandeEnCours;
+    private Cmd commandeEnCours;
 
     /**
      * construction du controleur par defaut le controleur n'a pas de commande
      */
     public LabyController() {
-        this.commandeEnCours = "";
+        this.commandeEnCours = Cmd.IDLE;
     }
 
     /**
@@ -28,51 +29,44 @@ public class LabyController implements GameController {
      *
      * @return commande faite par le joueur
      */
-    public String getCommand() {
+    public Cmd getCommand() {
         return this.commandeEnCours;
     }
 
-    @Override
     /**
      * met a jour les commandes en fonctions des touches appuyees
+     * @Override
      */
-    public void keyPressed(KeyEvent e) {
-
-        switch (e.getKeyChar()) {
-            // si on appuie sur 'q',commande joueur est gauche
-            case 'q':
-            case 'Q':
-                this.commandeEnCours = "q";
+    public void keyPressed(KeyEvent event) {
+        switch (event.getKeyCode()) {
+            case 'q': case 'Q': case KeyEvent.VK_LEFT:
+                commandeEnCours = Cmd.LEFT;
                 break;
-            case 'z':
-            case 'Z':
-                this.commandeEnCours = "z";
+            case 'z': case 'Z': case KeyEvent.VK_UP:
+                commandeEnCours = Cmd.UP;
                 break;
-            case 'd':
-            case 'D':
-                this.commandeEnCours = "d";
+            case 'd': case 'D': case KeyEvent.VK_RIGHT:
+                commandeEnCours = Cmd.RIGHT;
                 break;
-            case 's':
-            case 'S':
-                this.commandeEnCours = "s";
+            case 's': case 'S': case KeyEvent.VK_DOWN:
+                commandeEnCours = Cmd.DOWN;
                 break;
             default:
                 break;
         }
-
     }
-
-    @Override
+   
     /**
      * met a jour les commandes quand le joueur relache une touche
+     * @Override
      */
     public void keyReleased(KeyEvent e) {
-        this.commandeEnCours = "";
+    	this.commandeEnCours = Cmd.IDLE;
     }
 
-    @Override
     /**
      * ne fait rien
+     * @Override
      */
     public void keyTyped(KeyEvent e) {}
 

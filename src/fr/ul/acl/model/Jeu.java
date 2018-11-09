@@ -1,5 +1,6 @@
 package fr.ul.acl.model;
 
+import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
 
 public class Jeu implements Game {
@@ -12,10 +13,10 @@ public class Jeu implements Game {
     
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
-        int[] posLibre = plateau.getPositionVide();
+        int[] freePos = plateau.getPositionVide();
         
-        if (posLibre != null) {
-            heros = new Heros(posLibre[0], posLibre[1]);
+        if (freePos != null) {
+            heros = new Heros(freePos[0], freePos[1]);
         }
     }
 
@@ -41,39 +42,9 @@ public class Jeu implements Game {
     	return plateau.getLargeur();
     }
     
-    /**
-     * @deprecated
-     * @param direction
-     */
-    public void deplacement(int direction) {
-        if (!heros.deplacement(plateau, direction)) {
-            System.out.println(SORTIE_LABYRINTHE);
-        }
-    }
-
     @Override
-    public void evolve(String userCmd) {
-        int d;
-        
-        switch (userCmd) {
-            case "q":
-                d = Dynamique.OUEST;
-                break;
-            case "z":
-                d = Dynamique.NORD;
-                break;
-            case "d":
-                d = Dynamique.EST;
-                break;
-            case "s":
-                d = Dynamique.SUD;
-                break;
-            default:
-                d = Dynamique.VIDE;
-                break;
-        }
-
-        heros.deplacement(plateau, d);
+    public void evolve(Cmd userCmd) {
+        heros.move(plateau, userCmd);
     }
 
     @Override
