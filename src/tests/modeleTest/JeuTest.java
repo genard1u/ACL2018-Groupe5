@@ -1,6 +1,6 @@
 package tests.modeleTest;
 
-import fr.ul.acl.modele.Jeu;
+import fr.ul.acl.model.Jeu;
 import junit.framework.TestCase;
 
 import static org.junit.jupiter.api.Assertions.*;

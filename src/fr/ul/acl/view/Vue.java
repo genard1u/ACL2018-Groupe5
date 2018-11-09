@@ -1,13 +1,14 @@
-package fr.ul.acl.vue;
+package fr.ul.acl.view;
 
-import java.util.Observable;
-import java.util.Observer;
+import fr.ul.acl.controller.Controleur;
+import fr.ul.acl.model.Jeu;
+import fr.ul.acl.model.Plateau;
 
-import fr.ul.acl.controleur.Controleur;
-import fr.ul.acl.modele.Jeu;
-import fr.ul.acl.modele.Plateau;
-
-public class Vue implements Observer {
+/**
+ * @author gen
+ * @deprecated Utilisée jusqu'à la version 1.2
+ */
+public class Vue {
 
     private Controleur controleur;
     private Jeu jeu;
@@ -15,7 +16,7 @@ public class Vue implements Observer {
     public Vue(Jeu jeu, Controleur controleur) {
         this.jeu = jeu;
         this.controleur = controleur;
-        jeu.addObserver(this);
+        // jeu.addObserver(this);
 
         // first display
         //afficherPlateau();
@@ -40,6 +41,9 @@ public class Vue implements Observer {
         }
     }
     
+    /**
+     * @deprecated
+     */
     public void afficherPlateau() {    	
         int largeur = jeu.largeurPlateau();
         int hauteur = jeu.hauteurPlateau();
@@ -67,8 +71,14 @@ public class Vue implements Observer {
     	
     	return plateau.toString();
     }
-    
 
+    /**
+     * @deprecated
+     * @param width
+     * @param height
+     * @param heroX
+     * @param heroY
+     */
     public void afficherPlateau(int width, int height, int heroX, int heroY) {
         for (int y=0;y<height;y++) {
             for (int x = 0; x < width; x++)
@@ -78,12 +88,6 @@ public class Vue implements Observer {
                     System.out.print(" . ");
             System.out.println("\n");
         }
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
-    	//afficherPlateau(); 
-        affichagePlateau();
     }
     
 }

@@ -1,8 +1,8 @@
 package tests.vueTest;
 
-import fr.ul.acl.controleur.Controleur;
-import fr.ul.acl.modele.Jeu;
-import fr.ul.acl.vue.Vue;
+import fr.ul.acl.controller.Controleur;
+import fr.ul.acl.model.Jeu;
+import fr.ul.acl.view.Vue;
 import junit.framework.TestCase;
 
 import static org.junit.jupiter.api.Assertions.*;

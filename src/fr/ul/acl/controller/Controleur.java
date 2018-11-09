@@ -1,12 +1,13 @@
-package fr.ul.acl.controleur;
+package fr.ul.acl.controller;
 
 import java.util.Scanner;
 
-import fr.ul.acl.modele.Dynamique;
-import fr.ul.acl.modele.Jeu;
+import fr.ul.acl.model.Dynamique;
+import fr.ul.acl.model.Jeu;
 
 /**
  * @author walidone
+ * @deprecated Utilisée jusqu'à la version 1.2
  */
 public class Controleur {
 

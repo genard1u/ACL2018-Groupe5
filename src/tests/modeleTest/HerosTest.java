@@ -1,8 +1,8 @@
 package tests.modeleTest;
 
-import fr.ul.acl.modele.Dynamique;
-import fr.ul.acl.modele.Heros;
-import fr.ul.acl.modele.Plateau;
+import fr.ul.acl.model.Dynamique;
+import fr.ul.acl.model.Heros;
+import fr.ul.acl.model.Plateau;
 import junit.framework.TestCase;
 
 import static org.junit.jupiter.api.Assertions.*;

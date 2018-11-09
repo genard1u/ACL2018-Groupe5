@@ -1,6 +1,6 @@
 package tests.modeleTest;
 
-import fr.ul.acl.modele.Plateau;
+import fr.ul.acl.model.Plateau;
 import junit.framework.TestCase;
 
 import java.util.Random;

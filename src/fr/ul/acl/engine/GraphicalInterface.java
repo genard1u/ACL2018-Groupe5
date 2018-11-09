@@ -2,12 +2,9 @@ package fr.ul.acl.engine;
 
 import javax.swing.JFrame;
 
-
 /**
+ * Interface graphique avec son controller et son afficheur
  * @author Horatiu Cirstea, Vincent Thomas
- *
- * interface graphique avec son controller et son afficheur
- *
  */
 public class GraphicalInterface  {
 

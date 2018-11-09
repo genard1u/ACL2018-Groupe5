@@ -1,4 +1,4 @@
-package fr.ul.acl.modele;
+package fr.ul.acl.model;
 
 public class Heros extends Dynamique {
 
@@ -14,28 +14,28 @@ public class Heros extends Dynamique {
             case NORD:
                 if(!plateau.allerNord(x,y))
                     return false;
-                if(plateau.getTypeCase(x, y-1).equals(Mure.MURETYPE))
+                if(plateau.getTypeCase(x, y-1).equals(Mur.MUR))
                     return false;
                 deplacementHaut();
                 return true;
             case SUD:
                 if(!plateau.allerSud(x,y))
                     return false;
-                if(plateau.getTypeCase(x, y+1).equals(Mure.MURETYPE))
+                if(plateau.getTypeCase(x, y+1).equals(Mur.MUR))
                     return false;
                 deplacementBas();
                 return true;
             case EST:
                 if(!plateau.allerEst(x,y))
                     return false;
-                if(plateau.getTypeCase(x+1, y).equals(Mure.MURETYPE))
+                if(plateau.getTypeCase(x+1, y).equals(Mur.MUR))
                     return false;
                 deplacementDroite();
                 return true;
             case OUEST:
                 if(!plateau.allerOuest(x,y))
                     return false;
-                if(plateau.getTypeCase(x-1, y).equals(Mure.MURETYPE))
+                if(plateau.getTypeCase(x-1, y).equals(Mur.MUR))
                     return false;
                 deplacementGauche();
                 return true;

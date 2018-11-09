@@ -1,6 +1,6 @@
-package fr.ul.acl.modele;
+package fr.ul.acl.model;
 
-import fr.ul.acl.modele.Composant;
+import fr.ul.acl.model.Composant;
 
 public abstract class Dynamique extends Composant {
 
@@ -14,9 +14,9 @@ public abstract class Dynamique extends Composant {
         super(posX, posY);
     }
 
-    protected void deplacementGauche(){ posX -= 1; }
-    protected void deplacementHaut(){ posY -= 1; }
-    protected void deplacementDroite(){ posX += 1; }
-    protected void deplacementBas(){ posY += 1; }
+    protected void deplacementGauche(){ posX --; }
+    protected void deplacementHaut(){ posY --; }
+    protected void deplacementDroite(){ posX ++; }
+    protected void deplacementBas(){ posY ++; }
 
 }

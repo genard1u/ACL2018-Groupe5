@@ -1,7 +1,7 @@
 package tests.controleurTest;
 
-import fr.ul.acl.controleur.Controleur;
-import fr.ul.acl.modele.Jeu;
+import fr.ul.acl.controller.Controleur;
+import fr.ul.acl.model.Jeu;
 import junit.framework.TestCase;
 
 import static org.junit.jupiter.api.Assertions.*;

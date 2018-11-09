@@ -1,16 +1,14 @@
-package fr.ul.acl.controleur;
+package fr.ul.acl.controller;
+
 import fr.ul.acl.engine.GameController;
 
 import java.awt.event.KeyEvent;
 
-
 /**
+ * Controleur de type KeyListener
  * @author Horatiu Cirstea, Vincent Thomas
- *
- * controleur de type KeyListener
- *
  */
-public class ControleurGraphique implements GameController {
+public class LabyController implements GameController {
 
     /**
      * commande en cours
@@ -20,7 +18,7 @@ public class ControleurGraphique implements GameController {
     /**
      * construction du controleur par defaut le controleur n'a pas de commande
      */
-    public ControleurGraphique() {
+    public LabyController() {
         this.commandeEnCours = "";
     }
 
@@ -76,8 +74,6 @@ public class ControleurGraphique implements GameController {
     /**
      * ne fait rien
      */
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
 }

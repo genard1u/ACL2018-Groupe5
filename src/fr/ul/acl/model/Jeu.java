@@ -1,23 +1,22 @@
-package fr.ul.acl.modele;
+package fr.ul.acl.model;
 
 import fr.ul.acl.engine.Game;
 
-import java.util.Observable;
-
-public class Jeu extends Observable implements Game{
+public class Jeu implements Game {
 
 	public static final String SORTIE_LABYRINTHE = "Restez dans le labyrinthe !";
 	
     private Heros heros;
     private Plateau plateau;
 
+    
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
-        int[] casevide = plateau.GetPositionVide();
-        if(casevide != null)
-            heros = new Heros(casevide[0],casevide[1]);
-        setChanged();
-        notifyObservers();
+        int[] posLibre = plateau.getPositionVide();
+        
+        if (posLibre != null) {
+            heros = new Heros(posLibre[0], posLibre[1]);
+        }
     }
 
     public Heros getHeros() {
@@ -42,20 +41,21 @@ public class Jeu extends Observable implements Game{
     	return plateau.getLargeur();
     }
     
+    /**
+     * @deprecated
+     * @param direction
+     */
     public void deplacement(int direction) {
         if (!heros.deplacement(plateau, direction)) {
             System.out.println(SORTIE_LABYRINTHE);
         }
-        
-        setChanged();
-        notifyObservers();
     }
 
     @Override
     public void evolve(String userCmd) {
-
         int d;
-        switch (userCmd){
+        
+        switch (userCmd) {
             case "q":
                 d = Dynamique.OUEST;
                 break;
@@ -73,11 +73,12 @@ public class Jeu extends Observable implements Game{
                 break;
         }
 
-        boolean b = heros.deplacement(plateau,d);
+        heros.deplacement(plateau, d);
     }
 
     @Override
     public boolean isFinished() {
         return false;
     }
+    
 }
