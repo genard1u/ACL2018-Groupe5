@@ -62,7 +62,7 @@ package fr.ul.acl.engine #DDDDDD {
 
 }
 
-KeyListener <|.. GameController
+KeyListener <|-- GameController
 JPanel <|-- DrawingPanel
 JFrame <-- GraphicalInterface
 
