@@ -1,37 +1,63 @@
 package tests.modeleTest;
 
 import fr.ul.acl.model.Jeu;
-import junit.framework.TestCase;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class JeuTest extends TestCase {
-
+/**
+ * Test de la classe Jeu.
+ * Elements de test : Constructeur seulement (les autres méthodes sont "Too Small To Fail").
+ */
+public class JeuTest {
 
     /**
      * Test de constructeur.
+     * Right.
+     * Not Null.
      */
-    @org.junit.jupiter.api.Test
-    void Jeu(){
-        int l=10, h=10;
-        Jeu j = new Jeu(l,h);
+    @Test
+    public void JeuNotNull() {
+        int l = 10, h = 10;
+        Jeu j = new Jeu(l, h);
         assertNotNull(j.getHeros());
         assertNotNull(j.getPlateau());
-        assertEquals(l,j.largeurPlateau());
-        assertEquals(h,j.hauteurPlateau());
+    }
 
-        try {
-            l=0; h=0;
-            j = new Jeu(l,h);
-            fail("valeur 0 non gérée!");
-        } catch (IllegalArgumentException e) {}
+    /**
+     * Test de constructeur.
+     * Right.
+     * Dimension.
+     */
+    @Test
+    public void JeuRight() {
+        int l = 10, h = 10;
+        Jeu j = new Jeu(l, h);
+        assertEquals(l, j.largeurPlateau());
+        assertEquals(h, j.hauteurPlateau());
+    }
 
-        try {
-            l=-5; h=-2;
-            j = new Jeu(l,h);
-            fail("valeur negative non gérée!");
-        } catch (IllegalArgumentException e) {}
+    /**
+     * Test de constructeur.
+     * Boundary.
+     * Exception Zero.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void JeuZeroDim() {
+        int l = 0, h = 0;
+        Jeu j = new Jeu(l, h);
+        fail("valeur 0 non gérée!");
+    }
 
+    /**
+     * Test de constructeur.
+     * Boundary.
+     * Exception Negative.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void JeuNegDim() {
+        int l = -5, h = -2;
+        Jeu j = new Jeu(l, h);
+        fail("valeur negative non gérée!");
     }
 
 }
