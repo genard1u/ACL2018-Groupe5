@@ -16,23 +16,45 @@ public class JeuTest {
      * Not Null.
      */
     @Test
-    public void JeuNotNull() {
+    public void JeuHeroNotNull() {
         int l = 10, h = 10;
         Jeu j = new Jeu(l, h);
         assertNotNull(j.getHeros());
+    }
+
+    /**
+     * Test de constructeur.
+     * Right.
+     * Not Null.
+     */
+    @Test
+    public void JeuPlateauNotNull() {
+        int l = 10, h = 10;
+        Jeu j = new Jeu(l, h);
         assertNotNull(j.getPlateau());
     }
 
     /**
      * Test de constructeur.
      * Right.
-     * Dimension.
+     * Dimension largeur.
      */
     @Test
-    public void JeuRight() {
+    public void JeuDimLargeur() {
         int l = 10, h = 10;
         Jeu j = new Jeu(l, h);
         assertEquals(l, j.largeurPlateau());
+    }
+
+    /**
+     * Test de constructeur.
+     * Right.
+     * Dimension hauteur.
+     */
+    @Test
+    public void JeuDimHauteur() {
+        int l = 10, h = 10;
+        Jeu j = new Jeu(l, h);
         assertEquals(h, j.hauteurPlateau());
     }
 
@@ -41,7 +63,7 @@ public class JeuTest {
      * Boundary.
      * Exception Zero.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = AssertionError.class)
     public void JeuZeroDim() {
         int l = 0, h = 0;
         Jeu j = new Jeu(l, h);
@@ -53,7 +75,7 @@ public class JeuTest {
      * Boundary.
      * Exception Negative.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = AssertionError.class)
     public void JeuNegDim() {
         int l = -5, h = -2;
         Jeu j = new Jeu(l, h);
