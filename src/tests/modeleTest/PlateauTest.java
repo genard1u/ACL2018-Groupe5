@@ -1,36 +1,86 @@
 package tests.modeleTest;
 
 import fr.ul.acl.model.Plateau;
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
-import java.util.Random;
+import fr.ul.acl.model.Statique;
+import org.junit.Ignore;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Tests de la classe Plateau.
+ * Elements de test : Constructeur (les autres methodes sont considérées comme "Too Small To Fail").
+ */
+public class PlateauTest {
 
-class PlateauTest extends TestCase {
-
-    @org.junit.jupiter.api.Test
-    void Plateau(){
-
-        // valeur positives
-        int l = 10, h=8;
-        Plateau p = new Plateau(l,h);
+    /**
+     * Test de Constructeur.
+     * Right.
+     * Dimensions largeur.
+     */
+    @Test
+    public void PlateauDimLargeur(){
+        int l=10,h=10;
+        Plateau p = getPlateau(l,h);
         assertEquals(l,p.getLargeur());
+    }
+
+    /**
+     * Test de Constructeur.
+     * Right.
+     * Dimensions hauteur.
+     */
+    @Test
+    public void PlateauDimHauteur(){
+        int l=10,h=10;
+        Plateau p = getPlateau(l,h);
         assertEquals(h,p.getHauteur());
+    }
 
-        // valeur 0
-        l = 0; h=0;
-        try {
-            p = new Plateau(l, h);
-            fail("valeurs = 0 non gérées");
-        } catch (IllegalArgumentException e){}
+    /**
+     * Test de Constructeur.
+     * Right.
+     * Matrice.
+     */
+    @Ignore
+    @Test
+    public void PlateauMatrix(){
+        int l=10,h=10;
+        Statique[][] m = new Statique[h][l];
+        Plateau p = getPlateau(l,h);
+        assertEquals(m,p.getMatrice());
+    }
 
-        // valeur negative
-        l = -5; h=0;
-        try {
-            p = new Plateau(l, h);
-            fail("valeurs négatives non gérées");
-        } catch (IllegalArgumentException e){}
+    /**
+     * Test de Constructeur.
+     * Boundary.
+     * Zero.
+     */
+    @Test(expected = AssertionError.class)
+    public void PlateauZero(){
+        int l=0,h=0;
+        Plateau p = getPlateau(l,h);
+        fail("valeur 0 non gérée.");
+    }
 
+    /**
+     * Test de Constructeur.
+     * Boundary.
+     * Negative.
+     */
+    @Test(expected = AssertionError.class)
+    public void PlateauNegative(){
+        int l=-4,h=-1;
+        Plateau p = getPlateau(l,h);
+        fail("valeurs negatives non gérées.");
+    }
+
+    /**
+     * method factory pour plateau.
+     * @param l largeur
+     * @param h heuteur
+     */
+    private Plateau getPlateau(int l,int h){
+        return new Plateau(l,h);
     }
 }

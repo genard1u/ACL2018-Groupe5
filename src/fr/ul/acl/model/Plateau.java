@@ -103,5 +103,11 @@ public class Plateau {
     public Statique getElement(int x, int y) {
         return matrice[x][y];
     }
+
+    /**
+     * Ajouté pour faire le test.
+     * @return la matrice concrete.
+     */
+    public Statique[][] getMatrice() { return this.matrice; }
     
 }

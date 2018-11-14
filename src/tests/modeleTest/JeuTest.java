@@ -18,7 +18,7 @@ public class JeuTest {
     @Test
     public void JeuHeroNotNull() {
         int l = 10, h = 10;
-        Jeu j = new Jeu(l, h);
+        Jeu j = getJeu(l, h);
         assertNotNull(j.getHeros());
     }
 
@@ -30,7 +30,7 @@ public class JeuTest {
     @Test
     public void JeuPlateauNotNull() {
         int l = 10, h = 10;
-        Jeu j = new Jeu(l, h);
+        Jeu j = getJeu(l, h);
         assertNotNull(j.getPlateau());
     }
 
@@ -42,7 +42,7 @@ public class JeuTest {
     @Test
     public void JeuDimLargeur() {
         int l = 10, h = 10;
-        Jeu j = new Jeu(l, h);
+        Jeu j = getJeu(l, h);
         assertEquals(l, j.largeurPlateau());
     }
 
@@ -54,7 +54,7 @@ public class JeuTest {
     @Test
     public void JeuDimHauteur() {
         int l = 10, h = 10;
-        Jeu j = new Jeu(l, h);
+        Jeu j = getJeu(l, h);
         assertEquals(h, j.hauteurPlateau());
     }
 
@@ -66,7 +66,7 @@ public class JeuTest {
     @Test(expected = AssertionError.class)
     public void JeuZeroDim() {
         int l = 0, h = 0;
-        Jeu j = new Jeu(l, h);
+        Jeu j = getJeu(l, h);
         fail("valeur 0 non gérée!");
     }
 
@@ -78,8 +78,18 @@ public class JeuTest {
     @Test(expected = AssertionError.class)
     public void JeuNegDim() {
         int l = -5, h = -2;
-        Jeu j = new Jeu(l, h);
+        Jeu j = getJeu(l, h);
         fail("valeur negative non gérée!");
+    }
+
+    /**
+     * method factory de jeu
+     * @param l largeur
+     * @param h hauteur
+     * @return jeu
+     */
+    private Jeu getJeu(int l,int h){
+        return new Jeu(l,h);
     }
 
 }
