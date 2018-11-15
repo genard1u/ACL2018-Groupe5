@@ -80,7 +80,7 @@ public class PlateauTest {
      * @param l largeur
      * @param h heuteur
      */
-    private Plateau getPlateau(int l,int h){
+    public Plateau getPlateau(int l,int h){
         return new Plateau(l,h);
     }
 }
