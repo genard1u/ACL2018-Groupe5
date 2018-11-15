@@ -59,7 +59,7 @@ public class LabyPainter implements GamePainter {
     private void drawHero(Graphics2D crayon) {
         int x = Resources.scaling(jeu.herosPosX());
         int y = Resources.scaling(jeu.herosPosY());
-        crayon.drawImage(images.getHeros(),x,y,null);
+        crayon.drawImage(images.getHeros(jeu.getCmd()),x,y,null);
     }
     
     @Override

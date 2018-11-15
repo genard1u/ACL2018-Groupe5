@@ -9,6 +9,7 @@ public class Jeu implements Game {
 	
     private Heros heros;
     private Plateau plateau;
+    private Cmd cmd;
 
     
     public Jeu(int largeur, int hauteur) {
@@ -44,12 +45,17 @@ public class Jeu implements Game {
     
     @Override
     public void evolve(Cmd userCmd) {
+        cmd = userCmd;
         heros.move(plateau, userCmd);
     }
 
     @Override
     public boolean isFinished() {
         return false;
+    }
+
+    public Cmd getCmd(){
+        return cmd;
     }
     
 }
