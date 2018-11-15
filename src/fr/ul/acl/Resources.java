@@ -10,7 +10,7 @@ public final class Resources {
 
 	public final static int WIDTH = 10;
 	public final static int HEIGHT = 10;
-	public final static int SCALING = 40;
+	public final static int SCALING = 32;
 	public final static int CASE_W = 40;
 	public final static int CASE_H = 40;
 	
