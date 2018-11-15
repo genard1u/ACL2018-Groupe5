@@ -24,8 +24,3 @@ Version 1 :
 
 - Afficher une carte en version console
 - Permettre le déplacement du héros
-
-Version 2 :
-
-- Ajouter les "murs" du labyrinthe
-- Afficher la carte de manière graphique
