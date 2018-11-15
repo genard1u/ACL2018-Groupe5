@@ -1,0 +1,54 @@
+Objectifs du projet :
+
+L'objectif est de développer une application "jeu" où un héros pourra se déplacer dans un labyrinthe,
+combattre des monstres et interagir avec divers objets.
+
+Backlogs :
+
+- Afficher une "carte" représentant l'aire de jeu, contenant tout les éléments nécessaires au jeu (heros, decors, objets pour les interactions ...)
+- Permettre le déplacement du héros
+- Ajouter les "murs" du labyrinthe
+- Générer le labyrinthe de manière aléatoire
+- Ajouter une entrée et une sortie au labyrinthe
+- Ajouter des monstres dans le labyrinthe
+- Ajouter des pièges
+- Ajouter un système de point de vie au hÃ©ros
+- Ajouter des téléporteurs dans le labyrinthe
+- Ajouter des cases magiques à effets divers
+- Ajouter différentes manières de ce déplacer pour les monstres (aléatoire, suit le héros ...)
+- Ajouter différents niveaux de labyrinthe lors de la création de la partie
+- Ajouter ecran de Game Over et de Victoire
+
+
+Version 1 :
+
+- Afficher une carte en version console
+- Permettre le déplacement du héros
+
+Version 2 :
+
+- Ajouter les "murs" du labyrinthe
+- Afficher la carte de manière graphique
+
+Version 3 :
+
+Yann :
+- Générer le labyrinthe de manière aléatoire
+- Ajout de texture
+- Animation basique lors des déplacements
+- Ajouter des téléporteurs dans le labyrinthe
+
+Pierre :
+- Ajouter une entrée et une sortie au labyrinthe
+- Ajouter ecran de Game Over et de Victoire
+- Ecriture de tests
+- Gestion du git
+
+Walid :
+- Ajouter diffèrentes manières de ce déplacer pour les monstres (aléatoire, suit le héros ...)
+- Modification et correction des tests pour les classes de la Version 2
+
+Alaa :
+- Ecriture de tests
+- Ajouter des cases magiques à effets divers
+- Ajouter des pièges (game over)
