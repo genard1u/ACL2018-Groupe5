@@ -1,15 +1,17 @@
 package tests.modeleTest;
 
 import static org.junit.Assert.*;
+
+import fr.ul.acl.model.Statique;
 import org.junit.Test;
 import org.junit.Ignore;
 
 import fr.ul.acl.model.Plateau;
-import fr.ul.acl.model.Statique;
+
 
 /**
  * Tests de la classe Plateau.
- * Elements de test : Constructeur (les autres methodes sont considérées comme "Too Small To Fail").
+ * Elements de test : Constructeur, isAccessible (les autres methodes sont considérées comme "Too Small To Fail").
  */
 public class PlateauTest {
 
@@ -45,10 +47,7 @@ public class PlateauTest {
     @Ignore
     @Test
     public void PlateauMatrix(){
-        int l=10,h=10;
-        Statique[][] m = new Statique[h][l];
-        Plateau p = getPlateau(l,h);
-        assertEquals(m,p.getMatrice());
+        fail("Not Implemented Yet : encore pas de solution sans boucle.");
     }
 
     /**
@@ -147,6 +146,42 @@ public class PlateauTest {
         Plateau p = getPlateau(l,h);
         assertEquals(l,p.getLargeur());
         assertEquals(h,p.getHauteur());
+    }
+
+    /**
+     * Test de la methode isAccessible
+     * Right.
+     * Affirmative.
+     */
+    @Test
+    public void isAccessibleAffirmative(){
+        int l=10,h=10;
+        Plateau p = getPlateau(l,h);
+        int[] coord = p.getPositionVide();
+        assertTrue(p.isAccessible(coord[0],coord[1]));
+    }
+
+    /**
+     * Test de la methode isAccessible
+     * Right.
+     * Negative.
+     */
+    @Test
+    public void isAccessibleNegative(){
+        int l=10,h=10;
+        int x=0,y=0;
+        Plateau p = getPlateau(l,h);
+        assertFalse(p.isAccessible(x,y));
+    }
+
+    /**
+     * Test de la methode isAccessible
+     * Boundary.
+     * Hors dimensions.
+     */
+    @Test
+    public void isAccessibleOutOfBound(){
+        fail("Not Implemented Yet");
     }
 
     /**
