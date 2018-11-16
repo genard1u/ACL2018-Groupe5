@@ -13,6 +13,7 @@ public abstract class Statique extends Composant {
         return type;
     }
     
+    public abstract boolean isMagic();
     public abstract String getAffichage();
 
 }

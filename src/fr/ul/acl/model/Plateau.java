@@ -58,6 +58,7 @@ public class Plateau {
     	if (!typeCase.equals(Mur.MUR)) {
     		isAccessible = true;
     	}
+    	
     	return isAccessible;
     }
     
@@ -90,7 +91,7 @@ public class Plateau {
      * @return (x, y) couple de coordonnées
      */
     public int[] getPositionVide() {
-        for (int i = 0; i < largeur; i ++) {
+    	for (int i = 0; i < largeur; i ++) {
             for (int j = 0; j < hauteur; j ++) {
                 if (matrice[i][j] == null)
                     return new int[]{i, j};
@@ -111,3 +112,25 @@ public class Plateau {
     public Statique[][] getMatrice() { return this.matrice; }
     
 }
+
+/*
+ * boolean found = false;
+    	int[] emptyPlace = null;
+    	int i = 0, x = 0, y = 0;
+    	int nb = largeur * hauteur;
+    	
+    	while (!found && i < nb) {   		
+    		x = i / largeur;
+    		y = i % largeur;
+    		
+    		if (matrice[x][y] == null) {
+    			found = true;
+    		}
+    	} 
+    	
+    	if (found) {
+    		emptyPlace = new int[]{x, y};
+    	}
+    	
+    	return emptyPlace;
+    	*/

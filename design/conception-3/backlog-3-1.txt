@@ -40,9 +40,11 @@ Yann :
 
 Pierre :
 - Ajouter une entrée et une sortie au labyrinthe
-- Ajouter ecran de Game Over et de Victoire
-- Ecriture de tests
-- Gestion du git
+- Ajouter ecran de Game Over et de Victoire (presque bon)
+- Ecriture de tests (pour Yann)
+- Gestion du git (tag du 3.0 à appliquer)
+- Script ANT
+- Revoir (les dimensionnements repère virtuel <-> repère réel)
 
 Walid :
 - Ajouter diffèrentes manières de ce déplacer pour les monstres (aléatoire, suit le héros ...)

@@ -28,35 +28,71 @@ public class LabyPainter implements GamePainter {
     public void draw(BufferedImage im) {
         Graphics2D crayon = (Graphics2D) im.getGraphics();
         
-        // Dessin des elements statiques
-        for (int i = 0; i < jeu.largeurPlateau(); i ++) {
-            for (int j = 0; j < jeu.hauteurPlateau(); j ++) {
-                if (jeu.getPlateau().getElement(i,j) == null) {
+        switch (jeu.getState()) {
+            case Running:
+            	drawBackground(crayon);
+                drawHero(crayon);
+                break;
+            case Pause:
+            	drawPause(crayon);
+            	break;
+            case GameOver:
+            	drawGameOver(crayon);
+            	break;
+		    default:
+			    break;       
+        }        
+    }
+
+    /**
+     * Dessin des éléments statiques
+     * @param crayon
+     */
+    private void drawBackground(Graphics2D crayon) {
+        for (int x = 0; x < jeu.largeurPlateau(); x ++) {
+            for (int y = 0; y < jeu.hauteurPlateau(); y ++) {
+                if (jeu.getPlateau().getElement(x, y) == null) {
                     crayon.setColor(Resources.BACKGROUND_COLOR);
                 }
                 else {
-                    if (jeu.getPlateau().getElement(i,j).getType() == "MUR") {
+                    if (jeu.getPlateau().getElement(x, y).getType() == "MUR") {
                         crayon.setColor(Resources.WALL_COLOR);
                     }
                 }
                 
-                int x = Resources.scaling(i);
-                int y = Resources.scaling(j);
-                
-                crayon.fillRect(x, y, Resources.SCALING, Resources.SCALING);
+                crayon.fillRect(Resources.scaling(x), 
+                		        Resources.scaling(y), 
+                		        Resources.SCALING, 
+                		        Resources.SCALING
+                );
             }
         }
-
-        drawHero(crayon);
     }
-
+    
+    /**
+     * Dessin du héros
+     * @param crayon
+     */
     private void drawHero(Graphics2D crayon) {
-        int x = Resources.scaling(jeu.herosPosX());
-        int y = Resources.scaling(jeu.herosPosY());
-        
         crayon.setColor(Resources.HERO_COLOR);
-        crayon.fillRect(x, y, Resources.SCALING, Resources.SCALING);
+        crayon.fillRect(Resources.scaling(jeu.herosPosX()), 
+        		        Resources.scaling(jeu.herosPosY()), 
+        		        Resources.SCALING, 
+        		        Resources.SCALING
+        );
     }
+    
+    /**
+     * Texture manquante
+     * @param crayon
+     */
+    private void drawPause(Graphics2D crayon) {}
+    
+    /**
+     * Texture manquante
+     * @param crayon
+     */
+    private void drawGameOver(Graphics2D crayon) {}
     
     @Override
     public int getWidth() {
@@ -72,6 +108,8 @@ public class LabyPainter implements GamePainter {
      * Ajouté pour faire des tests
      * @return Jeu.
      */
-    public Jeu getJeu() { return this.jeu; }
+    public Jeu getJeu() { 
+    	return this.jeu; 
+    }
 
 }

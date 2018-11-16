@@ -17,5 +17,10 @@ public class Mur extends Statique {
     public String getAffichage() {
         return "[ ]";
     }
+
+	@Override
+	public boolean isMagic() {
+		return true;
+	}
     
 }

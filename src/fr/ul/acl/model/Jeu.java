@@ -2,24 +2,33 @@ package fr.ul.acl.model;
 
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
+import fr.ul.acl.model.GameState.State;
 
 public class Jeu implements Game {
 
-	public static final String SORTIE_LABYRINTHE = "Restez dans le labyrinthe !";
-	
+	private GameState state;
     private Heros heros;
     private Plateau plateau;
 
     
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
-        int[] freePos = plateau.getPositionVide();
-        
-        if (freePos != null) {
-            heros = new Heros(freePos[0], freePos[1]);
-        }
+        state = new GameState();
+        placeHero();
     }
 
+    private void placeHero() {
+        int[] designatedPlace = plateau.getPositionVide();
+        
+        try {
+        	heros = new Heros(designatedPlace[0], designatedPlace[1]);
+        }
+        catch (IllegalArgumentException noDesignatedPlace) {
+        	noDesignatedPlace.printStackTrace();
+        	System.exit(1);
+        }
+    }
+    
     public Heros getHeros() {
         return this.heros;
     }
@@ -32,7 +41,9 @@ public class Jeu implements Game {
     	return heros.getPosY();
     }
     
-    public Plateau getPlateau() { return this.plateau; }
+    public Plateau getPlateau() { 
+    	return this.plateau; 
+    }
 
     public int hauteurPlateau() {
     	return plateau.getHauteur();
@@ -42,14 +53,21 @@ public class Jeu implements Game {
     	return plateau.getLargeur();
     }
     
+    public State getState() {
+    	return state.getState();
+    }
+    
     @Override
     public void evolve(Cmd userCmd) {
-        heros.move(plateau, userCmd);
+        if (getState() == State.Running) {
+        	heros.move(plateau, userCmd);
+        }
+        else if (getState() == State.Pause) {}
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return getState() == State.GameOver;
     }
     
 }

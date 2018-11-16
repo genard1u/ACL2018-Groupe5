@@ -4,11 +4,29 @@ import fr.ul.acl.engine.Cmd;
 
 public class Heros extends Dynamique {
 
+	private int life = 100;
+	
     public Heros(int posX, int posY) {
         super(posX, posY);
     }
+    
+    public int getLife() {
+		return life;
+	}
 
-    public void move(Plateau plateau, Cmd userCmd) {
+	public void setLife(int life) {
+		this.life = life;
+	}
+
+	public void takeDamage(int damage) {
+		life -= damage;
+	}
+	
+	public boolean isAlive() {
+		return life > 0;
+	}
+	
+	public void move(Plateau plateau, Cmd userCmd) {
         int x = getPosX();
         int y = getPosY();
 
