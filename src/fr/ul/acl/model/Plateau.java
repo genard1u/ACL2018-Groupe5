@@ -21,32 +21,24 @@ public class Plateau {
     }
 
     private void buildLaby(int largeur, int hauteur) {
-    	buildBorders(largeur, hauteur);
+    	//buildBorders(largeur, hauteur);
     	
-    	Random alea = new Random();
-    	
-        for (int i = 0; i < largeur; i ++){
-             int x = alea.nextInt(largeur);
-             int y = alea.nextInt(hauteur);
-             matrice[x][y] = new Mur(x, y); 
+    	//Random alea = new Random();
+    	for(int i = 2; i < matrice.length;i+=2){
+    	    for(int j =2; j < matrice[0].length;j+=2){
+    	        matrice[i][j] = new Mur(i,j);
+            }
+        }
+        for(int i = 0; i < matrice.length;i++){
+    	    matrice[0][i] = new Mur(0,i);
+    	    matrice[i][0] = new Mur(i,0);
+    	    if(i+1 < matrice.length) {
+                matrice[i+1][matrice.length-1] = new Mur(i+1, matrice.length-1);
+                matrice[matrice.length - 1][i + 1] = new Mur(matrice.length - 1, i + 1);
+            }
         }
     }
 
-    private void buildBorders(int largeur, int hauteur) {
-    	int border = 0;
-    	
-        for (int i = 0; i < largeur; i ++){
-        	border = largeur - 1;
-            matrice[0][i] = new Mur(0, i);
-            matrice[border][i] = new Mur(border, i);
-        }
-        
-        for (int i = 0; i < hauteur; i ++){
-        	border = hauteur - 1;
-            matrice[i][0] = new Mur(i, 0);
-            matrice[i][border] = new Mur(i, border);
-        }
-    }
     
     public int getHauteur() { return this.hauteur; }
     public int getLargeur() { return this.largeur; }
