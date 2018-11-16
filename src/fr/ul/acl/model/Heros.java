@@ -3,9 +3,9 @@ package fr.ul.acl.model;
 import fr.ul.acl.engine.Cmd;
 
 public class Heros extends Dynamique {
-
+    public static final String HEROS="HEROS";
     public Heros(int posX, int posY) {
-        super(posX, posY);
+        super(posX, posY,HEROS);
     }
 
     public void move(Plateau plateau, Cmd userCmd) {

@@ -2,6 +2,7 @@ package fr.ul.acl.view;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.*;
@@ -48,6 +49,7 @@ public class LabyPainter implements GamePainter {
         }
 
         drawHero(crayon);
+        drawMonstre(crayon);
     }
 
     private void drawHero(Graphics2D crayon) {
@@ -57,7 +59,20 @@ public class LabyPainter implements GamePainter {
         crayon.setColor(Resources.HERO_COLOR);
         crayon.fillRect(x, y, Resources.SCALING, Resources.SCALING);
     }
-    
+
+    private void drawMonstre(Graphics2D crayon){
+        ArrayList<int[]> monstrepose = jeu.getGestionnaireMonstre().getPosMonstres();
+        int x,y;
+        for (int[] p :monstrepose){
+            if(p[2]==0)
+                crayon.setColor(Resources.MONSTRE_COLOR);
+            else
+                crayon.setColor(Resources.FONTOME_COLOR);
+            x = Resources.scaling(p[0]);
+            y = Resources.scaling(p[1]);
+            crayon.fillRect(x,y, Resources.SCALING, Resources.SCALING);
+        }
+    }
     @Override
     public int getWidth() {
         return width;

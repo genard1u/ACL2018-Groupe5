@@ -1,62 +1,113 @@
 package tests.modeleTest;
 
-import fr.ul.acl.model.Dynamique;
+import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.Plateau;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class HerosTest extends TestCase {
+public class HerosTest {
 
 
-    /**
-     * Test de constructeur de l'heros.
-     */
-    @org.junit.jupiter.api.Test
-    void Heros() {
-
+    @Test
+    public void RightHeros(){
         // valeur positives
         int x=1, y=2;
         Heros h = new Heros(x,y);
         assertEquals(x, h.getPosX());
         assertEquals(y, h.getPosY());
 
-        // valeur 0
-        x=0; y=0;
-        h = new Heros(x,y);
+    }
+    @Test
+    public void RightHerosZeroo(){
+        // valeur 0 0
+        int x=0, y=0;
+        Heros h = new Heros(x,y);
         assertEquals(x, h.getPosX());
         assertEquals(y, h.getPosY());
+    }
 
-        // valeur negative
-        x=-1;y=-3;
-        try {
-            h = new Heros(x,y);
-            fail("valeurs négatives non gérées!");
-        } catch (IllegalArgumentException e) {}
-
+    // test valeur negative
+    @Test(expected = IllegalArgumentException.class)
+    public void NegativePosition(){
+        int  x=-1,y=-3;
+        Heros h = new Heros(x,y);
     }
 
 
     /**
      * Test de la methode de deplacement de l'heros.
      */
-    @org.junit.jupiter.api.Test
-    void deplacement() {
+    @Test
+    public void deplacementHaut(){
         Heros h = new Heros(3,3);
         Plateau p = new Plateau(10,10);
-        assertTrue(h.deplacement(p, Dynamique.NORD));
-        assertTrue(h.deplacement(p,Dynamique.SUD));
-        assertTrue(h.deplacement(p,Dynamique.EST));
-        assertTrue(h.deplacement(p,Dynamique.OUEST));
-
-        h = new Heros(0,0);
-        p = new Plateau(1,1);
-        assertFalse(h.deplacement(p, Dynamique.NORD));
-        assertFalse(h.deplacement(p,Dynamique.SUD));
-        assertFalse(h.deplacement(p,Dynamique.EST));
-        assertFalse(h.deplacement(p,Dynamique.OUEST));
-
-        // Exception non gérée.
+        h.move(p, Cmd.UP);
+        assertSame(h.getPosX(),3);
+        assertSame(h.getPosY(),2);
     }
+    @Test
+    public void deplacementBas(){
+        Heros h = new Heros(3,3);
+        Plateau p = new Plateau(10,10);
+        h.move(p, Cmd.DOWN);
+        assertSame(h.getPosX(),3);
+        assertSame(h.getPosY(),4);
+    }
+    @Test
+    public void deplacementDroite(){
+        Heros h = new Heros(3,3);
+        Plateau p = new Plateau(10,10);
+        h.move(p, Cmd.RIGHT);
+        assertSame(h.getPosX(),4);
+        assertSame(h.getPosY(),3);
+    }
+    @Test
+    public void deplacementGauche(){
+        Heros h = new Heros(3,3);
+        Plateau p = new Plateau(10,10);
+        h.move(p, Cmd.LEFT);
+        assertSame(h.getPosX(),2);
+        assertSame(h.getPosY(),3);
+    }
+    @Test
+    public void limiteHaut(){
+        Heros h = new Heros(3,0);
+        Plateau p = new Plateau(10,10);
+        h.move(p, Cmd.UP);
+        assertSame(h.getPosX(),3);
+        assertSame(h.getPosY(),0);
+    }
+    @Test
+    public void limiteBas(){
+        Heros h = new Heros(0,9);
+        Plateau p = new Plateau(10,10);
+        h.move(p, Cmd.DOWN);
+        assertSame(h.getPosX(),0);
+        assertSame(h.getPosY(),9);
+    }
+    @Test
+    public void limiteDroite(){
+        Heros h = new Heros(9,3);
+        Plateau p = new Plateau(10,10);
+        h.move(p, Cmd.RIGHT);
+        assertSame(h.getPosX(),9);
+        assertSame(h.getPosY(),3);
+    }
+    @Test
+    public void limiteGauche(){
+        Heros h = new Heros(0,3);
+        Plateau p = new Plateau(10,10);
+        h.move(p, Cmd.LEFT);
+        assertSame(h.getPosX(),0);
+        assertSame(h.getPosY(),3);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void deplacementtestnull(){
+        Heros h = new Heros(0,0);
+        h.move(null,null);
+    }
+
 }
