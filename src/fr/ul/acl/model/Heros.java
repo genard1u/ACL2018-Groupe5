@@ -83,4 +83,14 @@ public class Heros extends Dynamique {
         this.win = true;
     }
 
+    /**
+     * la methode de teleportation de l'heros.
+     * @param toPosX la position x de l'emplacemet de teleporation.
+     * @param toPosY la position y de l'emplacement de teleporation.
+     */
+    public void teleport(int toPosX, int toPosY){
+        this.posX = toPosX;
+        this.posY = toPosY;
+    }
+
 }
