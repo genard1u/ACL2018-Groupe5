@@ -8,7 +8,8 @@ import java.util.Map;
 
 public class Aetoile implements Algorithme {
     private static Algorithme aetoile;
-    public static Algorithme getInctence(){
+    /*recuperation d'une instence de Aetoile */
+    public static Algorithme getInstence(){
         if (aetoile==null)aetoile=new Aetoile();
         return aetoile;
     }
@@ -18,6 +19,8 @@ public class Aetoile implements Algorithme {
     private static Map<String,Integer> open;
     private static Map<String,Integer> close;
     private static Map<String,String>pred;
+
+    /*calculer le plus court chemin */
     @Override
     public  LinkedList<Cmd>getChemin(Plateau plateau ,int Hx,int Hy,int x,int y,String type){
         open = new HashMap<>();
@@ -40,12 +43,14 @@ public class Aetoile implements Algorithme {
         }
         return getChemin(deb,fin);
     }
+    /*calculer heuristique distance manhattan */
     private static int geth(int Hx,int Hy,String cle ){
         String[] pos = cle.split(",");
         int x=Integer.valueOf(pos[0]);
         int y=Integer.valueOf(pos[1]);
         return Math.abs(Hx-x)+Math.abs(Hy-y);
     }
+    /*selectionner le prochain sommet a visiter*/
     private static String getTop(Map<String,Integer> open){
         String top="";
         int min=1000000000;
@@ -57,6 +62,7 @@ public class Aetoile implements Algorithme {
         }
         return top;
     }
+    /*selectionner les successeur d'un sommet*/
     private static LinkedList<String>getSecc(String key,Plateau plateau,String type){
         LinkedList<String> secc=new LinkedList<>();
         String[] pos = key.split(",");
@@ -68,6 +74,7 @@ public class Aetoile implements Algorithme {
         if(plateau.isAccessible(x,y-1)||type==Fantome.FANTOME)secc.add(String.valueOf(x)+','+String.valueOf(y-1));
         return secc;
     }
+    /*selectionner les successeur qui peut amelioré le chemin */
     private static LinkedList<String>filtreSecc(int cout,LinkedList<String> secc,int Hx,int Hy){
         LinkedList<String>seccf=new LinkedList<>();
         for (String cle :secc){
@@ -85,6 +92,7 @@ public class Aetoile implements Algorithme {
         }
         return seccf;
     }
+    /*convertire un arc une Commande*/
     private static Cmd move(String p1,String p2){
         String[] pos = p1.split(",");
         int x1=Integer.valueOf(pos[0]);
@@ -98,6 +106,7 @@ public class Aetoile implements Algorithme {
         if(y1-1==y2)return Cmd.UP;
         return Cmd.IDLE;
     }
+    /*convertire un chemin a une suit de commande */
     private static LinkedList<Cmd>getChemin(String cledeb,String clefin){
         LinkedList<Cmd>chemin=new LinkedList<>();
         if(pred.containsKey(clefin)) {

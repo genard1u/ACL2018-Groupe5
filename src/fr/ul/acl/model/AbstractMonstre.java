@@ -8,6 +8,7 @@ public abstract class AbstractMonstre extends Dynamique {
     public AbstractMonstre(int posX, int posY, String type) {
         super(posX, posY, type);
     }
+    /*deplacement de monstre vers une derection si c'est posible */
     public boolean deplacement(Jeu jeu, Cmd direction) {
         int x=getPosX();
         int y=getPosY();
@@ -29,6 +30,7 @@ public abstract class AbstractMonstre extends Dynamique {
         }
         return true;
     }
+    /*verification que le monstre peut se deplacer a la case (x,y) */
     protected abstract boolean verificationCase(Jeu jeu ,int x,int y);
 
 }

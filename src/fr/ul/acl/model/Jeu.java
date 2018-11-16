@@ -10,8 +10,8 @@ public class Jeu implements Game {
     private Heros heros;
     private Plateau plateau;
     private GestionnaireMonstre gestionnaireMonstre;
-    private int NBMONSTRE=1;
-    private int NBFONTOME=1;
+    private int NBMONSTRE=2;
+    private int NBFONTOME=2;
     private int VITES=4;
     private int iteration;
 
@@ -24,7 +24,7 @@ public class Jeu implements Game {
             heros = new Heros(freePos[0], freePos[1]);
         }
 
-        gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInctence());
+        gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInstence());
         heros.setGestionnaireMonstre(gestionnaireMonstre);
         iteration=0;
     }
