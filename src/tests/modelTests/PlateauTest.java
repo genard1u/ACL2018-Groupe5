@@ -1,8 +1,6 @@
 package tests.modelTests;
 
 import static org.junit.Assert.*;
-
-import fr.ul.acl.model.Statique;
 import org.junit.Test;
 import org.junit.Ignore;
 
