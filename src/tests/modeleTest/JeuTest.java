@@ -88,7 +88,7 @@ public class JeuTest {
      * @param h hauteur
      * @return jeu
      */
-    private Jeu getJeu(int l,int h){
+    public static Jeu getJeu(int l,int h){
         return new Jeu(l,h);
     }
 

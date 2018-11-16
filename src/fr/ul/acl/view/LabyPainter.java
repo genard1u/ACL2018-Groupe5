@@ -68,4 +68,10 @@ public class LabyPainter implements GamePainter {
         return height;
     }
 
+    /**
+     * Ajouté pour faire des tests
+     * @return Jeu.
+     */
+    public Jeu getJeu() { return this.jeu; }
+
 }
