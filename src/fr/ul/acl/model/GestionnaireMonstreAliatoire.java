@@ -13,7 +13,7 @@ public class GestionnaireMonstreAliatoire extends GestionnaireMonstre {
     public void deplacement(){
         Random random=new Random();
         int cnt,derection;
-        for(Monstre m :monstres){
+        for(AbstractMonstre m :monstres){
             cnt=10;
             while (cnt>0) {
                 derection = random.nextInt(4);
