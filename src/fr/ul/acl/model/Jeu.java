@@ -12,6 +12,8 @@ public class Jeu implements Game {
     private GestionnaireMonstre gestionnaireMonstre;
     private int NBMONSTRE=1;
     private int NBFONTOME=1;
+    private int VITES=4;
+    private int iteration;
 
 
     public Jeu(int largeur, int hauteur) {
@@ -22,7 +24,9 @@ public class Jeu implements Game {
             heros = new Heros(freePos[0], freePos[1]);
         }
 
-        gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this);
+        gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInctence());
+        heros.setGestionnaireMonstre(gestionnaireMonstre);
+        iteration=0;
     }
 
     public Heros getHeros() {
@@ -50,7 +54,11 @@ public class Jeu implements Game {
     @Override
     public void evolve(Cmd userCmd) {
         heros.move(plateau, userCmd);
-        gestionnaireMonstre.deplacement();
+        if(iteration%VITES==0) {
+            gestionnaireMonstre.deplacement();
+            iteration=0;
+        }
+        iteration++;
     }
 
     @Override

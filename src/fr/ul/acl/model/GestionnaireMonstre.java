@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class GestionnaireMonstre  {
-    protected ArrayList<Monstre> monstres;
+    protected ArrayList<AbstractMonstre> monstres;
     protected Plateau plateau;
     protected Jeu jeu;
 
     public GestionnaireMonstre(int nbmonstres,int nbfontome,Jeu jeu){
      this.jeu=jeu;
      this.plateau=jeu.getPlateau();
-     monstres=new ArrayList<Monstre>();
+     monstres=new ArrayList<AbstractMonstre>();
      int posx,posy;
      Random rand =new Random();
      for (int i=0;i<nbmonstres;i++) {
@@ -37,7 +37,7 @@ public abstract class GestionnaireMonstre  {
 
     public ArrayList<int[]>getPosMonstres(){
         ArrayList<int[]> pos=new ArrayList<int[]>();
-        for (Monstre m :monstres){
+        for (AbstractMonstre m :monstres){
             int type=1;
             if(m.getType().equals(Monstre.MONSTRE))type=0;
             pos.add(new int[]{m.posX,m.posY,type});
@@ -46,13 +46,13 @@ public abstract class GestionnaireMonstre  {
     }
 
     public boolean isMonstre(int x, int y){
-        for (Monstre m :monstres){
+        for (AbstractMonstre m :monstres){
             if(m.getPosX()==x&&m.getPosY()==y)return true;
         }
         return false;
     }
 
-    public ArrayList<Monstre> getMonstres() {
+    public ArrayList<AbstractMonstre> getMonstres() {
         return monstres;
     }
 

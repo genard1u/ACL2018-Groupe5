@@ -6,11 +6,20 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class Aetoile {
+public class Aetoile implements Algorithme {
+    private static Algorithme aetoile;
+    public static Algorithme getInctence(){
+        if (aetoile==null)aetoile=new Aetoile();
+        return aetoile;
+    }
+    private Aetoile(){
+
+    };
     private static Map<String,Integer> open;
     private static Map<String,Integer> close;
     private static Map<String,String>pred;
-    public static LinkedList<Cmd>getChemin(Plateau plateau ,int Hx,int Hy,int x,int y,String type){
+    @Override
+    public  LinkedList<Cmd>getChemin(Plateau plateau ,int Hx,int Hy,int x,int y,String type){
         open = new HashMap<>();
         close=new HashMap<>();
         pred=new HashMap<>();

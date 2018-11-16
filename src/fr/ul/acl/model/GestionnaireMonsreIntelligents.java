@@ -8,14 +8,16 @@ import java.util.LinkedList;
 public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
     private int xh,yh;
     private ArrayList<LinkedList<Cmd>> chemins;
-    public GestionnaireMonsreIntelligents(int nbmonstres,int nbfontome, Jeu jeu) {
+    private Algorithme algo;
+    public GestionnaireMonsreIntelligents(int nbmonstres,int nbfontome, Jeu jeu,Algorithme algo) {
         super(nbmonstres,nbfontome, jeu);
         chemins=new ArrayList<>();
+        this.algo=algo;
         xh=jeu.herosPosX();
         yh=jeu.herosPosY();
         for(int i=0;i<nbmonstres+nbfontome;i++){
-            Monstre m = monstres.get(i);
-            chemins.add(Aetoile.getChemin(plateau,jeu.herosPosX(),jeu.herosPosY(),m.posX,m.posY,m.getType()));
+            AbstractMonstre m = monstres.get(i);
+            chemins.add(algo.getChemin(plateau,jeu.herosPosX(),jeu.herosPosY(),m.posX,m.posY,m.getType()));
         }
     }
 
@@ -26,8 +28,8 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
             yh = jeu.herosPosY();
             chemins.clear();
             for (int i = 0; i < monstres.size(); i++) {
-                Monstre m = monstres.get(i);
-                chemins.add(Aetoile.getChemin(plateau, jeu.herosPosX(), jeu.herosPosY(), m.posX, m.posY,m.getType()));
+                AbstractMonstre m = monstres.get(i);
+                chemins.add(algo.getChemin(plateau, jeu.herosPosX(), jeu.herosPosY(), m.posX, m.posY,m.getType()));
             }
         }
         for (int i=0;i<monstres.size();i++){
