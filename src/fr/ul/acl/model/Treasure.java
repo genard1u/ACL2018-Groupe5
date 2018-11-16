@@ -24,6 +24,10 @@ public class Treasure extends Magic {
         return "$";
     }
 
+    /**
+     * la methode responsable de la vectoire de l'heros.
+     * @param h l'heros.
+     */
     @Override
     public void effet(Heros h) {
         h.Wins();

@@ -20,7 +20,7 @@ public class Trap extends Magic {
     }
 
     /**
-     * la methode qui affecte l'etat de l'heros
+     * la methode responsable de la degradation de l'etat de l'heros
      * @param h l'heros.
      */
     @Override
