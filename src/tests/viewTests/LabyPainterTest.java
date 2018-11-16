@@ -1,10 +1,10 @@
-package tests.tests.view;
+package tests.viewTests;
 
+import fr.ul.acl.model.Jeu;
 import fr.ul.acl.model.Plateau;
-import org.junit.Ignore;
+import fr.ul.acl.view.LabyPainter;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import tests.modelTests.JeuTest;
 
 
 /**
@@ -21,17 +21,17 @@ public class LabyPainterTest {
     @Test
     public void PlateauDimLargeur(){
         int l=10,h=10;
-        Plateau p = getPlateau(l,h);
-        assertEquals(l,p.getLargeur());
+        Jeu j = JeuTest.getJeu(l,h);
+        LabyPainter lp = getLabyPainter(j);
+
     }
 
 
     /**
-     * method factory pour plateau.
-     * @param l largeur
-     * @param h heuteur
+     * method factory pour LabyPainter.
+     * @param j  jeu.
      */
-    public static Plateau getPlateau(int l,int h){
-        return new Plateau(l,h);
+    public static Plateau getLabyPainter(Jeu j){
+        return new LabyPainter(j);
     }
 }
