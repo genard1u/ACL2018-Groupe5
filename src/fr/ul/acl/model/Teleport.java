@@ -14,7 +14,7 @@ public class Teleport extends Magic{
      * @param posX la position x de l'emplacement de la case.
      * @param posY la position y de l'emplacement de la case.
      */
-    public Teleport(int posX, int posY) {
+    private Teleport(int posX, int posY) {
         super(posX, posY, TELEPORT);
         this.toPosX = -1;
         this.toPosY = -1;
@@ -26,7 +26,7 @@ public class Teleport extends Magic{
      * @param posY la position y de l'emplacement de la case.
      * @param tlprt la case vers où l'heros se teleporte.
      */
-    public Teleport(int posX, int posY, Teleport tlprt) {
+    private Teleport(int posX, int posY, Teleport tlprt) {
         this(posX, posY);
     }
 
@@ -34,7 +34,7 @@ public class Teleport extends Magic{
      * la methode qui modifie les Coordonnées de teleportation.
      * @param tlprt la case vers où l'heros se teleporte.
      */
-    public void setTeleportCoord(Teleport tlprt){
+    private void setTeleportCoord(Teleport tlprt){
         this.toPosX = tlprt.getPosX();
         this.toPosY = tlprt.getPosY();
     }

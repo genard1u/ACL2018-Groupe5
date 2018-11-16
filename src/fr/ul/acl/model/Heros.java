@@ -69,9 +69,8 @@ public class Heros extends Dynamique {
 
     /**
      * invincible setter.
-     * @param invincible
      */
-    public void setInvincible(boolean invincible){
+    public void setInvincible(){
         this.state = HeroState.INVINCIBLE;
     }
 

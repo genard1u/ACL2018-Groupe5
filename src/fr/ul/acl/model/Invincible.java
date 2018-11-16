@@ -25,6 +25,6 @@ public class Invincible extends Magic {
      */
     @Override
     public void effet(Heros h) {
-        h.setInvincible(true);
+        h.setInvincible();
     }
 }

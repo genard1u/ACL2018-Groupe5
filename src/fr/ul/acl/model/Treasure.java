@@ -30,6 +30,6 @@ public class Treasure extends Magic {
      */
     @Override
     public void effet(Heros h) {
-        h.Wins();
+        h.setWinning();
     }
 }
