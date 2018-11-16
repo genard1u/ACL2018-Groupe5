@@ -1,4 +1,4 @@
-package tests.viewTests;
+package tests.viewTest;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import org.junit.Test;
 import fr.ul.acl.Resources;
 import fr.ul.acl.model.Jeu;
 import fr.ul.acl.view.LabyPainter;
-import tests.modelTests.JeuTest;
+import tests.modeleTest.JeuTest;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
