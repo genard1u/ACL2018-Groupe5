@@ -28,7 +28,7 @@ public class Plateau {
         for (int i = 0; i < largeur; i ++){
              int x = alea.nextInt(largeur);
              int y = alea.nextInt(hauteur);
-             matrice[x][y] = new Mur(x, y); 
+             matrice[x][y] = new Mur(x, y);
         }
     }
 
@@ -52,12 +52,14 @@ public class Plateau {
     public int getLargeur() { return this.largeur; }
 
     public boolean isAccessible(int x, int y) {
+        if((x<0||y<0)||(x>=this.largeur)||(y>=this.hauteur))return false;
     	boolean isAccessible = false;
     	String typeCase = getTypeCase(x, y);
     			
     	if (!typeCase.equals(Mur.MUR)) {
     		isAccessible = true;
     	}
+
     	return isAccessible;
     }
     

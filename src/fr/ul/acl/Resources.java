@@ -17,6 +17,8 @@ public final class Resources {
 	public final static Color HERO_COLOR = Color.RED;
 	public final static Color BACKGROUND_COLOR = Color.WHITE;
 	public final static Color WALL_COLOR = Color.BLACK;
+	public final static Color MONSTRE_COLOR = Color.YELLOW;
+    public final static Color FONTOME_COLOR = Color.BLUE;
 	
 	private Resources() {}
 

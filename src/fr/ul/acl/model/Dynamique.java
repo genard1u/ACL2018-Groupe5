@@ -4,8 +4,8 @@ import fr.ul.acl.model.Composant;
 
 public abstract class Dynamique extends Composant {
 
-    public Dynamique(int posX, int posY) {
-        super(posX, posY);
+    public Dynamique(int posX, int posY ,String type) {
+        super(posX, posY,type);
     }
 
     protected void up(){ posY --; }
