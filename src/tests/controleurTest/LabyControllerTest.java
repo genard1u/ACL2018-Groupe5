@@ -53,6 +53,7 @@ public class LabyControllerTest {
     public void keyPressedNullEvent() {
         LabyController controller= new LabyController();
         controller.keyPressed(null);
+
     }
 
 }

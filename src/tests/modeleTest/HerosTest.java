@@ -18,7 +18,6 @@ public class HerosTest {
         Heros h = new Heros(x,y);
         assertEquals(x, h.getPosX());
         assertEquals(y, h.getPosY());
-
     }
     @Test
     public void RightHerosZeroo(){
