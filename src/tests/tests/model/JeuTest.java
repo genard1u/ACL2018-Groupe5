@@ -1,4 +1,4 @@
-package tests.modeleTest;
+package tests.tests.model;
 
 import fr.ul.acl.model.Jeu;
 import org.junit.Test;
