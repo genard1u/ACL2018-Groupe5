@@ -5,14 +5,12 @@ import fr.ul.acl.engine.Cmd;
 public class Heros extends Dynamique {
 
     private int health;
-    private boolean win;
-    private boolean invincible;
+    private HeroState state;
 
     public Heros(int posX, int posY) {
         super(posX, posY);
         this.health = 100;
-        this.win = false;
-        this.invincible = false;
+        this.state = HeroState.HEALTHY;
     }
 
     public void move(Plateau plateau, Cmd userCmd) {
@@ -50,15 +48,15 @@ public class Heros extends Dynamique {
      * @return true si l'heros est invincible, false sinon.
      */
     public boolean isInvincible(){
-        return this.invincible;
+        return (state.equals(HeroState.INVINCIBLE));
     }
 
     /**
      * la methode qui verifie si l'heros a gagné;
      * @return true si l'heros a gagné, false sinon.
      */
-    public boolean getWin(){
-        return this.win;
+    public boolean isWinning(){
+        return (state.equals(HeroState.WIN));
     }
 
     /**
@@ -66,6 +64,7 @@ public class Heros extends Dynamique {
      */
     public void kill(){
         this.health = 0;
+        this.state = HeroState.DEAD;
     }
 
     /**
@@ -73,14 +72,14 @@ public class Heros extends Dynamique {
      * @param invincible
      */
     public void setInvincible(boolean invincible){
-        this.invincible = invincible;
+        this.state = HeroState.INVINCIBLE;
     }
 
     /**
      * la methode qui fait gagner l'heros.
      */
-    public void Wins(){
-        this.win = true;
+    public void setWinning(){
+        this.state = HeroState.WIN;
     }
 
     /**
