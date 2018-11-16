@@ -179,9 +179,13 @@ public class PlateauTest {
      * Boundary.
      * Hors dimensions.
      */
-    @Test
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void isAccessibleOutOfBound(){
-        fail("Not Implemented Yet");
+        int l=10,h=10;
+        int x=15,y=0;
+        Plateau p = getPlateau(l,h);
+        assertTrue(p.isAccessible(x,y));
+        fail("valeurs Hors dimensions no gérées.");
     }
 
     /**
