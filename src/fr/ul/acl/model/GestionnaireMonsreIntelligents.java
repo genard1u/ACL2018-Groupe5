@@ -21,6 +21,7 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
         }
     }
 
+    /*deplacer les monstres avec un Algorithme*/
     @Override
     public void deplacement() {
         if (!(xh==jeu.herosPosX()&&yh==jeu.herosPosY())) {

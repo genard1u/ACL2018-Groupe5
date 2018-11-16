@@ -9,7 +9,7 @@ public abstract class GestionnaireMonstre  {
     protected ArrayList<AbstractMonstre> monstres;
     protected Plateau plateau;
     protected Jeu jeu;
-
+    /* placer nbmonstres monstres et nbfontome fontomes*/
     public GestionnaireMonstre(int nbmonstres,int nbfontome,Jeu jeu){
      this.jeu=jeu;
      this.plateau=jeu.getPlateau();
@@ -33,8 +33,10 @@ public abstract class GestionnaireMonstre  {
 
     }
 
+    /* deplacer les monstre et les fontome */
     public abstract void deplacement();
 
+    /*recuperer les posion des monstres*/
     public ArrayList<int[]>getPosMonstres(){
         ArrayList<int[]> pos=new ArrayList<int[]>();
         for (AbstractMonstre m :monstres){
@@ -45,6 +47,7 @@ public abstract class GestionnaireMonstre  {
         return pos;
     }
 
+    /*verification si la case (x,y) est une case de monstre */
     public boolean isMonstre(int x, int y){
         for (AbstractMonstre m :monstres){
             if(m.getPosX()==x&&m.getPosY()==y)return true;

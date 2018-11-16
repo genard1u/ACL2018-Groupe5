@@ -9,6 +9,7 @@ public class GestionnaireMonstreAliatoire extends GestionnaireMonstre {
     public GestionnaireMonstreAliatoire(int nbmonstres,int nbfontome, Jeu jeu) {
         super(nbmonstres,nbfontome,jeu);
     }
+    /*deplacer les monstres aliatoire */
     @Override
     public void deplacement(){
         Random random=new Random();
