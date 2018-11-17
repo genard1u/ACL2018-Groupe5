@@ -13,13 +13,13 @@ public class TeleportTest {
      */
     @Test
     public void effetRight1() {
-      Heros heros =new Heros(0,0);
-      Teleport teleport1 =new Teleport(0,0);
-      Teleport teleport2 =new Teleport(5,6);
-      teleport1.setTeleportCoord(teleport2);
-      teleport1.effet(heros);
-      assertSame(heros.getPosX(),5);
-      assertSame(heros.getPosY(),6);
+        Heros heros =new Heros(0,0);
+        Teleport teleport1 =new Teleport(0,0);
+        Teleport teleport2 =new Teleport(5,6);
+        teleport1.setTeleportCoord(teleport2);
+        teleport1.effet(heros);
+        assertSame(heros.getPosX(),5);
+        assertSame(heros.getPosY(),6);
     }
     /**
      * teste effet Rhigt teleportation de l'heros a la meme case
