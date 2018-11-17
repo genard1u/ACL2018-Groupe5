@@ -55,7 +55,7 @@ public class Heros extends Dynamique {
      * @return true si l'heros a gagné, false sinon.
      */
     public boolean isWinning(){
-        return state.is(State.WIN));
+        return state.is(State.WIN);
     }
 
     /**
