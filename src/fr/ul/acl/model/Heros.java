@@ -4,16 +4,13 @@ import fr.ul.acl.engine.Cmd;
 
 public class Heros extends Dynamique {
     public static final String HEROS="HEROS";
-
-    private int health;
-    private boolean win;
-    private boolean invincible;
-
+    private GestionnaireMonstre gestionnaireMonstre;
+    public Heros(int posX, int posY,GestionnaireMonstre gestionnaireMonstre) {
+        super(posX, posY,HEROS);
+        this.gestionnaireMonstre=gestionnaireMonstre;
+    }
     public Heros(int posX, int posY) {
         super(posX, posY,HEROS);
-        this.health = 100;
-        this.win = false;
-        this.invincible = false;
     }
 
     public void move(Plateau plateau, Cmd userCmd) {
@@ -22,20 +19,36 @@ public class Heros extends Dynamique {
 
         switch (userCmd) {
             case UP:
-                if (plateau.isAccessible(x, y - 1)) { up(); }
+                if (VerificationDeCase(plateau,x, y - 1)) { up(); }
                 break;
             case DOWN:
-            	if (plateau.isAccessible(x, y + 1)) { down(); }
+            	if (VerificationDeCase(plateau,x, y + 1)) { down(); }
                 break;
             case RIGHT:
-            	if (plateau.isAccessible(x + 1, y)) { right(); }
+            	if (VerificationDeCase(plateau,x + 1, y)) { right(); }
                 break;
             case LEFT:
-            	if (plateau.isAccessible(x - 1, y)) { left(); }
+            	if (VerificationDeCase(plateau,x - 1, y)) { left(); }
                 break;
 		    default:
 			    break;
         }
     }
+    boolean VerificationDeCase(Plateau plateau,int x,int y){
+        if (plateau!=null && !plateau.isAccessible(x,y)
+            ||(gestionnaireMonstre!=null&&gestionnaireMonstre.isMonstre(x,y)))
+            return false;
+
+        return true;
+    }
+
+    public GestionnaireMonstre getGestionnaireMonstre() {
+        return gestionnaireMonstre;
+    }
+
+    public void setGestionnaireMonstre(GestionnaireMonstre gestionnaireMonstre) {
+        this.gestionnaireMonstre = gestionnaireMonstre;
+    }
+
 
 }
