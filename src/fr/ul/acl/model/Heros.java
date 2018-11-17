@@ -22,21 +22,21 @@ public class Heros extends Dynamique {
                 if (VerificationDeCase(plateau,x, y - 1)) { up(); }
                 break;
             case DOWN:
-            	if (VerificationDeCase(plateau,x, y + 1)) { down(); }
+                if (VerificationDeCase(plateau,x, y + 1)) { down(); }
                 break;
             case RIGHT:
-            	if (VerificationDeCase(plateau,x + 1, y)) { right(); }
+                if (VerificationDeCase(plateau,x + 1, y)) { right(); }
                 break;
             case LEFT:
-            	if (VerificationDeCase(plateau,x - 1, y)) { left(); }
+                if (VerificationDeCase(plateau,x - 1, y)) { left(); }
                 break;
-		    default:
-			    break;
+            default:
+                break;
         }
     }
     boolean VerificationDeCase(Plateau plateau,int x,int y){
         if (plateau!=null && !plateau.isAccessible(x,y)
-            ||(gestionnaireMonstre!=null&&gestionnaireMonstre.isMonstre(x,y)))
+                ||(gestionnaireMonstre!=null&&gestionnaireMonstre.isMonstre(x,y)))
             return false;
 
         return true;

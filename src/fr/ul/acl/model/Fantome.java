@@ -6,7 +6,13 @@ public class Fantome extends AbstractMonstre {
         super(posX,posY,FANTOME);
         this.type=FANTOME;
     }
-
+    /**
+     *verification que le fontome peut situé dans la case x,y
+     * @param jeu  jeu ou se trouve le monstre
+     * @param x position x de la case
+     * @param y position y de la case
+     * @return true si le fontome peut situé dans la case x,y
+     */
     @Override
     protected boolean verificationCase(Jeu jeu, int x, int y) {
         return  ((x<0||y<0)||(x>=jeu.getPlateau().getLargeur())||(y>=jeu.getPlateau().getHauteur()))

@@ -7,6 +7,7 @@ import static fr.ul.acl.engine.Cmd.*;
 public abstract class AbstractMonstre extends Dynamique {
     public AbstractMonstre(int posX, int posY, String type) {
         super(posX, posY, type);
+        if(posX<0||posY<0||type==null)throw new IllegalArgumentException();
     }
     /*deplacement de monstre vers une derection si c'est posible */
     public boolean deplacement(Jeu jeu, Cmd direction) {

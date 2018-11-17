@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GestionnaireMonstreAliatoire extends GestionnaireMonstre {
+    /**
+     * constructeur de gestionnaireMonsreAliatoire
+     * @param nbmonstres nombre de monstre
+     * @param nbfontome  nombre de fontome
+     * @param jeu jeu ou se trouve les monstre
+     */
     public GestionnaireMonstreAliatoire(int nbmonstres,int nbfontome, Jeu jeu) {
         super(nbmonstres,nbfontome,jeu);
     }

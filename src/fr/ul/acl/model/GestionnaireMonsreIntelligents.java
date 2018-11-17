@@ -9,8 +9,17 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
     private int xh,yh;
     private ArrayList<LinkedList<Cmd>> chemins;
     private Algorithme algo;
+
+    /**
+     * constructeur de gestionnaireMonsreIntelligents
+     * @param nbmonstres nombre de monstre
+     * @param nbfontome  nombre de fontome
+     * @param jeu    jeu ou se trouve les monstre
+     * @param algo   algorithme utiliser pour deplacer les monstres
+     */
     public GestionnaireMonsreIntelligents(int nbmonstres,int nbfontome, Jeu jeu,Algorithme algo) {
         super(nbmonstres,nbfontome, jeu);
+        if(algo==null)throw new IllegalArgumentException();
         chemins=new ArrayList<>();
         this.algo=algo;
         xh=jeu.herosPosX();
@@ -21,7 +30,9 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
         }
     }
 
-    /*deplacer les monstres avec un Algorithme*/
+    /**
+     * deplacer les monstres avec un Algorithme
+     */
     @Override
     public void deplacement() {
         if (!(xh==jeu.herosPosX()&&yh==jeu.herosPosY())) {
