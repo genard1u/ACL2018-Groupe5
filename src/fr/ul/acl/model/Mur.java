@@ -11,16 +11,14 @@ public class Mur extends Statique {
         super(posX, posY, MUR);
     }
 
-    /**
-     * @deprecated
-     */
-    public String getAffichage() {
-        return "[ ]";
-    }
-
 	@Override
 	public boolean isMagic() {
 		return true;
+	}
+
+	@Override
+	public String getAffichage() {
+		return null;
 	}
     
 }

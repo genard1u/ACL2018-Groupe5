@@ -1,15 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project ACL2018-Groupe5">
-    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
-    <!--ANT 1.7 is required                                        -->
-    <target name="create_run_jar">
-        <jar destfile="/home/profil/genard1u/Bureau/ACL2018-Groupe5/laby.jar" filesetmanifest="mergewithoutmain">
-            <manifest>
-                <attribute name="Main-Class" value="fr.ul.acl.Laby"/>
-                <attribute name="Class-Path" value="."/>
-            </manifest>
-            <fileset dir="/home/profil/genard1u/Bureau/ACL2018-Groupe5/bin"/>
-            <zipfileset excludes="META-INF/*.SF" src="/usr/share/eclipse/dropins/jdt/plugins/org.junit_3.8.2.dist/junit.jar"/>
-        </jar>
-    </target>
+<project name="BaladeDansUnLabyrinthe" basedir="." default="run">
+  <property name="src.dir" value="src"/>
+  <property name="class.dir" value="bin"/>
+  <property name="jar.dir" value="jar"/>
+
+  <property name="main-class" value="fr.ul.acl.Laby"/>
+
+  <target name="clean">
+    <delete dir="{class.dir}"/>
+    <delete dir="{jar.dir}"/>   
+  </target>
+	  
+  <target name="compile" depends="clean">
+    <mkdir dir="{class.dir}"/>
+    <javac includeantruntime="false" srcdir="${src.dir}" destdir="${class.dir}"/>
+  </target>
+
+  <target name="jar" depends="compile">
+    <mkdir dir="${jar.dir}"/>
+    <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${class.dir}">
+      <manifest>
+	<attribute name="Main-Class" value="${main-class}"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="jar">
+    <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+  </target>
+
+  <target name="junit">
+    <echo message="Not implemented yet."/>
+    <!-- Tests -->
+  </target>
 </project>

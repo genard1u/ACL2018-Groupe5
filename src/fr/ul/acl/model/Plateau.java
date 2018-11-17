@@ -4,11 +4,14 @@ import java.util.Random;
 
 public class Plateau {
 
+	private final static Random placement = new Random();
+	
     private int hauteur;
     private int largeur;
     
     private Statique[][] matrice;
 
+    
     public Plateau(int largeur, int hauteur) {
     	assert largeur > 1;
     	assert hauteur > 1;
@@ -21,18 +24,22 @@ public class Plateau {
     }
 
     private void buildLaby(int largeur, int hauteur) {
+    	assert largeur > 1;
+    	assert hauteur > 1;
+    	
     	buildBorders(largeur, hauteur);
     	
-    	Random alea = new Random();
-    	
         for (int i = 0; i < largeur; i ++){
-             int x = alea.nextInt(largeur);
-             int y = alea.nextInt(hauteur);
+             int x = placement.nextInt(largeur);
+             int y = placement.nextInt(hauteur);
              matrice[x][y] = new Mur(x, y); 
         }
     }
 
     private void buildBorders(int largeur, int hauteur) {
+    	assert largeur > 1;
+    	assert hauteur > 1;
+    	
     	int border = 0;
     	
         for (int i = 0; i < largeur; i ++){
@@ -48,12 +55,20 @@ public class Plateau {
         }
     }
     
-    public int getHauteur() { return this.hauteur; }
-    public int getLargeur() { return this.largeur; }
+    public int getHauteur() { 
+    	return this.hauteur; 
+    }
+    
+    public int getLargeur() { 
+    	return this.largeur; 
+    }
 
     public boolean isAccessible(int x, int y) {
+    	assert x >= 0;
+    	assert y >= 0;
+    	
     	boolean isAccessible = false;
-    	String typeCase = getTypeCase(x, y);
+    	String typeCase = getType(x, y);
     			
     	if (!typeCase.equals(Mur.MUR)) {
     		isAccessible = true;
@@ -62,27 +77,15 @@ public class Plateau {
     	return isAccessible;
     }
     
-    public String getTypeCase(int x ,int y) {
+    public String getType(int x ,int y) {
+    	assert x >= 0;
+    	assert y >= 0;
+    	
         if (matrice[x][y] != null) {
         	return matrice[x][y].getType();
         }
         else {
         	return "";
-        }
-    }
-    
-    /**
-     * @deprecated
-     * @param x
-     * @param y
-     * @return
-     */
-    public String getAffichage(int x, int y){
-        if (matrice[x][y] != null) {
-            return matrice[x][y].getAffichage();
-        }
-        else {
-        	return " . ";
         }
     }
     
@@ -94,11 +97,11 @@ public class Plateau {
     	for (int i = 0; i < largeur; i ++) {
             for (int j = 0; j < hauteur; j ++) {
                 if (matrice[i][j] == null)
-                    return new int[]{i, j};
+                    return new int[]{i,j};
             }
         }
         
-        return null;
+        return new int[]{-1,-1};
     }
 
     public Statique getElement(int x, int y) {
@@ -109,7 +112,9 @@ public class Plateau {
      * Ajouté pour faire le test.
      * @return la matrice concrete.
      */
-    public Statique[][] getMatrice() { return this.matrice; }
+    public Statique[][] getMatrice() { 
+    	return this.matrice; 
+    }
     
 }
 

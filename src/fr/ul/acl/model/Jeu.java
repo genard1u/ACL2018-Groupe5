@@ -61,8 +61,19 @@ public class Jeu implements Game {
     public void evolve(Cmd userCmd) {
         if (getState() == State.Running) {
         	heros.move(plateau, userCmd);
+        	/* si la case est magique, on lance l'effet */
         }
+        else if (getState() == State.Won) {}
         else if (getState() == State.Pause) {}
+        else if (getState() == State.LostLife) {
+        	/* on replace le héros */
+        	/* on crée de nouveaux monstres */
+        } 
+        else if (getState() == State.GameOver) {
+        	/* on affiche un écran 'défaite' */
+        	/* on affiche le score */
+        	/* on retourne sur le menu */
+        } 
     }
 
     @Override
