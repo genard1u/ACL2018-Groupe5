@@ -1,16 +1,15 @@
 package fr.ul.acl.model;
 
 import fr.ul.acl.engine.Cmd;
+import fr.ul.acl.model.HeroState.State;
 
 public class Heros extends Dynamique {
 
-    private int health;
     private HeroState state;
 
     public Heros(int posX, int posY) {
         super(posX, posY);
-        this.health = 100;
-        this.state = HeroState.HEALTHY;
+        this.state = HeroState.createState();
     }
 
     public void move(Plateau plateau, Cmd userCmd) {
@@ -40,7 +39,7 @@ public class Heros extends Dynamique {
      * @return true si l'heros est mort, false sinon.
      */
     public boolean isDead(){
-        return (this.health == 0);
+        return state.is(State.DEAD);
     }
 
     /**
@@ -48,7 +47,7 @@ public class Heros extends Dynamique {
      * @return true si l'heros est invincible, false sinon.
      */
     public boolean isInvincible(){
-        return (state.equals(HeroState.INVINCIBLE));
+        return (state.is(State.INVINCIBLE));
     }
 
     /**
@@ -56,29 +55,28 @@ public class Heros extends Dynamique {
      * @return true si l'heros a gagné, false sinon.
      */
     public boolean isWinning(){
-        return (state.equals(HeroState.WIN));
+        return state.is(State.WIN));
     }
 
     /**
-     * la methode qui tue l'heros
+     * la methode qui décremente de nombre de vies de l'heros.
      */
     public void kill(){
-        this.health = 0;
-        this.state = HeroState.DEAD;
+        state.killOneLife();
     }
 
     /**
      * invincible setter.
      */
     public void setInvincible(){
-        this.state = HeroState.INVINCIBLE;
+        state.setState(State.INVINCIBLE);
     }
 
     /**
      * la methode qui fait gagner l'heros.
      */
     public void setWinning(){
-        this.state = HeroState.WIN;
+        state.setState(State.WIN);
     }
 
     /**
