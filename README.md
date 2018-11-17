@@ -2,7 +2,12 @@
 ## Auteurs
 Alaa Eddine Benkarrad, Yann Cael, Pierre Génard, Hafiane Walid
 
-## On le lance comment?
+## On le lance comment ?
 ```bash
-java -jar laby.jar
+~$ ant run
+```
+
+## Et pour avoir une archive jar ?
+```bash
+~$ ant jar
 ```
