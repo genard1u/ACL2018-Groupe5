@@ -7,9 +7,17 @@ public class Heros extends Dynamique {
 
     private HeroState state;
 
+    public static final String HEROS="HEROS";
+    private GestionnaireMonstre gestionnaireMonstre;
+
     public Heros(int posX, int posY) {
-        super(posX, posY);
+        super(posX, posY,HEROS);
         this.state = HeroState.createState();
+    }
+
+    public Heros(int posX, int posY,GestionnaireMonstre gestionnaireMonstre) {
+        this(posX, posY);
+        this.gestionnaireMonstre=gestionnaireMonstre;
     }
 
     public void move(Plateau plateau, Cmd userCmd) {
@@ -18,20 +26,36 @@ public class Heros extends Dynamique {
 
         switch (userCmd) {
             case UP:
-                if (plateau.isAccessible(x, y - 1)) { up(); }
+                if (VerificationDeCase(plateau,x, y - 1)) { up(); }
                 break;
             case DOWN:
-            	if (plateau.isAccessible(x, y + 1)) { down(); }
+                if (VerificationDeCase(plateau,x, y + 1)) { down(); }
                 break;
             case RIGHT:
-            	if (plateau.isAccessible(x + 1, y)) { right(); }
+                if (VerificationDeCase(plateau,x + 1, y)) { right(); }
                 break;
             case LEFT:
-            	if (plateau.isAccessible(x - 1, y)) { left(); }
+                if (VerificationDeCase(plateau,x - 1, y)) { left(); }
                 break;
-		    default:
-			    break;
+            default:
+                break;
         }
+    }
+
+    boolean VerificationDeCase(Plateau plateau,int x,int y){
+        if (plateau!=null && !plateau.isAccessible(x,y)
+                ||(gestionnaireMonstre!=null&&gestionnaireMonstre.isMonstre(x,y)))
+            return false;
+
+        return true;
+    }
+
+    public GestionnaireMonstre getGestionnaireMonstre() {
+        return gestionnaireMonstre;
+    }
+
+    public void setGestionnaireMonstre(GestionnaireMonstre gestionnaireMonstre) {
+        this.gestionnaireMonstre = gestionnaireMonstre;
     }
 
     /**

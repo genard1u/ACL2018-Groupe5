@@ -9,8 +9,13 @@ public class Jeu implements Game {
 	
     private Heros heros;
     private Plateau plateau;
+    private GestionnaireMonstre gestionnaireMonstre;
+    private int NBMONSTRE=2;
+    private int NBFONTOME=2;
+    private int VITES=4;
+    private int iteration;
 
-    
+
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
         int[] freePos = plateau.getPositionVide();
@@ -18,6 +23,10 @@ public class Jeu implements Game {
         if (freePos != null) {
             heros = new Heros(freePos[0], freePos[1]);
         }
+
+        gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInstence());
+        heros.setGestionnaireMonstre(gestionnaireMonstre);
+        iteration=0;
     }
 
     public Heros getHeros() {
@@ -45,11 +54,21 @@ public class Jeu implements Game {
     @Override
     public void evolve(Cmd userCmd) {
         heros.move(plateau, userCmd);
+        if(iteration%VITES==0) {
+            gestionnaireMonstre.deplacement();
+            iteration=0;
+        }
+        iteration++;
     }
 
     @Override
     public boolean isFinished() {
         return false;
     }
-    
+
+    public GestionnaireMonstre getGestionnaireMonstre() {
+        return gestionnaireMonstre;
+    }
+
+
 }
