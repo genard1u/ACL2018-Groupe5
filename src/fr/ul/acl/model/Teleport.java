@@ -34,7 +34,7 @@ public class Teleport extends Magic{
      * la methode qui modifie les Coordonnées de teleportation.
      * @param tlprt la case vers où l'heros se teleporte.
      */
-    private void setTeleportCoord(Teleport tlprt){
+    public void setTeleportCoord(Teleport tlprt){
         this.toPosX = tlprt.getPosX();
         this.toPosY = tlprt.getPosY();
     }
