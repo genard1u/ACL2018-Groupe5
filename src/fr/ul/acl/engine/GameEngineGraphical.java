@@ -1,5 +1,7 @@
 package fr.ul.acl.engine;
 
+import java.util.TreeMap;
+
 /**
  * @author Horatiu Cirstea, Vincent Thomas
  *
@@ -64,9 +66,13 @@ public class GameEngineGraphical {
 			// affiche le game
 
 			this.gui.paint();
-			
+
 			// met en attente
-			Thread.sleep(50);
+			Thread.sleep(250);
+
+			this.gui.paint();
+
+			Thread.sleep(250);
 		}
 	}
 
