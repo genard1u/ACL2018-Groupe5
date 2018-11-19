@@ -28,6 +28,8 @@ public class Teleport extends Magic{
      */
     private Teleport(int posX, int posY, Teleport tlprt) {
         this(posX, posY);
+        this.toPosX = tlprt.toPosX;
+        this.toPosY = tlprt.toPosY;
     }
 
     /**
@@ -62,9 +64,12 @@ public class Teleport extends Magic{
      */
     public static Teleport[] getTeleportCase(int PosX, int PosY, int toPosX, int toPosY) {
 
-        assert 0 < PosX && PosX < Resources.WIDTH && 0 < PosY && PosY < Resources.HEIGHT;
-        assert 0 < toPosX && toPosX < Resources.WIDTH && 0 < toPosY && toPosY < Resources.HEIGHT;
-        assert PosX != toPosX || PosY != toPosY;
+        if (!(0 < PosX && PosX < Resources.WIDTH && 0 < PosY && PosY < Resources.HEIGHT))
+            throw new IllegalArgumentException("Source Position Out Of Bound");
+        if (!(0 < toPosX && toPosX < Resources.WIDTH && 0 < toPosY && toPosY < Resources.HEIGHT))
+            throw new IllegalArgumentException("Destination Position Out Of Bound");
+        if (!(PosX != toPosX || PosY != toPosY))
+            throw new IllegalArgumentException("This is the same Box");
 
         Teleport[] teleports = new Teleport[2];
         teleports[0] = new Teleport(PosX,PosY);
