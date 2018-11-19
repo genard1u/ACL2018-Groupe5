@@ -11,6 +11,8 @@ public class Textures {
 
     private Image wall;
     private Image floor;
+
+    //direction du heros a l'arret
     private Image herosUp;
     private Image herosDown;
     private Image herosRight;
@@ -19,7 +21,9 @@ public class Textures {
 
     private Image lastMove;
 
-    public Textures(){
+    private static Textures texture;
+
+    private Textures(){
 
         try {
             floor = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/grass.png"));
@@ -72,5 +76,12 @@ public class Textures {
         }
         lastMove = res;
         return res;
+    }
+
+    public static Textures getInstance(){
+        if(texture == null){
+            texture = new Textures();
+        }
+        return texture;
     }
 }

@@ -18,7 +18,6 @@ public class LabyPainter implements GamePainter {
 
     private int width;
     private int height;
-    private Textures images;
     
     private Jeu jeu;
     private int anim;
@@ -27,7 +26,6 @@ public class LabyPainter implements GamePainter {
         jeu = j;
         width = Resources.scaling(jeu.largeurPlateau());
         height = Resources.scaling(jeu.hauteurPlateau());
-        images = new Textures();
         anim = 0;
     }
 
@@ -58,11 +56,11 @@ public class LabyPainter implements GamePainter {
                 int y = Resources.scaling(j);
 
                 if (jeu.getPlateau().getElement(i,j) == null) {
-                    crayon.drawImage(images.getFloor(),x,y,null);
+                    crayon.drawImage(Textures.getInstance().getFloor(),x,y,null);
                 }
                 else {
                     if (jeu.getPlateau().getElement(i,j).getType() == "MUR") {
-                        crayon.drawImage(images.getWall(),x,y,null);
+                        crayon.drawImage(Textures.getInstance().getWall(),x,y,null);
                     }
                 }
             }
@@ -72,7 +70,7 @@ public class LabyPainter implements GamePainter {
     private void drawHero(Graphics2D crayon) {
         int x = Resources.scaling(jeu.herosPosX());
         int y = Resources.scaling(jeu.herosPosY());
-        crayon.drawImage(images.getHeros(jeu.getCmd()),x,y,null);
+        crayon.drawImage(Textures.getInstance().getHeros(jeu.getCmd()),x,y,null);
     }
 
     public void drawAnimHero(BufferedImage im){
@@ -90,10 +88,10 @@ public class LabyPainter implements GamePainter {
         if(jeu.getCmd() == Cmd.UP)
             y = -1;
         if(!jeu.getHeros().getBloquer()) {
-            crayon.drawImage(images.getHeros(jeu.getCmd()), a - (Resources.SCALING / 2) * x, b - (Resources.SCALING / 2) * y, null);
+            crayon.drawImage(Textures.getInstance().getHeros(jeu.getCmd()), a - (Resources.SCALING / 2) * x, b - (Resources.SCALING / 2) * y, null);
         }
         else{
-            crayon.drawImage(images.getHeros(jeu.getCmd()),Resources.scaling(jeu.herosPosX()),Resources.scaling(jeu.herosPosY()),null);
+            crayon.drawImage(Textures.getInstance().getHeros(jeu.getCmd()),Resources.scaling(jeu.herosPosX()),Resources.scaling(jeu.herosPosY()),null);
         }
     }
 
