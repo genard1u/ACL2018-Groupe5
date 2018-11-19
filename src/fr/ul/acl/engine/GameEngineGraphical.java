@@ -67,12 +67,15 @@ public class GameEngineGraphical {
 
 			this.gui.paint();
 
-			// met en attente
-			Thread.sleep(250);
+			Thread.sleep(150);
 
 			this.gui.paint();
 
-			Thread.sleep(250);
+			Thread.sleep(150);
+
+			this.gui.paint();
+
+			Thread.sleep(150);
 		}
 	}
 
