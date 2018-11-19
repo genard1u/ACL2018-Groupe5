@@ -14,7 +14,7 @@ public class Fantome extends AbstractMonstre {
      * @return true si le fontome peut situé dans la case x,y
      */
     @Override
-    protected boolean verificationCase(Jeu jeu, int x, int y) {
+    public boolean verificationCase(Jeu jeu, int x, int y) {
         return  ((x<0||y<0)||(x>=jeu.getPlateau().getLargeur())||(y>=jeu.getPlateau().getHauteur()))
                 ||(jeu.getHeros().posX==x && jeu.getHeros().posY==y)
                 ||jeu.getGestionnaireMonstre().isMonstre(x,y);

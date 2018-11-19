@@ -18,15 +18,15 @@ public class Jeu implements Game {
 
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
-        int[] freePos = plateau.getPositionVide();
-        
-        if (freePos != null) {
-            heros = new Heros(freePos[0], freePos[1]);
-        }
-
-        gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInstence());
-        heros.setGestionnaireMonstre(gestionnaireMonstre);
-        iteration=0;
+//        int[] freePos = plateau.getPositionVide();
+//
+//        if (freePos != null) {
+//            heros = new Heros(freePos[0], freePos[1]);
+//        }
+//
+//        gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInstence());
+//        heros.setGestionnaireMonstre(gestionnaireMonstre);
+//        iteration=0;
     }
 
     public Heros getHeros() {
