@@ -20,6 +20,7 @@ public class Heros extends Dynamique {
 
     public Heros(int posX, int posY, GestionnaireMonstre gestionnaireMonstre) {
         this(posX, posY);
+        assert gestionnaireMonstre != null;
         this.gestionnaireMonstre = gestionnaireMonstre;
     }
     
@@ -40,30 +41,50 @@ public class Heros extends Dynamique {
 	}
 	
 	public void move(Plateau plateau, Cmd userCmd) {
-        int x = getPosX();
-        int y = getPosY();
+        int[] adjustedPos = getAdjustedPos(plateau, userCmd);
 
-        switch (userCmd) {
-            case UP:
-                if (VerificationDeCase(plateau,x, y - 1)) { up(); }
-                break;
-            case DOWN:
-                if (VerificationDeCase(plateau,x, y + 1)) { down(); }
-                break;
-            case RIGHT:
-                if (VerificationDeCase(plateau,x + 1, y)) { right(); }
-                break;
-            case LEFT:
-                if (VerificationDeCase(plateau,x - 1, y)) { left(); }
-                break;
-            default:
-                break;
+        if (isValidPlace(plateau, adjustedPos[0], adjustedPos[1])) {
+        	setPosition(adjustedPos[0], adjustedPos[1]);
         }
     }
 
-    boolean VerificationDeCase(Plateau plateau,int x,int y){
-        if (plateau!=null && !plateau.isAccessible(x,y)
-                ||(gestionnaireMonstre!=null&&gestionnaireMonstre.isMonstre(x,y)))
+	/**
+	 * Permet de récupérer les coordonnées obtenues par un déplacement 
+	 * Ne déplace pas le héros (seul le calcul est effectué)
+	 * @param plateau
+	 * @param userCmd
+	 * @return nouveau couple de coordonnées (x, y) à l'issue de ce déplacement
+	 */
+	public int[] getAdjustedPos(Plateau plateau, Cmd userCmd) {
+		  int[] pos = {getPosX(), getPosY()};
+
+		  switch (userCmd) {
+		      case UP: pos[1]--; break;
+		      case DOWN: pos[1]++; break;
+		      case RIGHT: pos[0]++; break;
+		      case LEFT: pos[0]--; break;
+		      default: break;
+		  }
+
+		  pos[0] = modulo(pos[0], plateau.getLargeur());
+		  pos[1] = modulo(pos[1], plateau.getHauteur());
+
+		  return pos;
+	}
+	
+	private int modulo(int a, int b) {
+		do {
+			a += b;
+		} while (a < 0);
+		
+		return a % b;
+	}
+	
+    boolean isValidPlace(Plateau plateau, int x, int y) {
+    	assert plateau != null;
+    	assert gestionnaireMonstre != null;
+    	
+        if (!plateau.isAccessible(x,y)) // || gestionnaireMonstre.isMonstre(x,y)
             return false;
 
         return true;
@@ -89,7 +110,7 @@ public class Heros extends Dynamique {
      * la methode qui verifie si l'heros est invincible;
      * @return true si l'heros est invincible, false sinon.
      */
-    public boolean isInvincible(){
+    public boolean isInvincible() {
         return (state.is(State.INVINCIBLE));
     }
 
@@ -97,39 +118,43 @@ public class Heros extends Dynamique {
      * la methode qui verifie si l'heros a gagné;
      * @return true si l'heros a gagné, false sinon.
      */
-    public boolean isWinning(){
+    public boolean isWinning() {
         return state.is(State.WIN);
     }
 
     /**
      * la methode qui décremente de nombre de vies de l'heros.
      */
-    public void kill(){
+    public void kill() {
         state.killOneLife();
     }
 
     /**
      * invincible setter.
      */
-    public void setInvincible(){
+    public void setInvincible() {
         state.setState(State.INVINCIBLE);
     }
 
     /**
      * la methode qui fait gagner l'heros.
      */
-    public void setWinning(){
+    public void setWinning() {
         state.setState(State.WIN);
     }
 
+    public void setPosition(int toPosX, int toPosY) {
+    	this.posX = toPosX;
+        this.posY = toPosY;
+    }
+    
     /**
      * la methode de teleportation de l'heros.
      * @param toPosX la position x de l'emplacemet de teleporation.
      * @param toPosY la position y de l'emplacement de teleporation.
      */
-    public void teleport(int toPosX, int toPosY){
-        this.posX = toPosX;
-        this.posY = toPosY;
+    public void teleport(int toPosX, int toPosY) {
+        setPosition(toPosX, toPosY);
     }
 
 }

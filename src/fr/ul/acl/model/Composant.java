@@ -8,7 +8,8 @@ public abstract class Composant {
     protected int posY;
     protected String type;
 
-    public Composant(int posX, int posY,String type) throws IllegalArgumentException {
+    
+    public Composant(int posX, int posY, String type) throws IllegalArgumentException {
         if (posX < 0 || posY < 0) {
             throw new IllegalArgumentException(OUT_OF_BOUNDS);
         }
@@ -26,6 +27,8 @@ public abstract class Composant {
         return posY;
     }
 
-    public String getType(){return type;}
+    public String getType() {
+    	return type;
+    }
 
 }

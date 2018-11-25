@@ -55,7 +55,7 @@ public class LabyPainter implements GamePainter {
                     crayon.setColor(Resources.BACKGROUND_COLOR);
                 }
                 else {
-                    if (jeu.getPlateau().getElement(x, y).getType() == "MUR") {
+                    if (jeu.getTypeCase(x, y) == "MUR") {
                         crayon.setColor(Resources.WALL_COLOR);
                     }
                 }

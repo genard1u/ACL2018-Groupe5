@@ -43,6 +43,10 @@ public class Jeu implements Game {
         return this.heros;
     }
     
+    public String getTypeCase(int x, int y) {
+    	return plateau.getType(x, y);
+    }
+    
     public int herosPosX() {
     	return heros.getPosX();
     }

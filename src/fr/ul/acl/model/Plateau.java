@@ -2,6 +2,10 @@ package fr.ul.acl.model;
 
 import java.util.Random;
 
+/**
+ * Bon ordre des paramètres x et y à vérifier
+ * @author gen
+ */
 public class Plateau {
 
 	private final static Random placement = new Random();
@@ -23,17 +27,18 @@ public class Plateau {
         buildLaby(largeur, hauteur);
     }
 
+    /**
+     * Construit les bordures, les obstacles, place une passerelle par défaut
+     * @param largeur
+     * @param hauteur
+     */
     private void buildLaby(int largeur, int hauteur) {
     	assert largeur > 1;
     	assert hauteur > 1;
     	
     	buildBorders(largeur, hauteur);
-    	
-        for (int i = 0; i < largeur; i ++){
-             int x = placement.nextInt(largeur);
-             int y = placement.nextInt(hauteur);
-             matrice[x][y] = new Mur(x, y); 
-        }
+    	buildObstacles(largeur, hauteur);   
+    	placeGateway();
     }
 
     private void buildBorders(int largeur, int hauteur) {
@@ -42,17 +47,40 @@ public class Plateau {
     	
     	int border = 0;
     	
-        for (int i = 0; i < largeur; i ++){
+        for (int i = 0; i < largeur; i ++) {
         	border = largeur - 1;
             matrice[0][i] = new Mur(0, i);
             matrice[border][i] = new Mur(border, i);
         }
         
-        for (int i = 0; i < hauteur; i ++){
+        for (int i = 0; i < hauteur; i ++) {
         	border = hauteur - 1;
             matrice[i][0] = new Mur(i, 0);
             matrice[i][border] = new Mur(i, border);
         }
+    }
+    
+    private void buildObstacles(int largeur, int hauteur) {
+    	assert largeur > 1;
+    	assert hauteur > 1;
+    	
+    	for (int i = 0; i < largeur; i ++) {
+            int x = placement.nextInt(largeur);
+            int y = placement.nextInt(hauteur);
+            
+            matrice[x][y] = new Mur(x, y); 
+       }
+    }
+    
+    /**
+     * Place une passerelle NORD-SUD au milieu de la bordure
+     */
+    private void placeGateway() {
+    	assert largeur > 1;
+    	assert hauteur > 1;
+    	
+    	matrice[largeur / 2][0] = null;
+    	matrice[largeur / 2][hauteur - 1] = null;
     }
     
     public int getHauteur() { 
@@ -81,17 +109,18 @@ public class Plateau {
     	assert x >= 0;
     	assert y >= 0;
     	
+    	String type = "";
+    	
         if (matrice[x][y] != null) {
-        	return matrice[x][y].getType();
+        	type = matrice[x][y].getType();
         }
-        else {
-        	return "";
-        }
+        
+        return type;
     }
     
     /**
      * Permet de récupérer la première position vide du plateau
-     * @return (x, y) couple de coordonnées
+     * @return (x, y) couple de coordonnéesgateway
      */
     public int[] getPositionVide() {
     	for (int i = 0; i < largeur; i ++) {
