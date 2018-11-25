@@ -65,7 +65,7 @@ public class PlateauTest {
      * Boundary.
      * Zero Largeur.
      */
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void PlateauZeroLargeur(){
         int l=0,h=5;
         Plateau p = getPlateau(l,h);
@@ -77,7 +77,7 @@ public class PlateauTest {
      * Boundary.
      * Zero.
      */
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void PlateauZero(){
         int l=0,h=0;
         Plateau p = getPlateau(l,h);
@@ -89,7 +89,7 @@ public class PlateauTest {
      * Boundary.
      * Negative -un seul: hauteur-.
      */
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void PlateauNegativeHauteur(){
         int l=4,h=-4;
         Plateau p = getPlateau(l,h);
@@ -101,7 +101,7 @@ public class PlateauTest {
      * Boundary.
      * Negative -un seul: largeur-.
      */
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void PlateauNegativeLargeur(){
         int l=-4,h=4;
         Plateau p = getPlateau(l,h);
@@ -113,7 +113,7 @@ public class PlateauTest {
      * Boundary.
      * Negative.
      */
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void PlateauNegative(){
         int l=-4,h=-4;
         Plateau p = getPlateau(l,h);

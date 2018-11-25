@@ -77,7 +77,7 @@ public class Plateau {
     	return isAccessible;
     }
     
-    public String getType(int x ,int y) {
+    public String getType(int x, int y) {
     	assert x >= 0;
     	assert y >= 0;
     	

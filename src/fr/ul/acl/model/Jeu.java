@@ -9,8 +9,14 @@ public class Jeu implements Game {
 	private GameState state;
     private Heros heros;
     private Plateau plateau;
-
+    private GestionnaireMonstre gestionnaireMonstre;
     
+    /* private int NBMONSTRE=2;
+    private int NBFONTOME=2;
+    private int VITES=4;
+    private int iteration; */
+
+
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
         state = new GameState();
@@ -27,6 +33,10 @@ public class Jeu implements Game {
         	noDesignatedPlace.printStackTrace();
         	System.exit(1);
         }
+        
+        // gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInstence());
+        // heros.setGestionnaireMonstre(gestionnaireMonstre);
+        // iteration=0;
     }
     
     public Heros getHeros() {
@@ -60,7 +70,14 @@ public class Jeu implements Game {
     @Override
     public void evolve(Cmd userCmd) {
         if (getState() == State.Running) {
-        	heros.move(plateau, userCmd);
+        	heros.move(plateau, userCmd);      	
+        	/* gestionnaireMonstre.deplacement();
+        	   if (iteration%VITES==0) {
+                   gestionnaireMonstre.deplacement();
+                   iteration=0;
+               }
+               iteration++; */
+        	
         	/* si la case est magique, on lance l'effet */
         }
         else if (getState() == State.Won) {}
@@ -80,5 +97,9 @@ public class Jeu implements Game {
     public boolean isFinished() {
         return getState() == State.GameOver;
     }
-    
+
+    public GestionnaireMonstre getGestionnaireMonstre() {
+        return gestionnaireMonstre;
+    }
+
 }
