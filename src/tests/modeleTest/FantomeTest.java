@@ -2,8 +2,8 @@ package tests.modeleTest;
 
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
-import fr.ul.acl.model.AbstractMonstre;
-import fr.ul.acl.model.Fantome;
+import fr.ul.acl.model.monstre.AbstractMonstre;
+import fr.ul.acl.model.monstre.Fantome;
 import fr.ul.acl.model.Jeu;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

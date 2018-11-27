@@ -1,7 +1,6 @@
 package tests.modeleTest;
 
 import fr.ul.acl.engine.Cmd;
-import fr.ul.acl.model.GestionnaireMonstre;
 import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.Plateau;
 import org.junit.Test;

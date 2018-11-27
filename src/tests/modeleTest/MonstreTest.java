@@ -1,7 +1,7 @@
 package tests.modeleTest;
 
 import fr.ul.acl.Resources;
-import fr.ul.acl.model.Monstre;
+import fr.ul.acl.model.monstre.Monstre;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;

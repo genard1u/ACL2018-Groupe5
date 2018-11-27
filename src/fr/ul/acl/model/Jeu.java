@@ -3,6 +3,7 @@ package fr.ul.acl.model;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
+import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
 public class Jeu implements Game {
 

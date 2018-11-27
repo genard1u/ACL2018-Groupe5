@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_acl2018-groupe5" default="compile.module.acl2018-groupe5">
+  <dirname property="module.acl2018-groupe5.basedir" file="${ant.file.module_acl2018-groupe5}"/>
+  
+  <property name="module.jdk.home.acl2018-groupe5" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.acl2018-groupe5" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.acl2018-groupe5" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.acl2018-groupe5" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="acl2018-groupe5.output.dir" value="${module.acl2018-groupe5.basedir}/out/production/ACL2018-Groupe5"/>
+  <property name="acl2018-groupe5.testoutput.dir" value="${module.acl2018-groupe5.basedir}/out/test/ACL2018-Groupe5"/>
+  
+  <path id="acl2018-groupe5.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="acl2018-groupe5.module.production.classpath">
+    <path refid="${module.jdk.classpath.acl2018-groupe5}"/>
+    <pathelement location="${idea.home}/lib/junit.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  <path id="acl2018-groupe5.runtime.production.module.classpath">
+    <pathelement location="${acl2018-groupe5.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  <path id="acl2018-groupe5.module.classpath">
+    <path refid="${module.jdk.classpath.acl2018-groupe5}"/>
+    <pathelement location="${acl2018-groupe5.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  <path id="acl2018-groupe5.runtime.module.classpath">
+    <pathelement location="${acl2018-groupe5.testoutput.dir}"/>
+    <pathelement location="${acl2018-groupe5.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.acl2018-groupe5">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.acl2018-groupe5">
+    <patternset refid="excluded.from.module.acl2018-groupe5"/>
+  </patternset>
+  
+  <path id="acl2018-groupe5.module.sourcepath">
+    <dirset dir="${module.acl2018-groupe5.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.acl2018-groupe5" depends="compile.module.acl2018-groupe5.production,compile.module.acl2018-groupe5.tests" description="Compile module ACL2018-Groupe5"/>
+  
+  <target name="compile.module.acl2018-groupe5.production" depends="register.custom.compilers" description="Compile module ACL2018-Groupe5; production classes">
+    <mkdir dir="${acl2018-groupe5.output.dir}"/>
+    <javac2 destdir="${acl2018-groupe5.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.acl2018-groupe5}/javac">
+      <compilerarg line="${compiler.args.acl2018-groupe5}"/>
+      <bootclasspath refid="acl2018-groupe5.module.bootclasspath"/>
+      <classpath refid="acl2018-groupe5.module.production.classpath"/>
+      <src refid="acl2018-groupe5.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.acl2018-groupe5"/>
+    </javac2>
+    
+    <copy todir="${acl2018-groupe5.output.dir}">
+      <fileset dir="${module.acl2018-groupe5.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.acl2018-groupe5.tests" depends="register.custom.compilers,compile.module.acl2018-groupe5.production" description="compile module ACL2018-Groupe5; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.acl2018-groupe5" description="cleanup module">
+    <delete dir="${acl2018-groupe5.output.dir}"/>
+    <delete dir="${acl2018-groupe5.testoutput.dir}"/>
+  </target>
+</project>

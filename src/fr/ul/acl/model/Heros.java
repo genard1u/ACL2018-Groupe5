@@ -2,6 +2,7 @@ package fr.ul.acl.model;
 
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.HeroState.State;
+import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
 public class Heros extends Dynamique {
 

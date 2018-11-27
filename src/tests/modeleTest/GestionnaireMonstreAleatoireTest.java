@@ -1,8 +1,8 @@
 package tests.modeleTest;
 
 import fr.ul.acl.Resources;
-import fr.ul.acl.model.GestionnaireMonstre;
-import fr.ul.acl.model.GestionnaireMonstreAliatoire;
+import fr.ul.acl.model.monstre.GestionnaireMonstre;
+import fr.ul.acl.model.monstre.GestionnaireMonstreAliatoire;
 import fr.ul.acl.model.Jeu;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
