@@ -28,7 +28,7 @@ public class Plateau {
     }
 
     /**
-     * Construit les bordures, les obstacles, place une passerelle par défaut
+     * Construit les bordures, les obstacles, place une passerelle par défaut.
      * @param largeur
      * @param hauteur
      */
@@ -38,9 +38,14 @@ public class Plateau {
     	
     	buildBorders(largeur, hauteur);
     	buildObstacles(largeur, hauteur);   
-    	placeGateway();
+    	placeDefaultGateway();
     }
 
+    /**
+     * Construction des bordures du labyrinthe (cadre).
+     * @param largeur
+     * @param hauteur
+     */
     private void buildBorders(int largeur, int hauteur) {
     	assert largeur > 1;
     	assert hauteur > 1;
@@ -60,6 +65,11 @@ public class Plateau {
         }
     }
     
+    /**
+     * Placement au hasard d'obstacles sur le labyrinthe.
+     * @param largeur
+     * @param hauteur
+     */
     private void buildObstacles(int largeur, int hauteur) {
     	assert largeur > 1;
     	assert hauteur > 1;
@@ -73,14 +83,35 @@ public class Plateau {
     }
     
     /**
-     * Place une passerelle NORD-SUD au milieu de la bordure
+     * Place un passage NORD-SUD en bordure du labyrinthe.
      */
-    private void placeGateway() {
+    private void placeDefaultGateway() {
+    	assert largeur > 1;
+    	assert hauteur > 1;    	
+    	placeGateway(largeur / 2, 0);   	
+    }
+    
+    /**
+     * Placement d'un passage en bordure du labyrinthe.
+     * Un des deux paramètres doit être nul.
+     * @param x
+     * @param y
+     */
+    public void placeGateway(int x, int y) {
     	assert largeur > 1;
     	assert hauteur > 1;
+    	assert x == 0 || y == 0;
+    	assert x < largeur;
+    	assert y < hauteur;
     	
-    	matrice[largeur / 2][0] = null;
-    	matrice[largeur / 2][hauteur - 1] = null;
+    	if (x == 0) {
+    		matrice[0][y] = null;
+        	matrice[largeur - 1][y] = null;
+    	}
+    	else if (y == 0) {
+    		matrice[x][0] = null;
+        	matrice[x][hauteur - 1] = null;
+    	}
     }
     
     public int getHauteur() { 
@@ -120,7 +151,7 @@ public class Plateau {
     
     /**
      * Permet de récupérer la première position vide du plateau
-     * @return (x, y) couple de coordonnéesgateway
+     * @return (x, y) couple de coordonnées
      */
     public int[] getPositionVide() {
     	for (int i = 0; i < largeur; i ++) {
@@ -146,25 +177,3 @@ public class Plateau {
     }
     
 }
-
-/*
- * boolean found = false;
-    	int[] emptyPlace = null;
-    	int i = 0, x = 0, y = 0;
-    	int nb = largeur * hauteur;
-    	
-    	while (!found && i < nb) {   		
-    		x = i / largeur;
-    		y = i % largeur;
-    		
-    		if (matrice[x][y] == null) {
-    			found = true;
-    		}
-    	} 
-    	
-    	if (found) {
-    		emptyPlace = new int[]{x, y};
-    	}
-    	
-    	return emptyPlace;
-    	*/

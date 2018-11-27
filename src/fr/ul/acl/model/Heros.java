@@ -72,11 +72,11 @@ public class Heros extends Dynamique {
 		  return pos;
 	}
 	
-	private int modulo(int a, int b) {
-		do {
-			a += b;
-		} while (a < 0);
-		
+	public int modulo(int a, int b) {	
+		if (a < 0) {
+		    a = b - (Math.abs(a) % b);
+		}
+		assert a >= 0;		
 		return a % b;
 	}
 	
