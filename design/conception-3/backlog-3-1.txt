@@ -43,7 +43,6 @@ Yann :
 Pierre :
 - Ajouter une entrée et une sortie au labyrinthe
 - Gestion des états du jeu (écrans 'Victoire' et 'Défaite')
-- Gestion du git
 - Script Ant
 - Ecriture de tests (pour Yann)
 

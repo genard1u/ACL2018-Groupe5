@@ -13,7 +13,8 @@ public class Plateau {
     private int largeur;
     
     private Statique[][] matrice;
-
+    private Start start;
+    
     
     public Plateau(int largeur, int hauteur) {
     	assert largeur > 1;
@@ -23,7 +24,7 @@ public class Plateau {
         this.largeur = largeur;
         this.matrice = new Statique[largeur][hauteur];
         
-        buildLaby(largeur, hauteur);
+        buildLaby();
     }
 
     /**
@@ -31,13 +32,13 @@ public class Plateau {
      * @param largeur
      * @param hauteur
      */
-    private void buildLaby(int largeur, int hauteur) {
+    private void buildLaby() {
     	assert largeur > 1;
     	assert hauteur > 1;
     	
-    	buildBorders(largeur, hauteur);
-    	buildObstacles(largeur, hauteur);   
-    	placeDefaultGateway();
+    	buildBorders();
+    	buildObstacles();   
+    	buildStart();
     }
 
     /**
@@ -45,7 +46,7 @@ public class Plateau {
      * @param largeur
      * @param hauteur
      */
-    private void buildBorders(int largeur, int hauteur) {
+    private void buildBorders() {
     	assert largeur > 1;
     	assert hauteur > 1;
     	
@@ -71,7 +72,7 @@ public class Plateau {
      * @param largeur
      * @param hauteur
      */
-    private void buildObstacles(int largeur, int hauteur) {
+    private void buildObstacles() {
     	assert largeur > 1;
     	assert hauteur > 1;
     	
@@ -83,8 +84,14 @@ public class Plateau {
        }
     }
     
+    private void buildStart() {
+    	start = new Start(0, 1);
+    	matrice[start.getPosX()][start.getPosY()] = start;
+    }
+    
     /**
      * Place un passage NORD-SUD en bordure du labyrinthe.
+     * @deprecated
      */
     private void placeDefaultGateway() {
     	assert largeur > 1;
@@ -123,6 +130,10 @@ public class Plateau {
     	return this.largeur; 
     }
 
+    public Start getStart() {
+    	return start;
+    }
+    
     public boolean isAccessible(int x, int y) {
     	assert x >= 0;
     	assert y >= 0;
@@ -149,10 +160,11 @@ public class Plateau {
         
         return type;
     }
-    
+
     /**
      * Permet de récupérer la première position vide du plateau
      * @return (x, y) couple de coordonnées
+     * @deprecated
      */
     public int[] getPositionVide() {
     	for (int i = 0; i < largeur; i ++) {

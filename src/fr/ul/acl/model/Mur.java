@@ -13,7 +13,7 @@ public class Mur extends Statique {
 
 	@Override
 	public boolean isMagic() {
-		return true;
+		return false;
 	}
 
 	@Override
