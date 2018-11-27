@@ -27,7 +27,7 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
         yh=jeu.herosPosY();
         for(int i=0;i<nbmonstres+nbfontome;i++){
             AbstractMonstre m = monstres.get(i);
-            chemins.add(algo.getChemin(plateau,jeu.herosPosX(),jeu.herosPosY(),m.posX,m.posY,m.getType()));
+            chemins.add(algo.getChemin(plateau,jeu.herosPosX(),jeu.herosPosY(),m.getPosX(),m.getPosY(),m.getType()));
         }
     }
 
@@ -42,7 +42,7 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
             chemins.clear();
             for (int i = 0; i < monstres.size(); i++) {
                 AbstractMonstre m = monstres.get(i);
-                chemins.add(algo.getChemin(plateau, jeu.herosPosX(), jeu.herosPosY(), m.posX, m.posY,m.getType()));
+                chemins.add(algo.getChemin(plateau, jeu.herosPosX(), jeu.herosPosY(), m.getPosX(), m.getPosY(),m.getType()));
             }
         }
         for (int i=0;i<monstres.size();i++){

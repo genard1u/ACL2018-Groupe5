@@ -21,9 +21,9 @@ public class Fantome extends AbstractMonstre {
      */
     @Override
     public boolean verificationCase(Jeu jeu, int x, int y) {
-        return  ((x<0||y<0)||(x>=jeu.getPlateau().getLargeur())||(y>=jeu.getPlateau().getHauteur()))
-                ||(jeu.getHeros().posX==x && jeu.getHeros().posY==y)
-                ||jeu.getGestionnaireMonstre().isMonstre(x,y);
+        return  ((x<0||y<0)||(x>=jeu.getPlateau().getLargeur())||(y>=jeu.getPlateau().getHauteur())
+                ||(x == jeu.getHeros().getPosX() && y == jeu.getHeros().getPosY())
+                ||jeu.getGestionnaireMonstre().isMonstre(x,y));
     }
     
 }

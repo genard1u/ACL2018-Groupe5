@@ -56,7 +56,7 @@ public abstract class GestionnaireMonstre {
         for (AbstractMonstre m :monstres){
             int type=1;
             if(m.getType().equals(Monstre.MONSTRE))type=0;
-            pos.add(new int[]{m.posX,m.posY,type});
+            pos.add(new int[]{m.getPosX(),m.getPosY(),type});
         }
         
         return pos;
@@ -69,7 +69,7 @@ public abstract class GestionnaireMonstre {
      * @return true si il y a un monstre dans la position x , y
      */
     public boolean isMonstre(int x, int y){
-        for (AbstractMonstre m :monstres){
+    	for (AbstractMonstre m :monstres){
             if(m.getPosX()==x&&m.getPosY()==y)return true;
         }
         return false;
