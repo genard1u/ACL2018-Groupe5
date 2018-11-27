@@ -18,6 +18,7 @@ public class LabyPainter implements GamePainter {
     
     private Jeu jeu;
 
+    
     public LabyPainter(Jeu j) {
         jeu = j;
         width = Resources.scaling(jeu.largeurPlateau());
@@ -57,6 +58,9 @@ public class LabyPainter implements GamePainter {
                 else {
                     if (jeu.getTypeCase(x, y) == "MUR") {
                         crayon.setColor(Resources.WALL_COLOR);
+                    }
+                    else {
+                    	crayon.setColor(Resources.BACKGROUND_COLOR);
                     }
                 }
                 

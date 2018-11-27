@@ -25,19 +25,15 @@ public class Jeu implements Game {
     }
 
     private void placeHero() {
-        int[] designatedPlace = plateau.getPositionVide();
+        Start start = plateau.getStart();
         
         try {
-        	heros = new Heros(designatedPlace[0], designatedPlace[1]);
+        	heros = new Heros(start.getPosX(), start.getPosY());
         }
         catch (IllegalArgumentException noDesignatedPlace) {
         	noDesignatedPlace.printStackTrace();
         	System.exit(1);
         }
-        
-        // gestionnaireMonstre=new GestionnaireMonsreIntelligents(NBMONSTRE,NBFONTOME,this,Aetoile.getInstence());
-        // heros.setGestionnaireMonstre(gestionnaireMonstre);
-        // iteration=0;
     }
     
     public Heros getHeros() {
