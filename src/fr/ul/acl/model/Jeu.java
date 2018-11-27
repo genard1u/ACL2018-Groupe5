@@ -12,10 +12,11 @@ public class Jeu implements Game {
     private GestionnaireMonstre gestionnaireMonstre;
     private int NBMONSTRE=2;
     private int NBFONTOME=2;
-    private int VITES=4;
+    private int VITES=8;
     private int iteration;
+    private Cmd cmd;
 
-
+    
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
         int[] freePos = plateau.getPositionVide();
@@ -53,6 +54,7 @@ public class Jeu implements Game {
     
     @Override
     public void evolve(Cmd userCmd) {
+        cmd = userCmd;
         heros.move(plateau, userCmd);
         if(iteration%VITES==0) {
             gestionnaireMonstre.deplacement();
@@ -70,5 +72,10 @@ public class Jeu implements Game {
         return gestionnaireMonstre;
     }
 
+
+
+    public Cmd getCmd(){
+        return cmd;
+    }
 
 }
