@@ -57,4 +57,5 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
     public ArrayList<LinkedList<Cmd>> getChemins() {
         return chemins;
     }
+    
 }

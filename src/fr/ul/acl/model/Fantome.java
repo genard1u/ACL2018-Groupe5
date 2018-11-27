@@ -1,13 +1,16 @@
 package fr.ul.acl.model;
 
 public class Fantome extends AbstractMonstre {
-    public static final String FANTOME="FANTOME";
+	
+    public static final String FANTOME = "FANTOME";
+    
     public Fantome(int posX, int posY) {
         super(posX,posY,FANTOME);
-        this.type=FANTOME;
+        this.type = FANTOME;
     }
+    
     /**
-     *verification que le fontome peut situé dans la case x,y
+     * Verification que le fontome peut situé dans la case x,y
      * @param jeu  jeu ou se trouve le monstre
      * @param x position x de la case
      * @param y position y de la case
@@ -19,4 +22,5 @@ public class Fantome extends AbstractMonstre {
                 ||(jeu.getHeros().posX==x && jeu.getHeros().posY==y)
                 ||jeu.getGestionnaireMonstre().isMonstre(x,y);
     }
+    
 }

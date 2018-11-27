@@ -3,8 +3,7 @@ package fr.ul.acl.model;
 import java.util.Random;
 
 /**
- * Bon ordre des paramètres x et y à vérifier
- * @author gen
+ * @author Pierre Génard
  */
 public class Plateau {
 
@@ -52,13 +51,15 @@ public class Plateau {
     	
     	int border = 0;
     	
-        for (int i = 0; i < largeur; i ++) {
+        /* Placement des bordures à gauche et à droite */
+        for (int i = 0; i < hauteur; i ++) {
         	border = largeur - 1;
             matrice[0][i] = new Mur(0, i);
             matrice[border][i] = new Mur(border, i);
         }
         
-        for (int i = 0; i < hauteur; i ++) {
+        /* Placement des bordures en haut et en bas */
+        for (int i = 0; i < largeur; i ++) {
         	border = hauteur - 1;
             matrice[i][0] = new Mur(i, 0);
             matrice[i][border] = new Mur(i, border);
