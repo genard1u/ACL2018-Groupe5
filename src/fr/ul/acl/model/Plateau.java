@@ -18,6 +18,8 @@ public class Plateau {
     private int largeur;
     
     private Start start;
+    private Treasure t;
+
     private Statique[][] matrice;
     
     
@@ -264,6 +266,12 @@ public class Plateau {
         return new int[]{-1,-1};
     }
 
+    /**
+     * Petmet de récupéré un élément statique au coordonnée x,y
+     * @param x
+     * @param y
+     * @return l'élément statique correspondant au coordonnée
+     */
     public Statique getElement(int x, int y) {
     	Statique element = null;
     	

@@ -78,8 +78,11 @@ public class LabyPainter implements GamePainter {
                     crayon.drawImage(Texture.getInstance().getFloor(),x,y,null);
                 }
                 else {
-                    if (jeu.getPlateau().getElement(i, j).getType() == "MUR") {
+                    if (jeu.getPlateau().getElement(i, j).getType().equals("MUR")) {
                         crayon.drawImage(Texture.getInstance().getWall(),x,y,null);
+                    }
+                    else if(jeu.getPlateau().getElement(i,j).getType().equals("START")){
+                        crayon.drawImage(Texture.getInstance().getStart(),x,y,null);
                     }
                 }
             }

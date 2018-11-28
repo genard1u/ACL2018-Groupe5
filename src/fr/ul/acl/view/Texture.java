@@ -30,6 +30,8 @@ public class Texture {
 
     private Image lastMove;
 
+    private Image start;
+
     private static Texture texture;
 
     private Texture() {
@@ -56,7 +58,9 @@ public class Texture {
             herosDownA2 = heros.getSubimage(Resources.SCALING*2,Resources.SCALING*0,Resources.SCALING,Resources.SCALING);
 
             wall = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/brick_gray.png"));
-            
+
+            start = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/start.png"));
+
             lastMove = herosDown;
         }
         catch (Exception e) {}
@@ -153,6 +157,15 @@ public class Texture {
         lastMove = res;
         
         return res;
+    }
+
+
+    /**
+     * retourne la texture de la case d'entrée dans le donjon
+     * @return
+     */
+    public Image getStart(){
+        return start;
     }
     
 }
