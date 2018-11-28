@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 /**
  * Les cases vides du plateau sont nulles.
+ * Le type de composant (chaîne) des cases vides est la chaîne vide.
+ * 
  * @author Pierre Génard
  */
 public class Plateau {
@@ -219,10 +221,8 @@ public class Plateau {
     	boolean isAccessible = false;
     	
     	if (!isOutOfBounds(x, y)) {
-    		if (typeCase != null) {
-    			if (!typeCase.equals(Mur.MUR)) {
-    				isAccessible = true;
-    			}
+    	    if (!typeCase.equals(Mur.MUR)) {
+    			isAccessible = true;
     		}
     	}
     	
@@ -237,7 +237,7 @@ public class Plateau {
     	assert x >= 0;
     	assert y >= 0;
     	
-    	String type = null;
+    	String type = "";
     	
     	if (!isOutOfBounds(x, y)) {
     		if (matrice[x][y] != null) {

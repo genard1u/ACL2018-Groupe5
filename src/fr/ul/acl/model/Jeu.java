@@ -26,7 +26,7 @@ public class Jeu implements Game {
         state = new GameState();
         iteration = 0;
         createHero();
-        buildMonsterManager();      
+        buildMonsterManager(); 
         heros.setGestionnaireMonstre(gestionnaireMonstre);
     }
 
