@@ -50,8 +50,8 @@ public class FantomeTest {
      * @return Les parametres Min de la methode.
      */
     public static Object[] getMinBound() {
-        return $(   $(Resources.WIDTH-(Resources.WIDTH/2),-5),
-                $(-5,Resources.HEIGHT-(Resources.HEIGHT/2)),
+        return $(   $(Resources.getInstance().getWidth()-(Resources.getInstance().getWidth()/2),-5),
+                $(-5,Resources.getInstance().getHeight()-(Resources.getInstance().getHeight()/2)),
                 $(-5,-5)    );
     }
 
@@ -72,9 +72,9 @@ public class FantomeTest {
      * @return Les parametres Max de la methode.
      */
     public static Object[] getMaxBound() {
-        return $(   $(Resources.WIDTH-(Resources.WIDTH/2),Resources.HEIGHT+5),
-                $(Resources.WIDTH+5,Resources.HEIGHT-(Resources.HEIGHT/2)),
-                $(Resources.WIDTH+5,Resources.HEIGHT+5) );
+        return $(   $(Resources.getInstance().getWidth()-(Resources.getInstance().getWidth()/2),Resources.getInstance().getHeight()+5),
+                $(Resources.getInstance().getWidth()+5,Resources.getInstance().getHeight()-(Resources.getInstance().getHeight()/2)),
+                $(Resources.getInstance().getWidth()+5,Resources.getInstance().getHeight()+5) );
     }
 
     /**

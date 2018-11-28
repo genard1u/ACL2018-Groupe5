@@ -34,14 +34,14 @@ public class TreasureTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosX(){
-        Treasure treasure=new Treasure(Resources.WIDTH,2);
+        Treasure treasure=new Treasure(Resources.getInstance().getWidth(),2);
     }
     /**
      * teste constructeur , posision y depase le hauteur de plateau
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosY(){
-        Treasure treasure=new Treasure(3,Resources.HEIGHT);
+        Treasure treasure=new Treasure(3,Resources.getInstance().getHeight());
     }
     /**
      * teste effet avec null

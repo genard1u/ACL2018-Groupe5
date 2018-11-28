@@ -54,14 +54,14 @@ public class TeleportTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void effetLimiyX() {
-        Teleport teleport1 =new Teleport(Resources.WIDTH,2);
+        Teleport teleport1 =new Teleport(Resources.getInstance().getWidth(),2);
     }
     /**
      * teste constructeur , posision y depase le hauteur de plateau
      */
     @Test(expected = IllegalArgumentException.class)
     public void effetLimiyY() {
-        Teleport teleport1 =new Teleport(2,Resources.HEIGHT);
+        Teleport teleport1 =new Teleport(2,Resources.getInstance().getHeight());
     }
     /**
      * teste case destination avec null

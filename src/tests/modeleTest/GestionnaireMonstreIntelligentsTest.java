@@ -65,8 +65,8 @@ public class GestionnaireMonstreIntelligentsTest {
      * @return Les parametres Min de la methode.
      */
     public static Object[] getNbMonstres() {
-        return $(   $(Resources.HEIGHT*Resources.WIDTH+1,0),
-                $(0,Resources.HEIGHT*Resources.WIDTH+1),
+        return $(   $(Resources.getInstance().getHeight()*Resources.getInstance().getWidth()+1,0),
+                $(0,Resources.getInstance().getHeight()*Resources.getInstance().getWidth()+1),
                 $(-5,-5),
                 $(0,-5),
                 $(-5,0)    );

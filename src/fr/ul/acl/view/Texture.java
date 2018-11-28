@@ -138,6 +138,10 @@ public class Texture {
         return wall;
     }
 
+    public int getSquareDimensions() {
+    	return wall.getWidth(null);
+    }
+    
     public Image getFloor(){
         return floor;
     }
