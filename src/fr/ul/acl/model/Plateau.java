@@ -18,7 +18,7 @@ public class Plateau {
     private int largeur;
     
     private Start start;
-    private Treasure t;
+    private Treasure treasure;
 
     private Statique[][] matrice;
     
@@ -46,6 +46,7 @@ public class Plateau {
     	buildBorders();
     	buildObstacles();   
     	buildStart();
+        buildTreasure();
     }
 
     /**
@@ -168,6 +169,11 @@ public class Plateau {
     private void buildStart() {
     	start = new Start(0, 1);
     	matrice[start.getPosX()][start.getPosY()] = start;
+    }
+
+    private void buildTreasure(){
+        treasure = new Treasure(this.matrice.length-2,this.matrice[0].length-2);
+        matrice[treasure.getPosX()][treasure.getPosY()] = treasure;
     }
     
     /**

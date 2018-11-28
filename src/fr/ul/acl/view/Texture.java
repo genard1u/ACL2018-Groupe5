@@ -31,6 +31,7 @@ public class Texture {
     private Image lastMove;
 
     private Image start;
+    private Image treasure;
 
     private static Texture texture;
 
@@ -60,6 +61,7 @@ public class Texture {
             wall = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/brick_gray.png"));
 
             start = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/start.png"));
+            treasure = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/treasure.png"));
 
             lastMove = herosDown;
         }
@@ -166,6 +168,14 @@ public class Texture {
      */
     public Image getStart(){
         return start;
+    }
+
+    /**
+     * retourne la texture de la case du tresor du donjon
+     * @return
+     */
+    public Image getTreasure(){
+        return treasure;
     }
     
 }
