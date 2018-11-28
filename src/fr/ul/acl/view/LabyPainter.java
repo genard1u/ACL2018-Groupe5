@@ -197,5 +197,4 @@ public class LabyPainter implements GamePainter {
             crayon.fillRect(x,y, Resources.SCALING, Resources.SCALING);
         }
     }
-
 }
