@@ -45,13 +45,12 @@ Yann :
 
 Pierre :
 - Ajouter une entrée et une sortie au labyrinthe
-- Gestion des états du jeu (écrans 'Victoire' et 'Défaite')
-- Gestion du git
+- Gestion des états du jeu (+ écrans 'Victoire' et 'Défaite')
+- Fusion des branches
 - Script Ant
 - Ecriture de tests (pour classes créée par Yann)
 - Diagramme de classes
 - Taille du labyrinthe en fonction de la taille de l'écran
-
 
 Walid :
 - Gestions des monstres et fantomes

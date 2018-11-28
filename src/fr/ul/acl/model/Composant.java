@@ -10,16 +10,11 @@ public abstract class Composant {
     protected String type;
 
     
-    public Composant(int posX, int posY, String type) throws IllegalArgumentException {
-    	assert posX >= 0;
-    	assert posY >= 0;
-    	assert type != null;
-    	
-    	isValidComponent(posX, posY, type);
-    	
-        this.posX = posX;
-        this.posY = posY;
-        this.type = type;
+    public Composant(int x, int y, String t) throws IllegalArgumentException {
+    	isValidComponent(x, y, t);   	
+        posX = x;
+        posY = y;
+        type = t;
     }
 
     private void isValidComponent(int posX, int posY, String type) {

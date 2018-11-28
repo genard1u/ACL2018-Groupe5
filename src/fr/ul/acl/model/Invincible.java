@@ -22,10 +22,4 @@ public class Invincible extends Magic {
         h.setInvincible();
     }
     
-    @Deprecated
-    @Override
-    public String getAffichage() {
-        return "%";
-    }
-    
 }

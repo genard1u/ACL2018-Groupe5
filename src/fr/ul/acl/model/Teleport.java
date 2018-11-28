@@ -78,11 +78,5 @@ public class Teleport extends Magic {
 
         return teleports;
     }
-
-    @Deprecated
-    @Override
-    public String getAffichage() {
-        return ">>";
-    }
     
 }

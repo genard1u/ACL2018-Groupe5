@@ -12,10 +12,5 @@ public class Start extends Statique {
 	public boolean isMagic() {
 		return false;
 	}
-
-	@Override
-	public String getAffichage() {
-		return null;
-	}
 	
 }

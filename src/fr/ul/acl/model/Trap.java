@@ -25,12 +25,6 @@ public class Trap extends Magic {
     @Override
     public void effet(Heros h) {
         h.kill();
-    }
-    
-    @Deprecated
-    @Override
-    public String getAffichage() {
-        return "#";
-    }    
+    }   
 
 }

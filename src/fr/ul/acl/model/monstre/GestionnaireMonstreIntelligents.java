@@ -6,7 +6,8 @@ import fr.ul.acl.model.Jeu;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
+public class GestionnaireMonstreIntelligents extends GestionnaireMonstre {
+	
     private int xh,yh;
     private ArrayList<LinkedList<Cmd>> chemins;
     private Algorithme algo;
@@ -18,7 +19,7 @@ public class GestionnaireMonsreIntelligents extends GestionnaireMonstre {
      * @param jeu    jeu ou se trouve les monstre
      * @param algo   algorithme utiliser pour deplacer les monstres
      */
-    public GestionnaireMonsreIntelligents(int nbmonstres, int nbfontome, Jeu jeu, Algorithme algo) {
+    public GestionnaireMonstreIntelligents(int nbmonstres, int nbfontome, Jeu jeu, Algorithme algo) {
         super(nbmonstres,nbfontome, jeu);
         if(algo==null)throw new IllegalArgumentException();
         chemins=new ArrayList<>();

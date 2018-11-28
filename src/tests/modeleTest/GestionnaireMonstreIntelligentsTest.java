@@ -4,7 +4,7 @@ import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.*;
 import fr.ul.acl.model.monstre.Algorithme;
-import fr.ul.acl.model.monstre.GestionnaireMonsreIntelligents;
+import fr.ul.acl.model.monstre.GestionnaireMonstreIntelligents;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -93,7 +93,7 @@ public class GestionnaireMonstreIntelligentsTest {
     public void GestionnaireMonstreIntellCheminNotNull(){
         int nm=5,nf=5;
         GestionnaireMonstre gma = getGestionnaire(nm, nf, j, algo);
-        assertNotNull("Le chemin est null.",((GestionnaireMonsreIntelligents) gma).getChemins());
+        assertNotNull("Le chemin est null.",((GestionnaireMonstreIntelligents) gma).getChemins());
     }
 
     /**
@@ -107,7 +107,7 @@ public class GestionnaireMonstreIntelligentsTest {
         GestionnaireMonstre gma = getGestionnaire(nm, nf, j, algo);
         assertEquals("Le chemin n'est pas bien construit.",
                 algo.getChemin(null,0,0,0,0,null),
-                ((GestionnaireMonsreIntelligents) gma).getChemins().get(0));
+                ((GestionnaireMonstreIntelligents) gma).getChemins().get(0));
     }
 
 
@@ -118,8 +118,8 @@ public class GestionnaireMonstreIntelligentsTest {
      * @param j le jeu
      * @return une instance de gestionnaireMonstreAleatoire.
      */
-    public static GestionnaireMonsreIntelligents getGestionnaire(int nm, int nf, Jeu j, Algorithme algo){
-        return new GestionnaireMonsreIntelligents(nm, nf, j, algo);
+    public static GestionnaireMonstreIntelligents getGestionnaire(int nm, int nf, Jeu j, Algorithme algo){
+        return new GestionnaireMonstreIntelligents(nm, nf, j, algo);
     }
 }
 

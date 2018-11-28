@@ -8,21 +8,23 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class Aetoile implements Algorithme {
+	
     private static Algorithme aetoile;
+    
     /**
      * recuperation d'une instence de Aetoile
      * @return instance de Aetoile
      */
-    public static Algorithme getInstence(){
+    public static Algorithme getInstance() {
         if (aetoile==null)aetoile=new Aetoile();
         return aetoile;
     }
-    private Aetoile(){
-
-    };
+    
+    private Aetoile() {}
+    
     private static Map<String,Integer> open;
     private static Map<String,Integer> close;
-    private static Map<String,String>pred;
+    private static Map<String,String> pred;
 
     /**
      * calculer le plus court chemin

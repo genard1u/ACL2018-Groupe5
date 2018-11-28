@@ -30,10 +30,4 @@ public class Treasure extends Magic {
         h.setWinning();
     }
     
-    @Deprecated
-    @Override
-    public String getAffichage() {
-        return "$";
-    }
-    
 }

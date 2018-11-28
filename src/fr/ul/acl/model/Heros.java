@@ -6,17 +6,19 @@ import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
 public class Heros extends Dynamique {
 
-	public static final String HEROS = "HEROS";
+	public final static String HEROS = "HEROS";
 	
 	private HeroState state;
+	private boolean stationary;
 	private int life = 100;
 	
 	private GestionnaireMonstre gestionnaireMonstre;
    
 
     public Heros(int posX, int posY) {
-        super(posX, posY,HEROS);
-        this.state = HeroState.createState();
+        super(posX, posY, HEROS);
+        state = HeroState.createState();
+        stationary = true;
     }
 
     public Heros(int posX, int posY, GestionnaireMonstre gestionnaireMonstre) {
@@ -42,12 +44,21 @@ public class Heros extends Dynamique {
 	}
 	
 	public void move(Plateau plateau, Cmd userCmd) {
+		if (userCmd == Cmd.IDLE) {
+			stationary = true;
+        	return;
+        }
+		
         int[] adjustedPos = getAdjustedPos(plateau, userCmd);
-
+      
         if (isValidPlace(plateau, adjustedPos[0], adjustedPos[1])) {
         	setPosition(adjustedPos[0], adjustedPos[1]);
+        	stationary = false;
         }
-    }
+        else {
+        	stationary = true;
+        }
+	}
 	
     boolean isValidPlace(Plateau plateau, int x, int y) {
     	assert plateau != null;
@@ -119,6 +130,10 @@ public class Heros extends Dynamique {
      */
     public void teleport(int toPosX, int toPosY) {
         setPosition(toPosX, toPosY);
+    }
+
+    public boolean isStationary() {
+        return stationary;
     }
 
 }

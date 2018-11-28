@@ -2,7 +2,10 @@ package fr.ul.acl.model;
 
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 /**
+ * Les cases vides du plateau sont nulles.
  * @author Pierre Génard
  */
 public class Plateau {
@@ -12,8 +15,8 @@ public class Plateau {
     private int hauteur;
     private int largeur;
     
-    private Statique[][] matrice;
     private Start start;
+    private Statique[][] matrice;
     
     
     public Plateau(int largeur, int hauteur) {
@@ -60,19 +63,93 @@ public class Plateau {
         }
         
         /* Placement des bordures en haut et en bas */
-        for (int i = 0; i < largeur; i ++) {
+        for (int i = 1; i < (largeur - 1); i ++) {
         	border = hauteur - 1;
             matrice[i][0] = new Mur(i, 0);
             matrice[i][border] = new Mur(i, border);
         }
     }
-    
+
     /**
-     * Placement au hasard d'obstacles sur le labyrinthe.
+     * Placement au hasard d'obstacles dans le labyrinthe.
      * @param largeur
      * @param hauteur
      */
     private void buildObstacles() {
+    	assert largeur > 1;
+    	assert hauteur > 1;
+    	
+    	try {
+            for (int i = 0; i < matrice.length; i++) {
+                for (int j = 0; j < matrice[0].length; j++) {
+                    if (i % 2 == 0 || j % 2 == 0)
+                        matrice[i][j] = new Mur(i, j);
+                }
+            }
+
+            int rng;
+            int max;
+            Cell[][] from = new Cell[(matrice.length - 1) / 2][(matrice[0].length - 1) / 2];
+            
+            for (int i = 0; i < from.length; i++) {
+                for (int k = 0; k < from[0].length; k++) {
+                    max = 4;
+                    while (from[i][k] == null) {
+                        rng = (int) (Math.random() * (max - 1)) + 1;
+                        switch (rng) {
+                            case 1:
+                                if (i < from.length - 1) {
+                                    if (from[i + 1][k] == null || (from[i + 1][k].getFromX() != i && from[i + 1][k].getFromY() != k))
+                                        from[i][k] = new Cell(1, 0, i, k);
+                                }
+                                break;
+                            case 2:
+                                if (i > 0) {
+                                    if (from[i - 1][k] == null || (from[i - 1][k].getFromX() != i && from[i - 1][k].getFromY() != k))
+                                        from[i][k] = new Cell(-1, 0, i, k);
+                                    else if (i == from.length - 1 && k == from[0].length - 1)
+                                        from[i][k] = new Cell(0, 0, i, k);
+                                }
+                                break;
+                            case 3:
+                                if (k < from[0].length - 1)
+                                    if (from[i][k + 1] == null || (from[i][k + 1].getFromX() != i && from[i][k + 1].getFromY() != k))
+                                        from[i][k] = new Cell(0, 1, i, k);
+                                break;
+                            case 4:
+                                if (k > 0)
+                                    if (from[i][k - 1] == null || (from[i][k - 1].getFromX() != i && from[i][k - 1].getFromY() != k))
+                                        from[i][k] = new Cell(0, -1, i, k);
+                                break;
+                            default:
+                                from[i][k] = null;
+                                break;
+                        }
+                    }
+                }
+            }
+            
+            for (int i = 0; i < from.length; i++) {
+                for (int k = 0; k < from[0].length; k++) {
+                    int a = (from[i][k].getX() + i * 2 + 1);
+                    int b = (from[i][k].getY() + k * 2 + 1);
+                    matrice[a][b] = null;
+                }
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Une erreur c'est produite.");
+        }
+    }
+    
+    /**
+     * Placement au hasard d'obstacles dans le labyrinthe.
+     * Première version (primitive).
+     * @param largeur
+     * @param hauteur
+     * @deprecated
+     */
+    private void buildObstaclesOldWay() {
     	assert largeur > 1;
     	assert hauteur > 1;
     	
@@ -137,26 +214,36 @@ public class Plateau {
     public boolean isAccessible(int x, int y) {
     	assert x >= 0;
     	assert y >= 0;
-    	
-    	boolean isAccessible = false;
+    	   	
     	String typeCase = getType(x, y);
-    			
-    	if (!typeCase.equals(Mur.MUR)) {
-    		isAccessible = true;
+    	boolean isAccessible = false;
+    	
+    	if (!isOutOfBounds(x, y)) {
+    		if (typeCase != null) {
+    			if (!typeCase.equals(Mur.MUR)) {
+    				isAccessible = true;
+    			}
+    		}
     	}
     	
     	return isAccessible;
+    }
+    
+    private boolean isOutOfBounds(int x, int y) {
+    	return x < 0 || y < 0 || x >= largeur || y >= hauteur;
     }
     
     public String getType(int x, int y) {
     	assert x >= 0;
     	assert y >= 0;
     	
-    	String type = "";
+    	String type = null;
     	
-        if (matrice[x][y] != null) {
-        	type = matrice[x][y].getType();
-        }
+    	if (!isOutOfBounds(x, y)) {
+    		if (matrice[x][y] != null) {
+            	type = matrice[x][y].getType();
+            }
+    	}     
         
         return type;
     }
@@ -178,7 +265,13 @@ public class Plateau {
     }
 
     public Statique getElement(int x, int y) {
-        return matrice[x][y];
+    	Statique element = null;
+    	
+    	if (!isOutOfBounds(x, y)) {
+    		element = matrice[x][y];
+    	}
+    	
+        return element;
     }
 
     /**
@@ -188,5 +281,35 @@ public class Plateau {
     public Statique[][] getMatrice() { 
     	return this.matrice; 
     }
-    
+
+    private class Cell {
+
+        private int x, y, fromX, fromY;
+        
+        public Cell(int a, int b, int fromA, int fromB) {
+            x = a;
+            y = b;
+            fromX = fromA;
+            fromY = fromB;
+        }
+
+        public int getFromX() {
+            return fromX;
+        }
+
+        public int getFromY() {
+            return fromY;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
+
 }
+
+

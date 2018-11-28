@@ -1,5 +1,6 @@
 bin/
 jar/
+out/
 .classpath
 .idea
 .project
@@ -7,3 +8,10 @@ jar/
 *.iml
 *.ipr
 *.iws
+*.lock
+*.properties
+*.xml
+*~
+
+# suivi du script ant
+!build.xml

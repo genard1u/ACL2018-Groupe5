@@ -3,30 +3,44 @@ package fr.ul.acl.model;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
-import fr.ul.acl.model.monstre.GestionnaireMonstre;
+import fr.ul.acl.model.monstre.*;
 
 public class Jeu implements Game {
 
+	/* Config */
+	private int nbMonstres = 2;
+    private int nbFantomes = 2;
+    private int speed = 4;
+    
+	private Cmd cmd;
+	private int iteration;
 	private GameState state;
+	
+	private Plateau plateau;
     private Heros heros;
-    private Plateau plateau;
     private GestionnaireMonstre gestionnaireMonstre;
     
-    /* private int NBMONSTRE=2;
-    private int NBFONTOME=2;
-    private int VITES=4;
-    private int iteration; */
-
 
     public Jeu(int largeur, int hauteur) {
         plateau = new Plateau(largeur, hauteur);
         state = new GameState();
-        placeHero();
+        iteration = 0;
+        createHero();
+        buildMonsterManager();      
+        heros.setGestionnaireMonstre(gestionnaireMonstre);
     }
 
-    private void placeHero() {
+    private void buildMonsterManager() {
+    	gestionnaireMonstre = new GestionnaireMonstreIntelligents(nbMonstres,
+                nbFantomes,
+                this,
+                Aetoile.getInstance()
+        );
+    }
+    
+    private void createHero() {
         Start start = plateau.getStart();
-        
+               
         try {
         	heros = new Heros(start.getPosX(), start.getPosY());
         }
@@ -70,14 +84,18 @@ public class Jeu implements Game {
     
     @Override
     public void evolve(Cmd userCmd) {
+        cmd = userCmd;
+
         if (getState() == State.Running) {
         	heros.move(plateau, userCmd);      	
-        	/* gestionnaireMonstre.deplacement();
-        	   if (iteration%VITES==0) {
+        	gestionnaireMonstre.deplacement();
+        	
+        	if (iteration % speed == 0) {
                    gestionnaireMonstre.deplacement();
-                   iteration=0;
-               }
-               iteration++; */
+                   iteration = 0;
+            }
+        	   
+            iteration ++; 
         	
         	/* si la case est magique, on lance l'effet */
         }
@@ -103,4 +121,8 @@ public class Jeu implements Game {
         return gestionnaireMonstre;
     }
 
+    public Cmd getCmd() {
+        return cmd;
+    }
+    
 }
