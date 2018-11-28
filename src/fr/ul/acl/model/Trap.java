@@ -24,6 +24,7 @@ public class Trap extends Magic {
      */
     @Override
     public void effet(Heros h) {
+        if(h==null)throw new IllegalArgumentException();
         h.kill();
     }   
 

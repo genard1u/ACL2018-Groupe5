@@ -37,6 +37,7 @@ public class Teleport extends Magic {
      * @param tlprt la case vers où l'heros se teleporte.
      */
     public void setTeleportCoord(Teleport tlprt) {
+        if(tlprt==null) throw new IllegalArgumentException();
         this.toPosX = tlprt.getPosX();
         this.toPosY = tlprt.getPosY();
     }
@@ -47,6 +48,7 @@ public class Teleport extends Magic {
      */
     @Override
     public void effet(Heros h) {
+        if(h==null) throw new IllegalArgumentException();
         if(toPosX > 0 && toPosY > 0)
             h.teleport(toPosX,toPosY);
         else

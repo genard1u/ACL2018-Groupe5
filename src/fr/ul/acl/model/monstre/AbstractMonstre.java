@@ -2,6 +2,7 @@ package fr.ul.acl.model.monstre;
 
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.Dynamique;
+import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.Jeu;
 
 import java.time.Clock;
@@ -24,7 +25,6 @@ public abstract class AbstractMonstre extends Dynamique {
     	int[] adjustedPos = getAdjustedPos(jeu.getPlateau(), direction);
         
     	if (verificationCase(jeu, adjustedPos[0], adjustedPos[1])) {
-            System.out.println(direction);
         	setPosition(adjustedPos[0], adjustedPos[1]);
         	hasBeenMoved = true;
         }
@@ -40,5 +40,7 @@ public abstract class AbstractMonstre extends Dynamique {
      * @return true si le déplacement à cette case est possible
      */
     protected abstract boolean verificationCase(Jeu jeu, int x, int y);
+
+
 
 }

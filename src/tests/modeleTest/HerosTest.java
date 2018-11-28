@@ -5,10 +5,11 @@ import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.Plateau;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class HerosTest {
-
 
     @Test
     public void RightHeros(){
@@ -41,6 +42,7 @@ public class HerosTest {
     @Test
     public void deplacementHaut(){
         Heros h = new Heros(3,3);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.UP);
         assertSame(h.getPosX(),3);
@@ -49,6 +51,7 @@ public class HerosTest {
     @Test
     public void deplacementBas(){
         Heros h = new Heros(3,3);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.DOWN);
         assertSame(h.getPosX(),3);
@@ -57,6 +60,7 @@ public class HerosTest {
     @Test
     public void deplacementDroite(){
         Heros h = new Heros(3,3);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.RIGHT);
         assertSame(h.getPosX(),4);
@@ -65,6 +69,7 @@ public class HerosTest {
     @Test
     public void deplacementGauche(){
         Heros h = new Heros(3,3);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.LEFT);
         assertSame(h.getPosX(),2);
@@ -73,6 +78,7 @@ public class HerosTest {
     @Test
     public void limiteHaut(){
         Heros h = new Heros(3,0);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.UP);
         assertSame(h.getPosX(),3);
@@ -81,6 +87,7 @@ public class HerosTest {
     @Test
     public void limiteBas(){
         Heros h = new Heros(0,9);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.DOWN);
         assertSame(h.getPosX(),0);
@@ -89,6 +96,7 @@ public class HerosTest {
     @Test
     public void limiteDroite(){
         Heros h = new Heros(9,3);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.RIGHT);
         assertSame(h.getPosX(),9);
@@ -97,6 +105,7 @@ public class HerosTest {
     @Test
     public void limiteGauche(){
         Heros h = new Heros(0,3);
+        h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
         h.move(p, Cmd.LEFT);
         assertSame(h.getPosX(),0);
@@ -106,6 +115,7 @@ public class HerosTest {
     @Test(expected=IllegalArgumentException.class)
     public void deplacementtestnull(){
         Heros h = new Heros(0,0);
+        h.setGestionnaireMonstre(new ArrayList<>());
         h.move(null,null);
     }
 

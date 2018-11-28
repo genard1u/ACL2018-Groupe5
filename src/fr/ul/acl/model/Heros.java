@@ -46,6 +46,9 @@ public class Heros extends Dynamique {
 	}
 	
 	public void move(Plateau plateau, Cmd userCmd) {
+        System.out.println(userCmd+" "+posX+" "+posY);
+        if(plateau==null || userCmd==null)throw new IllegalArgumentException();
+
 		if (userCmd == Cmd.IDLE) {
 			stationary = true;
         	return;
@@ -64,11 +67,14 @@ public class Heros extends Dynamique {
 	
     boolean isValidPlace(Plateau plateau, int x, int y) {
     	assert plateau != null;
+    	boolean ismonstre=false;
         for(GestionnaireMonstre gestionnaireMonstre :gestionnaireMonstres ) {
             assert gestionnaireMonstre != null;
-            if (!plateau.isAccessible(x, y) || gestionnaireMonstre.isMonstre(x, y))
-                return false;
+            ismonstre=ismonstre||gestionnaireMonstre.isMonstre(x, y);
         }
+        if (!plateau.isAccessible(x, y)||ismonstre)
+            return false;
+
 
         return true;
     }
