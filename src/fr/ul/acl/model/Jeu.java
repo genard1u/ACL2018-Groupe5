@@ -5,6 +5,9 @@ import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
 import fr.ul.acl.model.monstre.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Jeu implements Game {
 
 	/* Config */
@@ -18,7 +21,7 @@ public class Jeu implements Game {
 	
 	private Plateau plateau;
     private Heros heros;
-    private GestionnaireMonstre gestionnaireMonstre;
+    private ArrayList<GestionnaireMonstre> gestionnaireMonstres;
     
 
     public Jeu(int largeur, int hauteur) {
@@ -27,14 +30,20 @@ public class Jeu implements Game {
         iteration = 0;
         createHero();
         buildMonsterManager(); 
-        heros.setGestionnaireMonstre(gestionnaireMonstre);
+        heros.setGestionnaireMonstre(gestionnaireMonstres);
     }
 
     private void buildMonsterManager() {
-    	gestionnaireMonstre = new GestionnaireMonstreIntelligents(nbMonstres,
-                nbFantomes,
+    	gestionnaireMonstres =new ArrayList<>();
+        gestionnaireMonstres.add(
+                new GestionnaireMonstreIntelligents(nbMonstres,
+                0,
                 this,
                 Aetoile.getInstance()
+                 )
+        );
+        gestionnaireMonstres.add(
+                new GestionnaireMonstreAliatoire(0,nbFantomes,this)
         );
     }
     
@@ -91,6 +100,7 @@ public class Jeu implements Game {
         	//gestionnaireMonstre.deplacement();
         	
         	if (iteration % speed == 0) {
+        	    for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres )
                    gestionnaireMonstre.deplacement();
                    iteration = 0;
             }
@@ -117,8 +127,8 @@ public class Jeu implements Game {
         return getState() == State.GameOver;
     }
 
-    public GestionnaireMonstre getGestionnaireMonstre() {
-        return gestionnaireMonstre;
+    public ArrayList<GestionnaireMonstre> getGestionnaireMonstre() {
+        return gestionnaireMonstres;
     }
 
     public Cmd getCmd() {

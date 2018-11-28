@@ -4,6 +4,8 @@ import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.HeroState.State;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
+import java.util.ArrayList;
+
 public class Heros extends Dynamique {
 
 	public final static String HEROS = "HEROS";
@@ -12,7 +14,7 @@ public class Heros extends Dynamique {
 	private boolean stationary;
 	private int life = 100;
 	
-	private GestionnaireMonstre gestionnaireMonstre;
+	private ArrayList<GestionnaireMonstre> gestionnaireMonstres;
    
 
     public Heros(int posX, int posY) {
@@ -21,10 +23,10 @@ public class Heros extends Dynamique {
         stationary = true;
     }
 
-    public Heros(int posX, int posY, GestionnaireMonstre gestionnaireMonstre) {
+    public Heros(int posX, int posY,ArrayList<GestionnaireMonstre> gestionnaireMonstre) {
         this(posX, posY);
         assert gestionnaireMonstre != null;
-        this.gestionnaireMonstre = gestionnaireMonstre;
+        this.gestionnaireMonstres = gestionnaireMonstre;
     }
     
     public int getLife() {
@@ -62,20 +64,21 @@ public class Heros extends Dynamique {
 	
     boolean isValidPlace(Plateau plateau, int x, int y) {
     	assert plateau != null;
-    	assert gestionnaireMonstre != null;
-    	
-        if (!plateau.isAccessible(x,y) || gestionnaireMonstre.isMonstre(x,y))
-            return false;
+        for(GestionnaireMonstre gestionnaireMonstre :gestionnaireMonstres ) {
+            assert gestionnaireMonstre != null;
+            if (!plateau.isAccessible(x, y) || gestionnaireMonstre.isMonstre(x, y))
+                return false;
+        }
 
         return true;
     }
 
-    public GestionnaireMonstre getGestionnaireMonstre() {
-        return gestionnaireMonstre;
+    public ArrayList<GestionnaireMonstre> getGestionnaireMonstre() {
+        return gestionnaireMonstres;
     }
 
-    public void setGestionnaireMonstre(GestionnaireMonstre gestionnaireMonstre) {
-        this.gestionnaireMonstre = gestionnaireMonstre;
+    public void setGestionnaireMonstre(ArrayList<GestionnaireMonstre> gestionnaireMonstre) {
+        this.gestionnaireMonstres = gestionnaireMonstre;
     }
 
     /**
