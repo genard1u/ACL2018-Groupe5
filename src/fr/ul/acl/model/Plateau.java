@@ -1,7 +1,10 @@
 package fr.ul.acl.model;
 
-import java.util.Random;
+import fr.ul.acl.Resources;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +24,8 @@ public class Plateau {
     private Treasure treasure;
 
     private Statique[][] matrice;
+
+    private ArrayList<Point> caseLibre;
     
     
     public Plateau(int largeur, int hauteur) {
@@ -30,7 +35,7 @@ public class Plateau {
         this.hauteur = hauteur;
         this.largeur = largeur;
         this.matrice = new Statique[largeur][hauteur];
-        
+        caseLibre = new ArrayList<>();
         buildLaby();
     }
 
@@ -47,6 +52,69 @@ public class Plateau {
     	buildObstacles();   
     	buildStart();
         buildTreasure();
+
+        //on recupère toute les cases lubres du laby
+        for(int i =0; i < matrice.length;i++){
+            for(int j =0;j < matrice[0].length;j++){
+                if(matrice[i][j] == null){
+                    caseLibre.add(new Point(i,j));
+                }
+            }
+        }
+
+        buildTrap();
+        buildInvincible();
+        buildTeleport();
+
+    }
+
+    private void buildTeleport(){
+        int rand,i =0;
+        Point p,p2;
+        Teleport[] t = new Teleport[2];
+        while( i < Resources.NBTELEPORT && caseLibre.size() > 1){
+            rand = (int)(Math.random()*(caseLibre.size()-1));
+            p = caseLibre.get(rand);
+            caseLibre.remove(rand);
+            rand = (int)(Math.random()*(caseLibre.size()-1));
+            p2 = caseLibre.get(rand);
+            caseLibre.remove(rand);
+
+            t = Teleport.getTeleportCase((int)p.getX(),(int)p.getY(),(int)p2.getX(),(int)p2.getY());
+            matrice[t[0].getPosX()][t[0].getPosY()] = t[0];
+            matrice[t[1].getPosX()][t[1].getPosY()] = t[1];
+            i+=2;
+        }
+    }
+
+    /**
+     * On crée les cases magiques invincibles
+     */
+    private void buildInvincible(){
+        int rand,i =0;
+        Point p;
+        while( i < Resources.NBINVINCIBLE && caseLibre.size() > 0){
+            rand = (int)(Math.random()*(caseLibre.size()-1));
+            p = caseLibre.get(rand);
+            caseLibre.remove(rand);
+            matrice[(int)p.getX()][(int)p.getY()] = new Invincible((int)p.getX(),(int)p.getY());
+            i++;
+        }
+    }
+
+    /**
+     * On crée les piège du labyrinthe
+     */
+    private void buildTrap(){
+        int rand,i =0;
+        Point p;
+        while( i < Resources.NBPIEGE && caseLibre.size() > 0){
+            rand = (int)(Math.random()*(caseLibre.size()-1));
+            p = caseLibre.get(rand);
+            caseLibre.remove(rand);
+            matrice[(int)p.getX()][(int)p.getY()] = new Trap((int)p.getX(),(int)p.getY());
+            i++;
+        }
     }
 
     /**
@@ -85,6 +153,8 @@ public class Plateau {
     	assert hauteur > 1;
     	
     	try {
+
+    	    //On remplit la carte de mur, on les creusera ensuite pour faire les galelrie/chemin du labyrinthe
             for (int i = 0; i < matrice.length; i++) {
                 for (int j = 0; j < matrice[0].length; j++) {
                     if (i % 2 == 0 || j % 2 == 0)
@@ -92,13 +162,17 @@ public class Plateau {
                 }
             }
 
+
+            //creation du laby dans cette boucle, from est une sous matrice qui contient des cells
+            //une cell est une intersection du labyrinthe, cahque celle aura donc 1 chemin vers une celle adjacente au minimum
+            // et peut avoir plusieurs chemin vers elle
             int rng;
             int max;
             Cell[][] from = new Cell[(matrice.length - 1) / 2][(matrice[0].length - 1) / 2];
             
             for (int i = 0; i < from.length; i++) {
                 for (int k = 0; k < from[0].length; k++) {
-                    max = 4;
+                    max = 5;
                     while (from[i][k] == null) {
                         rng = (int) (Math.random() * (max - 1)) + 1;
                         switch (rng) {
@@ -133,14 +207,20 @@ public class Plateau {
                     }
                 }
             }
-            
+            //On convertit notre matrice de celle en matrice de case
             for (int i = 0; i < from.length; i++) {
                 for (int k = 0; k < from[0].length; k++) {
                     int a = (from[i][k].getX() + i * 2 + 1);
                     int b = (from[i][k].getY() + k * 2 + 1);
                     matrice[a][b] = null;
+                    //Ajout d'un peu d'aléatoire pour casser plus de mur afin d'avoir des boucles dans notre laby
+                    if(a-1 > 0 && b-1 > 0 && Math.random() > 0.7){
+                        matrice[a-1][b-1] = null;
+                    }
                 }
             }
+
+
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Une erreur c'est produite.");

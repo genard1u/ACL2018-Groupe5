@@ -19,6 +19,11 @@ public final class Resources {
 	public final static Color WALL_COLOR = Color.BLACK;
 	public final static Color MONSTRE_COLOR = Color.YELLOW;
     public final static Color FONTOME_COLOR = Color.BLUE;
+
+
+    public final static int NBPIEGE = 3;
+    public final static int NBINVINCIBLE = 1;
+    public final static int NBTELEPORT = 4;
 	
 	private Resources() {}
 

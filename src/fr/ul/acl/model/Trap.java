@@ -2,7 +2,7 @@ package fr.ul.acl.model;
 
 public class Trap extends Magic {
 
-    public static final String INVINCIBLE = "INVINCIBLE";
+    public static final String TRAP = "TRAP";
 
     /**
      * Constructeur
@@ -10,7 +10,7 @@ public class Trap extends Magic {
      * @param posY la position y
      */
     public Trap(int posX, int posY) {
-        super(posX, posY, INVINCIBLE);
+        super(posX, posY, TRAP);
     }
 
     @Override

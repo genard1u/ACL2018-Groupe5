@@ -32,6 +32,9 @@ public class Texture {
 
     private Image start;
     private Image treasure;
+    private Image teleport;
+    private Image trap;
+    private Image invincible;
 
     private static Texture texture;
 
@@ -62,6 +65,10 @@ public class Texture {
 
             start = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/start.png"));
             treasure = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/treasure.png"));
+            teleport = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/teleport.png"));
+            trap = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/trap.png"));
+            invincible = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/invincible.png"));
+
 
             lastMove = herosDown;
         }
@@ -176,6 +183,30 @@ public class Texture {
      */
     public Image getTreasure(){
         return treasure;
+    }
+
+    /**
+     * retourne la texture des teleporteur
+     * @return
+     */
+    public Image getTeleport(){
+        return teleport;
+    }
+
+    /**
+     * retourne la texture des pièges
+     * @return
+     */
+    public Image getTrap(){
+        return trap;
+    }
+
+    /**
+     * retourne la texture de la case magique permettant de devenir invincible
+     * @return
+     */
+    public Image getInvincible(){
+        return invincible;
     }
     
 }

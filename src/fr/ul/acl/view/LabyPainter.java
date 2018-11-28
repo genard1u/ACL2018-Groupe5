@@ -89,6 +89,18 @@ public class LabyPainter implements GamePainter {
                         //dessin du tresor
                         crayon.drawImage(Texture.getInstance().getTreasure(),x,y,null);
                     }
+                    else if(jeu.getPlateau().getElement(i,j).getType().equals("TRAP")){
+                        //dessin des pièges
+                        crayon.drawImage(Texture.getInstance().getTrap(),x,y,null);
+                    }
+                    else if(jeu.getPlateau().getElement(i,j).getType().equals("INVINCIBLE")){
+                        //dessin des cases magiques invincibles
+                        crayon.drawImage(Texture.getInstance().getInvincible(),x,y,null);
+                    }
+                    else if(jeu.getPlateau().getElement(i,j).getType().equals("TELEPORT")){
+                        //dessin des cases magiques teleporteurs
+                        crayon.drawImage(Texture.getInstance().getTeleport(),x,y,null);
+                    }
                 }
             }
         }
