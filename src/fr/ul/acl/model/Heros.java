@@ -64,7 +64,7 @@ public class Heros extends Dynamique {
     	assert plateau != null;
     	assert gestionnaireMonstre != null;
     	
-        if (!plateau.isAccessible(x,y)) // || gestionnaireMonstre.isMonstre(x,y)
+        if (!plateau.isAccessible(x,y) || gestionnaireMonstre.isMonstre(x,y))
             return false;
 
         return true;
