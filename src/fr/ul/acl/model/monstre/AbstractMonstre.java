@@ -4,6 +4,8 @@ import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.Dynamique;
 import fr.ul.acl.model.Jeu;
 
+import java.time.Clock;
+
 public abstract class AbstractMonstre extends Dynamique {
 	
     public AbstractMonstre(int posX, int posY, String type) {
@@ -17,10 +19,12 @@ public abstract class AbstractMonstre extends Dynamique {
      * @return true si le déplacement a bien été effectué
      */
     public boolean deplacement(Jeu jeu, Cmd direction) {
+
     	boolean hasBeenMoved = false;
     	int[] adjustedPos = getAdjustedPos(jeu.getPlateau(), direction);
         
     	if (verificationCase(jeu, adjustedPos[0], adjustedPos[1])) {
+            System.out.println(direction);
         	setPosition(adjustedPos[0], adjustedPos[1]);
         	hasBeenMoved = true;
         }

@@ -87,8 +87,8 @@ public class Jeu implements Game {
         cmd = userCmd;
 
         if (getState() == State.Running) {
-        	heros.move(plateau, userCmd);      	
-        	gestionnaireMonstre.deplacement();
+        	heros.move(plateau, userCmd);
+        	//gestionnaireMonstre.deplacement();
         	
         	if (iteration % speed == 0) {
                    gestionnaireMonstre.deplacement();
