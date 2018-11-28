@@ -66,9 +66,9 @@ public class Teleport extends Magic {
      */
     public static Teleport[] getTeleportCase(int PosX, int PosY, int toPosX, int toPosY) {
 
-        if (!(0 < PosX && PosX < Resources.getInstance().getWidth() && 0 < PosY && PosY < Resources.getInstance().getHeight()))
+        if (!(0 < PosX && PosX < Resources.WIDTH && 0 < PosY && PosY < Resources.HEIGHT))
             throw new IllegalArgumentException("Source Position Out Of Bound");
-        if (!(0 < toPosX && toPosX < Resources.getInstance().getWidth() && 0 < toPosY && toPosY < Resources.getInstance().getHeight()))
+        if (!(0 < toPosX && toPosX < Resources.WIDTH && 0 < toPosY && toPosY < Resources.HEIGHT))
             throw new IllegalArgumentException("Destination Position Out Of Bound");
         if (!(PosX != toPosX || PosY != toPosY))
             throw new IllegalArgumentException("This is the same Box");

@@ -16,7 +16,6 @@ public class InvincibleTest {
     @Test
     public void effetRhigt() {
         Heros heros =new Heros(3,2);
-        heros.setInvincible(false);
         Invincible invincible =new Invincible(3,2);
         invincible.effet(heros);
         assertTrue(heros.isInvincible());
@@ -43,7 +42,7 @@ public class InvincibleTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosX(){
-        Invincible invincible =new Invincible(Resources.getInstance().getWidth(),2);
+        Invincible invincible =new Invincible(Resources.WIDTH,2);
     }
 
     /**
@@ -51,7 +50,7 @@ public class InvincibleTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosY(){
-        Invincible invincible =new Invincible(3,Resources.getInstance().getHeight());
+        Invincible invincible =new Invincible(3,Resources.HEIGHT);
     }
 
     /**
@@ -69,7 +68,6 @@ public class InvincibleTest {
     @Test
     public void positionHeros(){
         Heros heros=new Heros(2,2);
-        heros.setInvincible(false);
         Invincible invincible =new Invincible(3,2);
         invincible.effet(heros);
         assertFalse(heros.isInvincible());
