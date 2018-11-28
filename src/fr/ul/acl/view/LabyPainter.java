@@ -9,6 +9,7 @@ import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.GamePainter;
 import fr.ul.acl.model.Jeu;
+import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
 /**
  * Afficheur graphique pour le laby
@@ -185,7 +186,11 @@ public class LabyPainter implements GamePainter {
      * @param crayon
      */
     private void drawMonstre(Graphics2D crayon){
-        ArrayList<int[]> monstrepose = jeu.getGestionnaireMonstre().getPosMonstres();
+        ArrayList<int[]> monstrepose =new ArrayList<>();
+        for (GestionnaireMonstre gestionnaireMonstre : jeu.getGestionnaireMonstre()) {
+            ArrayList<int[]> mpos = gestionnaireMonstre.getPosMonstres();
+            while (!mpos.isEmpty())monstrepose.add(mpos.remove(0));
+        }
         int x,y;
         for (int[] p :monstrepose){
             if(p[2]==0)

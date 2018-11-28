@@ -25,9 +25,13 @@ public class Monstre extends AbstractMonstre {
      * @Override
      */    
     protected boolean verificationCase(Jeu jeu, int x, int y){
+        boolean ismonstre=false;
+        for (GestionnaireMonstre gestionnaireMonstre:jeu.getGestionnaireMonstre())
+            if(gestionnaireMonstre.isMonstre(x,y))ismonstre=true;
+
     	return  !(!jeu.getPlateau().isAccessible(x,y)
                 ||(jeu.getHeros().getPosX() ==x && jeu.getHeros().getPosY() ==y)
-                ||jeu.getGestionnaireMonstre().isMonstre(x,y));
+                ||ismonstre);
     }
 
 }
