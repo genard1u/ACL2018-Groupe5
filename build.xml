@@ -18,6 +18,9 @@
   <!-- Point de lancement de l'archive JAR -->
   <property name="main-class" value="fr.ul.acl.Laby"/>
 
+  <!-- Répertoire où seront rangés d'éventuels rapports de test -->
+  <property name="report.dir" value="report"/>
+  
   <!-- Définition du classpath du projet -->
   <path id="classpath">
     <fileset dir="${lib.dir}">
@@ -36,6 +39,10 @@
 
   <target name="clean-jar">
     <delete dir="${jar.dir}"/>
+  </target>
+
+  <target name="clean-report">
+    <delete dir="${report.dir}"/>
   </target>
   
   <target name="compile" depends="clean">
@@ -67,9 +74,20 @@
     <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
   </target>
 
-  <target name="test">
-    <echo message="Not implemented yet."/>
-    <!-- Tests -->
+  <target name="test" depends="clean-report, compile">
+    <mkdir dir="${report.dir}"/>
+    <junit fork="yes" haltonerror="false" haltonfailure="off" printsummary="on">
+      
+      <batchtest fork="yes" todir="${report.dir}">
+        <fileset dir="${src.dir}">
+          <include name="**/*Test.java"/>
+        </fileset>
+      </batchtest>
+      
+      <classpath refid="classpath"/>
+      <formatter type="plain"/>
+      
+    </junit>
   </target>
   
 </project>
