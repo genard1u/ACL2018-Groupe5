@@ -14,7 +14,7 @@ public class Heros extends Dynamique {
 
 	private HeroState state;
 	private boolean stationary;
-	private int life = 100;
+//	private int life = 100;
 
 	private long invStartTime = 0;
 
@@ -32,21 +32,25 @@ public class Heros extends Dynamique {
         assert gestionnaireMonstre != null;
         this.gestionnaireMonstres = gestionnaireMonstre;
     }
-    
+
+    /**
+     * life setter
+     * @return
+     */
     public int getLife() {
-		return life;
+		return state.getLife();
 	}
 
 	public void setLife(int life) {
-		this.life = life;
+		this.state.setLife(life);
 	}
 
 	public void takeDamage(int damage) {
-		life -= damage;
+		state.setLife(state.getLife() - damage);
 	}
 	
 	public boolean isAlive() {
-		return life > 0;
+		return !state.is(State.DEAD);
 	}
 	
 	public void move(Plateau plateau, Cmd userCmd) {
