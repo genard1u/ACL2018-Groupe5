@@ -1,4 +1,6 @@
-package fr.ul.acl.model;
+package fr.ul.acl.model.magique;
+
+import fr.ul.acl.model.Heros;
 
 /**
  * la classe des case trésor, si le héros arrive sur la case il a gagné le jeu!.

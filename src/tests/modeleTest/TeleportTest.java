@@ -1,7 +1,7 @@
 package tests.modeleTest;
 
 import fr.ul.acl.model.Heros;
-import fr.ul.acl.model.Teleport;
+import fr.ul.acl.model.magique.Teleport;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

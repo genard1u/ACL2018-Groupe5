@@ -1,6 +1,7 @@
-package fr.ul.acl.model;
+package fr.ul.acl.model.magique;
 
 import fr.ul.acl.Resources;
+import fr.ul.acl.model.Heros;
 
 public class Teleport extends Magic {
 

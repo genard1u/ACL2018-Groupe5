@@ -1,4 +1,7 @@
-package fr.ul.acl.model;
+package fr.ul.acl.model.magique;
+
+import fr.ul.acl.model.Heros;
+import fr.ul.acl.model.Statique;
 
 public abstract class Magic extends Statique {
 
