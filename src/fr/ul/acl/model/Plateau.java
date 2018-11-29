@@ -368,6 +368,17 @@ public class Plateau {
         return element;
     }
 
+    public boolean isMagic(int x, int y) {
+    	Statique element = getElement(x, y);
+    	boolean isMagic = false;
+    	
+    	if (element != null && element.isMagic()) {
+    		isMagic = true;
+    	}
+    	
+    	return isMagic;
+    }
+    
     /**
      * Ajouté pour faire le test.
      * @return la matrice concrete.

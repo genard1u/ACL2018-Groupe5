@@ -104,7 +104,15 @@ public class Jeu implements Game {
     	return state.getState();
     }
     
-    public int getTimeElapsed() {
+    public Statique getSquare(int x, int y) {
+    	return plateau.getElement(x, y);
+    }
+    
+    public boolean isMagic(int x, int y) {
+    	return plateau.isMagic(x, y);
+    }
+    
+    public int getElapsedTime() {
     	return (int) ((System.currentTimeMillis() - launchTime) / 1000);
     }
     
@@ -118,20 +126,27 @@ public class Jeu implements Game {
         iteration ++; 
     }
     
+    private void activerEffet() {
+        Statique triggered = getSquare(heros.getPosX(), heros.getPosY());
+        
+    	if (triggered != null && triggered.isMagic()) {
+    		((Magic) triggered).effet(heros);
+    	}
+    }
+    
     @Override
     public void evolve(Cmd userCmd) {
         cmd = userCmd;
         
         if (getState() == State.Running) {
         	heros.move(plateau, userCmd);
-        	deplacementDesMonstres();       	       	
-        	/* si la case est magique, on lance l'effet */
+        	activerEffet();
+        	deplacementDesMonstres();       	       	       	
         }
         else if (getState() == State.Won) {}
         else if (getState() == State.Pause) {}
-        else if (getState() == State.LostLife) {} 
         else if (getState() == State.GameOver) {
-        	/* on affiche un écran 'défaite' + temps depuis le début de la partie */
+        	/* on affiche un écran 'défaite' */
         	startGame();
         } 
     }
