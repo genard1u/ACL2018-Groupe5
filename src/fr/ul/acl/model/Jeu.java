@@ -28,7 +28,7 @@ public class Jeu implements Game {
     private int iteration;
 	private int nbMonstres = 2;
     private int nbFantomes = 2;
-    private int speed = 4;
+    private int speed = 1;
     
 
     public Jeu() {
