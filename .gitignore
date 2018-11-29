@@ -8,6 +8,7 @@ report/
 .idea
 .project
 .settings
+.attach_*
 
 *~
 *.iml
