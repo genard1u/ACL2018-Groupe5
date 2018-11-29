@@ -34,14 +34,14 @@ public class TrapTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosX(){
-        Trap trap =new Trap(Resources.getInstance().getWidth(), 2);
+        Trap trap =new Trap(Resources.getInstance().getWidth(),2);
     }
     /**
      * teste constructeur , posision y depase le hauteur de plateau
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosY(){
-        Trap trap =new Trap(3, Resources.getInstance().getHeight());
+        Trap trap =new Trap(3,Resources.getInstance().getHeight());
     }
     /**
      * teste effet avec null
