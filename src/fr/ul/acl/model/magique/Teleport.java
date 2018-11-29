@@ -6,6 +6,9 @@ import fr.ul.acl.model.Heros;
 public class Teleport extends Magic {
 
     public static final String TELEPORT = "TELEPORT";
+    public static final long MAX_TIMER = 1000;
+
+    private static long startime = 0;
 
     private int toPosX;
     private int toPosY;
@@ -49,11 +52,18 @@ public class Teleport extends Magic {
      */
     @Override
     public void effet(Heros h) {
-        if(h==null) throw new IllegalArgumentException();
-        if(toPosX > 0 && toPosY > 0)
-            h.teleport(toPosX,toPosY);
-        else
-            System.out.println("L'heros ne peut pas etre teleporté.");
+        if (h == null)
+            throw new IllegalArgumentException("Null Pointer");
+        if (toPosX <= 0 || toPosY <= 0)
+            throw new IllegalArgumentException("Wrong Position configuration.");
+
+        if (startime == 0) {
+            h.teleport(toPosX, toPosY);
+            startime = System.currentTimeMillis();
+        }
+
+        if ((System.currentTimeMillis() - startime) >= MAX_TIMER )
+            startime = 0;
     }
 
     /**

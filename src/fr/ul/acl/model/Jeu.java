@@ -191,7 +191,9 @@ public class Jeu implements Game {
     public void evolve(Cmd userCmd) {
         cmd = userCmd;       
         updateGameState();
-        
+
+        heros.refreshInvincibleTimer();
+
         if (getState() == State.Running) { 
         	moveMonsters(); 
         	heros.move(plateau, userCmd);
