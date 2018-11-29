@@ -11,6 +11,11 @@ public class HeroState {
      */
     public enum State {HEALTHY, DEAD, INJURED, WIN, INVINCIBLE};
 
+    /**
+     * la valeure maximale de vie.
+     */
+    public static final int MAX_LIFE = 3;
+
     private State state;
     private int life;
 
@@ -20,7 +25,7 @@ public class HeroState {
      */
     public HeroState(){
         this.state = State.HEALTHY;
-        this.life = 3;
+        this.life = MAX_LIFE;
     }
 
     /**
@@ -55,7 +60,7 @@ public class HeroState {
      * life Getter
      * @return nombre de vies restées.
      */
-    public int getRemainingLives() {
+    public int getLife() {
         return this.life;
     }
 
@@ -63,13 +68,20 @@ public class HeroState {
      * Cette methode permet de décrémenter le nombre de vies (par exemple due a une attaque).
      * S'il ne reste plus de vies (0), l'état est changée a DEAD, sinon elle est changée a INJURED.
      */
-    public void killOneLife() {
-        assert life != 0;
-        this.life--;
-        if (this.life == 0)
-            this.state = State.DEAD;
+    public void die() {
+        this.life = 0;
+        this.setState(State.DEAD);
+        System.out.println("Die Die Die : " + getState());
+    }
+
+    /**
+     * cette methode restitue l'etat normal de l'heros apres l'etat INVINCIBLE
+     */
+    public void resetState() {
+        if(this.life == MAX_LIFE)
+            setState(State.HEALTHY);
         else
-            this.state = State.INJURED;
+            setState(State.INJURED);
     }
 
     /**

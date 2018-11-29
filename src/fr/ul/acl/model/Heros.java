@@ -9,11 +9,15 @@ import java.util.ArrayList;
 public class Heros extends Dynamique {
 
 	public final static String HEROS = "HEROS";
-	
+
+	public final static long MAX_INV_TIME = 10;
+
 	private HeroState state;
 	private boolean stationary;
 	private int life = 100;
-	
+
+	private long invStartTime = 0;
+
 	private ArrayList<GestionnaireMonstre> gestionnaireMonstres;
    
 
@@ -92,7 +96,7 @@ public class Heros extends Dynamique {
      * @return true si l'heros est mort, false sinon.
      */
     public boolean isDead() {
-        return state.is(State.DEAD);
+        return (this.state.is(State.DEAD));
     }
 
     /**
@@ -108,14 +112,14 @@ public class Heros extends Dynamique {
      * @return true si l'heros a gagné, false sinon.
      */
     public boolean isWinning() {
-        return state.is(State.WIN);
+        return (this.state.is(State.WIN));
     }
 
     /**
      * la methode qui décremente de nombre de vies de l'heros.
      */
     public void kill() {
-        state.killOneLife();
+        this.state.die();
     }
 
     /**
@@ -123,6 +127,7 @@ public class Heros extends Dynamique {
      */
     public void setInvincible() {
         state.setState(State.INVINCIBLE);
+        invStartTime = System.currentTimeMillis();
     }
 
     /**
@@ -131,6 +136,7 @@ public class Heros extends Dynamique {
     public void setWinning() {
         state.setState(State.WIN);
     }
+
     
     /**
      * la methode de teleportation de l'heros.
@@ -145,4 +151,20 @@ public class Heros extends Dynamique {
         return stationary;
     }
 
+    /**
+     * cette methode verifier si le temps d'effet INVINCIBLE est écoulé
+     * si oui elle reinitialise l'etat de l'heros
+     * sinon rien n'est changé.
+     */
+    public long refreshInvincibleTimer() {
+
+        long elapsedTime = System.currentTimeMillis() - invStartTime;
+        if( elapsedTime < MAX_INV_TIME*1000)
+            return elapsedTime;
+
+        state.resetState();
+        invStartTime = 0;
+
+        return 0;
+    }
 }
