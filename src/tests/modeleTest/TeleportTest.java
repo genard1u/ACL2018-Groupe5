@@ -1,7 +1,7 @@
 package tests.modeleTest;
 
 import fr.ul.acl.model.Heros;
-import fr.ul.acl.model.magique.Teleport;
+import fr.ul.acl.model.Teleport;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -38,22 +38,14 @@ public class TeleportTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void effetLimiyX() {
-        Teleport[] teleports =Teleport.getTeleportCase(Resources.getInstance().getWidth(),
-        		                                       2,
-        		                                       Resources.getInstance().getWidth(),
-        		                                       2
-        );
+        Teleport[] teleports =Teleport.getTeleportCase(Resources.getInstance().getWidth(),2,Resources.getInstance().getWidth(),2);
     }
     /**
      * teste constructeur , posision y depase le hauteur de plateau
      */
     @Test(expected = IllegalArgumentException.class)
     public void effetLimiyY() {
-        Teleport[] teleports = Teleport.getTeleportCase(2,
-        		                                        Resources.getInstance().getHeight(),
-        		                                        2,
-        		                                        Resources.getInstance().getHeight()
-        );
+        Teleport[] teleports =Teleport.getTeleportCase(2,Resources.getInstance().getHeight(),2,Resources.getInstance().getHeight());
     }
     /**
      * teste case destination avec null

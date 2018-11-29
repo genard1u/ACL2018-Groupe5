@@ -2,7 +2,7 @@ package tests.modeleTest;
 
 import fr.ul.acl.Resources;
 import fr.ul.acl.model.Heros;
-import fr.ul.acl.model.magique.Treasure;
+import fr.ul.acl.model.Treasure;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -34,14 +34,14 @@ public class TreasureTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosX(){
-        Treasure treasure=new Treasure(Resources.getInstance().getWidth(), 2);
+        Treasure treasure=new Treasure(Resources.getInstance().getWidth(),2);
     }
     /**
      * teste constructeur , posision y depase le hauteur de plateau
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosY(){
-        Treasure treasure=new Treasure(3, Resources.getInstance().getHeight());
+        Treasure treasure=new Treasure(3,Resources.getInstance().getHeight());
     }
     /**
      * teste effet avec null
