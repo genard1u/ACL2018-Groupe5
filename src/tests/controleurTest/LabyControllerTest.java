@@ -49,7 +49,7 @@ public class LabyControllerTest {
         controller.keyPressed(key);
         assertEquals(Cmd.IDLE,controller.getCommand());
     }
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void keyPressedNullEvent() {
         LabyController controller= new LabyController();
         controller.keyPressed(null);
