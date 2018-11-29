@@ -34,7 +34,7 @@ public class LabyController implements GameController {
     }
 
     /**
-     * met a jour les commandes en fonctions des touches appuyees
+     * Met à jour les commandes en fonctions des touches appuyées.
      * @Override
      */
     public void keyPressed(KeyEvent event) {
@@ -51,6 +51,9 @@ public class LabyController implements GameController {
             case 's': case 'S': case KeyEvent.VK_DOWN:
                 commandeEnCours = Cmd.DOWN;
                 break;
+            case KeyEvent.VK_ESCAPE:
+            	System.exit(0);
+            	break;
             default:
                 break;
         }

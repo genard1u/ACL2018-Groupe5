@@ -1,13 +1,23 @@
-# Balade dans un labyrinthe
-## Auteurs
+## Balade dans un labyrinthe
+### Auteurs
 Alaa Eddine Benkarrad, Yann Cael, Pierre Génard, Hafiane Walid
 
-## On le lance comment ?
+### Lancement
 ```bash
 ~$ ant run
 ```
 
-## Et pour avoir une archive jar ?
+### Archive JAR
 ```bash
 ~$ ant jar
+```
+
+### Tests
+```bash
+~$ ant test
+```
+
+### Javadoc
+```bash
+~$ ant doc
 ```
