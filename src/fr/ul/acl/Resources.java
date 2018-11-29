@@ -54,8 +54,8 @@ public final class Resources {
 		Rectangle rectangle = ge.getMaximumWindowBounds();
 		int squareSize = Texture.getInstance().getSquareDimensions();
 		
-		WIDTH = ((int) rectangle.getWidth()) / squareSize;
-		HEIGHT = ((int) rectangle.getHeight()) / squareSize;
+		WIDTH = ((int) (rectangle.getWidth() * 0.9)) / squareSize;
+		HEIGHT = ((int) (rectangle.getHeight() * 0.9)) / squareSize;
 	}
 	
 	public static int scaling(int i) {
