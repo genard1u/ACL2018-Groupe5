@@ -17,11 +17,6 @@ public class Treasure extends Magic {
     public Treasure(int posX, int posY) {
         super(posX, posY, TREASURE);
     }
-
-    @Override
-	public boolean isMagic() {
-		return true;
-	}
     
     /**
      * la methode responsable de la victoire de l'heros.

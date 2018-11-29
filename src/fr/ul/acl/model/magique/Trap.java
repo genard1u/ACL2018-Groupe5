@@ -14,11 +14,6 @@ public class Trap extends Magic {
     public Trap(int posX, int posY) {
         super(posX, posY, TRAP);
     }
-
-    @Override
-	public boolean isMagic() {
-		return true;
-	}
     
     /**
      * la methode responsable de la degradation de l'etat de l'heros
