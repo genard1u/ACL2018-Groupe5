@@ -158,12 +158,15 @@ public class Jeu implements Game {
         	heros.move(plateau, userCmd);
         	activerEffet();        	
         }
-        else if (getState() == State.Won) {}
-        else if (getState() == State.Pause) {}
+        else if (getState() == State.Won) {
+        	/* on affiche un écran 'Victoire' */
+        	startGame();
+        }
         else if (getState() == State.GameOver) {
-        	/* on affiche un écran 'défaite' */
+        	/* on affiche un écran 'Défaite' */
         	startGame();
         } 
+        else if (getState() == State.Pause) {}        
     }
 
     @Override

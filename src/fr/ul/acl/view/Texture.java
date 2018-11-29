@@ -15,9 +15,9 @@ public class Texture {
 	private final static String PAUSE = "src/fr/ul/acl/ressoucesGraphiques/pause.png";
 	
 	/* Etats particuliers du jeu */
-	private Image victory;
-	private Image gameOver;
-	private Image pause;
+	private BufferedImage victory;
+	private BufferedImage gameOver;
+	private BufferedImage pause;
 	
     private Image wall;
     private Image floor;
@@ -96,16 +96,40 @@ public class Texture {
         return texture;
     }
     
-    public Image getVictory() {
+    public BufferedImage getVictory() {
     	return victory;
     }
     
-    public Image getGameOver() {
+    public BufferedImage getGameOver() {
     	return gameOver;
     }
     
-    public Image getPause() {
+    public BufferedImage getPause() {
     	return pause;
+    }
+    
+    public int getVictoryHeight() {
+    	return victory.getHeight();
+    }
+    
+    public int getVictoryWidth() {
+    	return victory.getWidth();
+    }
+    
+    public int getGameOverHeight() {
+    	return gameOver.getHeight();
+    }
+    
+    public int getGameOverWidth() {
+    	return gameOver.getWidth();
+    }
+    
+    public int getPauseHeight() {
+    	return pause.getHeight();
+    }
+    
+    public int getPauseWidth() {
+    	return pause.getWidth();
     }
     
     public Image getHerosAnim(Cmd cmd) {

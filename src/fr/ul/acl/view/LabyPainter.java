@@ -32,19 +32,19 @@ public class LabyPainter implements GamePainter {
     }
 
     @Override
-    public void draw(BufferedImage im) {
-        Graphics2D crayon = (Graphics2D) im.getGraphics();
+    public void draw(BufferedImage image) {
+        drawGame(image);
         
         switch (jeu.getState()) {
-            case Running:
-            	drawGame(im);
-                break;
-            case Pause:
-            	drawPause(crayon);
+            case Won:
+            	drawVictory(image);
             	break;
             case GameOver:
-            	drawGameOver(crayon);
+            	drawGameOver(image);
             	break;
+            case Pause:
+            	drawPause(image);
+            	break;            
 		    default:
 			    break;       
         }        
@@ -150,18 +150,66 @@ public class LabyPainter implements GamePainter {
             crayon.drawImage(anim,Resources.scaling(jeu.herosPosX()),Resources.scaling(jeu.herosPosY()),null);
         }
     }
+
+    private void drawVictory(BufferedImage background) {
+    	Graphics2D g = (Graphics2D) background.getGraphics();
+    	int realVictoryWidth = getWidth() / 3;
+    	int realVictoryHeight = getHeight() / 3;
+    	int centerX = getWidth() / 2;
+    	int centerY = getHeight() / 2;
+    	
+    	g.drawImage(Texture.getInstance().getGameOver(),
+    			    centerX - realVictoryWidth / 2,
+    			    centerY - realVictoryHeight / 2,
+    			    centerX + realVictoryWidth / 2,
+    			    centerY + realVictoryHeight / 2,
+    			    0,
+    			    0,
+    			    Texture.getInstance().getVictoryWidth(),
+    			    Texture.getInstance().getVictoryHeight(),
+    			    null
+    	);
+    }
     
-    /**
-     * Texture manquante
-     * @param crayon
-     */
-    private void drawPause(Graphics2D crayon) {}
+    private void drawGameOver(BufferedImage background) {
+    	Graphics2D g = (Graphics2D) background.getGraphics();
+    	int realGameOverWidth = getWidth() / 3;
+    	int realGameOverHeight = getHeight() / 3;
+    	int centerX = getWidth() / 2;
+    	int centerY = getHeight() / 2;
+    	
+    	g.drawImage(Texture.getInstance().getGameOver(),
+    			    centerX - realGameOverWidth / 2,
+    			    centerY - realGameOverHeight / 2,
+    			    centerX + realGameOverWidth / 2,
+    			    centerY + realGameOverHeight / 2,
+    			    0,
+    			    0,
+    			    Texture.getInstance().getGameOverWidth(),
+    			    Texture.getInstance().getGameOverHeight(),
+    			    null
+    	);
+    }
     
-    /**
-     * Texture manquante
-     * @param crayon
-     */
-    private void drawGameOver(Graphics2D crayon) {}
+    private void drawPause(BufferedImage background) {
+    	Graphics2D g = (Graphics2D) background.getGraphics();
+    	int realPauseWidth = getWidth() / 3;
+    	int realPauseHeight = getHeight() / 3;
+    	int centerX = getWidth() / 2;
+    	int centerY = getHeight() / 2;
+    	
+    	g.drawImage(Texture.getInstance().getGameOver(),
+    			    centerX - realPauseWidth / 2,
+    			    centerY - realPauseHeight / 2,
+    			    centerX + realPauseWidth / 2,
+    			    centerY + realPauseHeight / 2,
+    			    0,
+    			    0,
+    			    Texture.getInstance().getPauseWidth(),
+    			    Texture.getInstance().getPauseHeight(),
+    			    null
+    	);
+    }
     
     @Override
     public int getWidth() {

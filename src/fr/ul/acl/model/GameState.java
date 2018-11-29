@@ -2,7 +2,7 @@ package fr.ul.acl.model;
 
 public class GameState {
 	
-	public enum State {Running, LostLife, GameOver, Won, Pause};
+	public enum State {Running, Won, GameOver, Pause};
 	
 	private State state;
 
