@@ -13,7 +13,7 @@ import fr.ul.acl.view.Texture;
 public final class Resources {
 
 	private static int WIDTH = 25;
-	private static int HEIGHT = 20;
+	private static int HEIGHT = 15;
 	public final static int SCALING = 32;
 	public final static int CASE_W = 40;
 	public final static int CASE_H = 40;
