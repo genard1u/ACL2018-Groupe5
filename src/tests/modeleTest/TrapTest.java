@@ -46,7 +46,7 @@ public class TrapTest {
     /**
      * teste effet avec null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void herosNull(){
         Trap trap =new Trap(3,2);
         trap.effet(null);
@@ -54,7 +54,7 @@ public class TrapTest {
     /**
      * teste effet avec un heros qui n'est pas sur la case
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void positionHeros(){
         Heros heros=new Heros(2,2);
         Trap trap =new Trap(3,2);
