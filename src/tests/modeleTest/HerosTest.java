@@ -53,6 +53,7 @@ public class HerosTest {
         Heros h = new Heros(3,3);
         h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
+        p.getMatrice()[3][4]=null;
         h.move(p, Cmd.DOWN);
         assertSame(h.getPosX(),3);
         assertSame(h.getPosY(),4);
@@ -62,6 +63,7 @@ public class HerosTest {
         Heros h = new Heros(3,3);
         h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
+        p.getMatrice()[4][3]=null;
         h.move(p, Cmd.RIGHT);
         assertSame(h.getPosX(),4);
         assertSame(h.getPosY(),3);
@@ -71,6 +73,7 @@ public class HerosTest {
         Heros h = new Heros(3,3);
         h.setGestionnaireMonstre(new ArrayList<>());
         Plateau p = new Plateau(10,10);
+        p.getMatrice()[2][3]=null;
         h.move(p, Cmd.LEFT);
         assertSame(h.getPosX(),2);
         assertSame(h.getPosY(),3);

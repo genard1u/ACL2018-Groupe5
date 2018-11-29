@@ -24,6 +24,7 @@ public class Treasure extends Magic {
      */
     @Override
     public void effet(Heros h) {
+        if(h==null)throw new IllegalArgumentException();
         h.setWinning();
     }
     
