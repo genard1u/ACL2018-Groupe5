@@ -158,7 +158,7 @@ public class LabyPainter implements GamePainter {
     	int centerX = getWidth() / 2;
     	int centerY = getHeight() / 2;
     	
-    	g.drawImage(Texture.getInstance().getGameOver(),
+    	g.drawImage(Texture.getInstance().getVictory(),
     			    centerX - realVictoryWidth / 2,
     			    centerY - realVictoryHeight / 2,
     			    centerX + realVictoryWidth / 2,
@@ -198,7 +198,7 @@ public class LabyPainter implements GamePainter {
     	int centerX = getWidth() / 2;
     	int centerY = getHeight() / 2;
     	
-    	g.drawImage(Texture.getInstance().getGameOver(),
+    	g.drawImage(Texture.getInstance().getPause(),
     			    centerX - realPauseWidth / 2,
     			    centerY - realPauseHeight / 2,
     			    centerX + realPauseWidth / 2,
