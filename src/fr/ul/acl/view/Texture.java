@@ -10,6 +10,15 @@ import fr.ul.acl.engine.Cmd;
 
 public class Texture {
 
+	private final static String VICTORY = "src/fr/ul/acl/ressoucesGraphiques/victory.png";
+	private final static String GAME_OVER = "src/fr/ul/acl/ressoucesGraphiques/game-over.png";
+	private final static String PAUSE = "src/fr/ul/acl/ressoucesGraphiques/pause.png";
+	
+	/* Etats particuliers du jeu */
+	private Image victory;
+	private Image gameOver;
+	private Image pause;
+	
     private Image wall;
     private Image floor;
 
@@ -61,6 +70,11 @@ public class Texture {
             herosUpA2 = heros.getSubimage(Resources.SCALING*2,Resources.SCALING*3,Resources.SCALING,Resources.SCALING);
             herosDownA2 = heros.getSubimage(Resources.SCALING*2,Resources.SCALING*0,Resources.SCALING,Resources.SCALING);
 
+            /* Etats particuliers du jeu */
+            victory = ImageIO.read(new File(VICTORY));
+            gameOver = ImageIO.read(new File(GAME_OVER));
+            pause = ImageIO.read(new File(PAUSE));
+            
             wall = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/brick_gray.png"));
 
             start = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/start.png"));
@@ -80,6 +94,18 @@ public class Texture {
             texture = new Texture();
         }
         return texture;
+    }
+    
+    public Image getVictory() {
+    	return victory;
+    }
+    
+    public Image getGameOver() {
+    	return gameOver;
+    }
+    
+    public Image getPause() {
+    	return pause;
     }
     
     public Image getHerosAnim(Cmd cmd) {
