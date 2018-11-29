@@ -1,5 +1,6 @@
 package fr.ul.acl.model.monstre;
 
+import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.Dynamique;
 import fr.ul.acl.model.Heros;
@@ -10,8 +11,12 @@ import java.time.Clock;
 public abstract class AbstractMonstre extends Dynamique {
 
 	private int point_de_vie;
+
+	private boolean attack;
+
     public AbstractMonstre(int posX, int posY, String type) {
         super(posX, posY, type);
+        attack=false;
     }
 
     public int getPoint_de_vie() {
@@ -49,7 +54,25 @@ public abstract class AbstractMonstre extends Dynamique {
      * @return true si le déplacement à cette case est possible
      */
     protected abstract boolean verificationCase(Jeu jeu, int x, int y);
-    //protected abstract boolean attack();
+    protected void attack(Heros heros){
+        if(!heros.isInvincible()) {
+            int puissante = Resources.MONSTRE_PUISSANTE;
+            if (getType() == Fantome.FANTOME) puissante = Resources.FONTOME_PUISSANTE;
+            heros.setLife(heros.getLife() - puissante);
+            System.out.println("attack"+heros.getLife());
+        }
+    }
+    public void prendre_degat(int degat){
+         this.point_de_vie-=degat;
+    }
+    public boolean isAttack() {
+        return attack;
+    }
+
+    public void setAttack(boolean attack) {
+        this.attack = attack;
+    }
+
 
 
 }

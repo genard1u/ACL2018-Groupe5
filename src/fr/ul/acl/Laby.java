@@ -21,7 +21,7 @@ public class Laby {
 
     	/* Création du moteur de jeu */
     	GameEngineGraphical engine = new GameEngineGraphical(jeu, painter, controleur);
-      
+    	        
     	/* Lancement de la boucle principale de jeu */
     	engine.run();       
     }

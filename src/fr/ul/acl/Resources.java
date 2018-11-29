@@ -23,6 +23,8 @@ public final class Resources {
 	public final static Color WALL_COLOR = Color.BLACK;
 	public final static Color MONSTRE_COLOR = Color.YELLOW;
     public final static Color FONTOME_COLOR = Color.BLUE;
+	public final static Color MONSTRE_ATTACK_COLOR = Color.ORANGE;
+	public final static Color FONTOME_ATTACK_COLOR = Color.MAGENTA;
 
 
     public final static int NBPIEGE = 3;
@@ -31,8 +33,16 @@ public final class Resources {
 
     public final static int POINT_DE_VIE_MONSTRE=50;
 	public final static int POINT_DE_VIE_FONTOME=50;
-	
-    private static Resources resources;
+	public final static int POINT_DE_VIE_HEROS=100;
+	public final static int MONSTRE_PUISSANTE=10;
+	public final static int FONTOME_PUISSANTE=10;
+	public final static int HEROS_PUISSANTE=20;
+
+	public static int getWIDTH() {
+		return WIDTH;
+	}
+
+	private static Resources resources;
     
     
 	private Resources() {}
@@ -57,8 +67,8 @@ public final class Resources {
 		Rectangle rectangle = ge.getMaximumWindowBounds();
 		int squareSize = Texture.getInstance().getSquareDimensions();
 		
-		WIDTH = ((int) (rectangle.getWidth() * 0.9)) / squareSize;
-		HEIGHT = ((int) (rectangle.getHeight() * 0.9)) / squareSize;
+		WIDTH = ((int) rectangle.getWidth()) / squareSize;
+		HEIGHT = ((int) rectangle.getHeight()) / squareSize;
 	}
 	
 	public static int scaling(int i) {
