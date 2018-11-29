@@ -1,8 +1,8 @@
 package tests.modeleTest;
 
 import fr.ul.acl.Resources;
-import fr.ul.acl.model.GestionnaireMonstre;
-import fr.ul.acl.model.GestionnaireMonstreAliatoire;
+import fr.ul.acl.model.monstre.GestionnaireMonstre;
+import fr.ul.acl.model.monstre.GestionnaireMonstreAliatoire;
 import fr.ul.acl.model.Jeu;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -63,8 +63,8 @@ public class GestionnaireMonstreAleatoireTest {
      * @return Les parametres Min de la methode.
      */
     public static Object[] getNbMonstres() {
-        return $(   $(Resources.HEIGHT*Resources.WIDTH+1,0),
-                $(0,Resources.HEIGHT*Resources.WIDTH+1),
+        return $(   $(Resources.getInstance().getHeight()*Resources.getInstance().getWidth()+1,0),
+                $(0,Resources.getInstance().getHeight()*Resources.getInstance().getWidth()+1),
                 $(-5,-5),
                 $(0,-5),
                 $(-5,0)    );
