@@ -46,7 +46,7 @@ public class TreasureTest {
     /**
      * teste effet avec null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void herosNull(){
         Treasure treasure=new Treasure(3,2);
         treasure.effet(null);
@@ -54,7 +54,7 @@ public class TreasureTest {
     /**
      * teste effet avec un heros qui n'est pas sur la case
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void positionHeros(){
         Heros heros=new Heros(2,2);
         Treasure treasure=new Treasure(3,2);
