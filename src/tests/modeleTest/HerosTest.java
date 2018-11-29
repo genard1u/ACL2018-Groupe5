@@ -87,6 +87,7 @@ public class HerosTest {
         assertSame(h.getPosX(),3);
         assertSame(h.getPosY(),0);
     }
+
     @Test
     public void limiteBas(){
         Heros h = new Heros(0,9);

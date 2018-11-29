@@ -8,11 +8,20 @@ import fr.ul.acl.model.Jeu;
 import java.time.Clock;
 
 public abstract class AbstractMonstre extends Dynamique {
-	
+
+	private int point_de_vie;
     public AbstractMonstre(int posX, int posY, String type) {
         super(posX, posY, type);
     }
-    
+
+    public int getPoint_de_vie() {
+        return point_de_vie;
+    }
+
+    public void setPoint_de_vie(int point_de_vie) {
+        this.point_de_vie = point_de_vie;
+    }
+
     /**
      * Déplacement d'un monstre quand c'est possible.
      * @param jeu
@@ -40,7 +49,7 @@ public abstract class AbstractMonstre extends Dynamique {
      * @return true si le déplacement à cette case est possible
      */
     protected abstract boolean verificationCase(Jeu jeu, int x, int y);
-
+    //protected abstract boolean attack();
 
 
 }

@@ -61,4 +61,5 @@ public class TrapTest {
         trap.effet(heros);
         assertFalse(heros.isDead());
     }
+
 }

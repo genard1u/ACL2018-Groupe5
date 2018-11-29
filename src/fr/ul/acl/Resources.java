@@ -28,6 +28,9 @@ public final class Resources {
     public final static int NBPIEGE = 3;
     public final static int NBINVINCIBLE = 1;
     public final static int NBTELEPORT = 4;
+
+    public final static int POINT_DE_VIE_MONSTRE=50;
+	public final static int POINT_DE_VIE_FONTOME=50;
 	
     private static Resources resources;
     
