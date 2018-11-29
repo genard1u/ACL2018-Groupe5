@@ -13,7 +13,7 @@ public class TreasureTest {
         Heros heros =new Heros(3,2);
         Treasure treasure =new Treasure(3,2);
         treasure.effet(heros);
-        assertTrue(heros.getWin());
+        assertTrue(heros.isWinning());
     }
     /**
      * teste constructeur , posision x negative
@@ -34,14 +34,14 @@ public class TreasureTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosX(){
-        Treasure treasure=new Treasure(Resources.getInstance().getWidth(),2);
+        Treasure treasure=new Treasure(Resources.WIDTH,2);
     }
     /**
      * teste constructeur , posision y depase le hauteur de plateau
      */
     @Test(expected = IllegalArgumentException.class)
     public void limitPosY(){
-        Treasure treasure=new Treasure(3,Resources.getInstance().getHeight());
+        Treasure treasure=new Treasure(3,Resources.HEIGHT);
     }
     /**
      * teste effet avec null
@@ -57,10 +57,9 @@ public class TreasureTest {
     @Test
     public void positionHeros(){
         Heros heros=new Heros(2,2);
-        heros.setInvincible(false);
         Treasure treasure=new Treasure(3,2);
         treasure.effet(heros);
-        assertFalse(heros.getWin());
+        assertFalse(heros.isWinning());
     }
 
 }
