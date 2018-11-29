@@ -1,17 +1,21 @@
 bin/
+doc/
 jar/
 out/
+report/
+
 .classpath
 .idea
 .project
 .settings
+
+*~
 *.iml
 *.ipr
 *.iws
 *.lock
 *.properties
 *.xml
-*~
 
 # suivi du script ant
 !build.xml

@@ -7,17 +7,15 @@ import fr.ul.acl.model.GameState.State;
 import fr.ul.acl.model.magique.Magic;
 import fr.ul.acl.model.monstre.*;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.Timer;
 
 public class Jeu implements Game {
 
-	private final static int restartDelay = 6000;
+	private final static int restartDelay = 4000;
 	
+	private long elapsedTime;
 	private long launchTime;	
+	private long untilRestart;
 	
 	private Cmd cmd;
 	private GameState state;
@@ -37,20 +35,22 @@ public class Jeu implements Game {
     	state = new GameState();
     	plateau = new Plateau(Resources.getInstance().getWidth(),
     			              Resources.getInstance().getHeight()
-        );   	
+        );       	    	
     	startGame();
     }
     
     public Jeu(int largeur, int hauteur) {
     	state = new GameState();
-        plateau = new Plateau(largeur, hauteur);        
+        plateau = new Plateau(largeur, hauteur);
         startGame();
     }
 
     private void startGame() {
+    	elapsedTime = System.currentTimeMillis();
     	launchTime = System.currentTimeMillis();
-    	iteration = 0;
-        createHero();
+    	untilRestart = restartDelay;
+    	iteration = 0;     
+    	createHero();
         buildMonsterManager(); 
         heros.setGestionnaireMonstre(gestionnaireMonstres);
     }
@@ -128,28 +128,6 @@ public class Jeu implements Game {
     	return (int) ((System.currentTimeMillis() - launchTime) / 1000);
     }
     
-    public ActionListener getVictoryTask() {
-    	ActionListener taskPerformer = new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	startGame();
-            	setState(State.Running);
-            }
-        };
-        
-		return taskPerformer;
-    }
-    
-    public ActionListener getGameOverTask() {
-    	ActionListener taskPerformer = new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	startGame();
-            	setState(State.Running);
-            }
-        };
-        
-		return taskPerformer;
-    }
-    
     public void setState(State updatedState) {
     	state.setState(updatedState);
     }
@@ -181,17 +159,21 @@ public class Jeu implements Game {
     	}
     }
     
-    private void scheduleTask(ActionListener taskPerformer) {
-    	Timer timer = new Timer(restartDelay, taskPerformer);
-    	timer.setRepeats(false);
-    	timer.start();
+    private void restartOrWait() {
+    	if (untilRestart > 0) {
+    		untilRestart -= (System.currentTimeMillis() - elapsedTime);    		
+    	}
+    	else {   		
+    		startGame();
+        	setState(State.Running);
+    	}
     }
     
     @Override
     public void evolve(Cmd userCmd) {
         cmd = userCmd;       
-        updateGameState();       
-
+        updateGameState();    
+        
         if (getState() == State.Running) { 
         	moveMonsters(); 
         	heros.refreshInvincibleTimer();
@@ -199,11 +181,15 @@ public class Jeu implements Game {
         	triggerEffect();        	
         }
         else if (getState() == State.Won) {
-        	scheduleTask(getVictoryTask());
+        	restartOrWait();
         }
         else if (getState() == State.GameOver) {
-        	scheduleTask(getGameOverTask());
-        }       
+        	restartOrWait();
+        }      
+        
+        /* Pour le prochain tour de boucle, 
+           on aura le temps écoulé à ce tour */
+        elapsedTime = System.currentTimeMillis();
     }
 
     @Override
