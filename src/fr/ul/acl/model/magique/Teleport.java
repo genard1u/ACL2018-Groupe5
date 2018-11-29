@@ -29,8 +29,8 @@ public class Teleport extends Magic {
      */
     private Teleport(int posX, int posY, Teleport tlprt) {
         this(posX, posY);
-        this.toPosX = tlprt.toPosX;
-        this.toPosY = tlprt.toPosY;
+        this.toPosX = tlprt.getPosX();
+        this.toPosY = tlprt.getPosY();
     }
 
     /**
