@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import fr.ul.acl.Resources;
+
+
 public class TeleportTest {
 
     /**
@@ -58,15 +60,15 @@ public class TeleportTest {
     /**
      * teste effet avec null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void effetNull(){
-        Teleport[] teleports =Teleport.getTeleportCase(1,1,1,1);
+        Teleport[] teleports =Teleport.getTeleportCase(1,1,2,2);
         teleports[0].effet(null);
     }
     /**
      * teste effet avec un heros qui n'est pas sur la case
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void effetPositionHeros(){
         Heros heros =new Heros(7,5);
         Teleport[] teleports=Teleport.getTeleportCase(2,2,3,3);
