@@ -241,20 +241,14 @@ public class LabyPainter implements GamePainter {
         }
         int x,y;
         for (int[] p :monstrepose){
-            if(p[2]==0) {
+            if(p[2]==0)
                 crayon.setColor(Resources.MONSTRE_COLOR);
-                if (p[3] == 1)
-                    crayon.setColor(Resources.MONSTRE_ATTACK_COLOR);
-            }
-            else {
+            else
                 crayon.setColor(Resources.FONTOME_COLOR);
-                if (p[3] == 1)
-                    crayon.setColor(Resources.FONTOME_ATTACK_COLOR);
-            }
-
             x = Resources.scaling(p[0]);
             y = Resources.scaling(p[1]);
             crayon.fillRect(x,y, Resources.SCALING, Resources.SCALING);
         }
     }
+    
 }

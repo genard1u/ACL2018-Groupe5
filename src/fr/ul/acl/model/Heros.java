@@ -1,9 +1,7 @@
 package fr.ul.acl.model;
 
-import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.HeroState.State;
-import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class Heros extends Dynamique {
 
 	private HeroState state;
 	private boolean stationary;
-	private int life = Resources.POINT_DE_VIE_HEROS;
+	private int life = 100;
 
 	private long invStartTime = 0;
 
@@ -52,6 +50,7 @@ public class Heros extends Dynamique {
 	}
 	
 	public void move(Plateau plateau, Cmd userCmd) {
+        System.out.println(userCmd+" "+posX+" "+posY);
         if(plateau==null || userCmd==null)throw new IllegalArgumentException();
 
 		if (userCmd == Cmd.IDLE) {
@@ -167,10 +166,5 @@ public class Heros extends Dynamique {
         invStartTime = 0;
 
         return 0;
-    }
-
-    public void attacke(AbstractMonstre monstre){
-        if(monstre==null)throw new IllegalArgumentException();
-        monstre.prendre_degat(Resources.HEROS_PUISSANTE);
     }
 }
