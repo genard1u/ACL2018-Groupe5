@@ -10,6 +10,8 @@ import java.time.Clock;
 public abstract class AbstractMonstre extends Dynamique {
 
 	private int point_de_vie;
+	private Cmd lastMove;
+
     public AbstractMonstre(int posX, int posY, String type) {
         super(posX, posY, type);
     }
@@ -29,7 +31,7 @@ public abstract class AbstractMonstre extends Dynamique {
      * @return true si le déplacement a bien été effectué
      */
     public boolean deplacement(Jeu jeu, Cmd direction) {
-
+        lastMove = direction;
     	boolean hasBeenMoved = false;
     	int[] adjustedPos = getAdjustedPos(jeu.getPlateau(), direction);
         
@@ -52,4 +54,11 @@ public abstract class AbstractMonstre extends Dynamique {
     //protected abstract boolean attack();
 
 
+    /**
+     * retourne le dernier mouvement effectuer par le monstre
+     * @return
+     */
+    public Cmd getLastMove() {
+        return lastMove;
+    }
 }

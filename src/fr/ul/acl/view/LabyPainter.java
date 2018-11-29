@@ -9,13 +9,20 @@ import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.GamePainter;
 import fr.ul.acl.model.Jeu;
+import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
+import fr.ul.acl.model.monstre.Monstre;
+import sun.security.util.Resources_sv;
 
 /**
  * Afficheur graphique pour le laby
  * @author Horatiu Cirstea, Vincent Thomas
  */
 public class LabyPainter implements GamePainter {
+
+    private int MOVESTATIC = 0;
+    private int MOVELEFT = 1;
+    private int MOVERIGHT = 2;
 
     private int width;
     private int height;
@@ -234,20 +241,23 @@ public class LabyPainter implements GamePainter {
      * @param crayon
      */
     private void drawMonstre(Graphics2D crayon){
-        ArrayList<int[]> monstrepose =new ArrayList<>();
-        for (GestionnaireMonstre gestionnaireMonstre : jeu.getGestionnaireMonstre()) {
-            ArrayList<int[]> mpos = gestionnaireMonstre.getPosMonstres();
-            while (!mpos.isEmpty())monstrepose.add(mpos.remove(0));
-        }
         int x,y;
-        for (int[] p :monstrepose){
-            if(p[2]==0)
-                crayon.setColor(Resources.MONSTRE_COLOR);
-            else
-                crayon.setColor(Resources.FONTOME_COLOR);
-            x = Resources.scaling(p[0]);
-            y = Resources.scaling(p[1]);
-            crayon.fillRect(x,y, Resources.SCALING, Resources.SCALING);
+        AbstractMonstre m;
+        Cmd c;
+        for (GestionnaireMonstre gestionnaireMonstre : jeu.getGestionnaireMonstre()) {
+            for(int i = 0;i < gestionnaireMonstre.getMonstres().size();i++){
+                m = gestionnaireMonstre.getMonstres().get(i);
+                x = Resources.scaling(m.getPosX());
+                y = Resources.scaling(m.getPosY());
+                c = m.getLastMove();
+                if(gestionnaireMonstre.getMonstres().get(i).getType().equals("MONSTRE")){
+                    crayon.drawImage(Texture.getInstance().getSprite(c,MOVESTATIC,Texture.getInstance().INDEXMONSTRE),x,y,null);
+                }
+                else{
+                    crayon.drawImage(Texture.getInstance().getSprite(c,MOVESTATIC,Texture.getInstance().INDEXGHOST),x,y,null);
+                }
+            }
+
         }
     }
     

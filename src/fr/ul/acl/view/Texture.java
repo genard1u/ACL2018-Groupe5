@@ -4,11 +4,17 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 
 public class Texture {
+
+    public final int INDEXMONSTRE = 0;
+    public final int INDEXGHOST = 1;
 
 	private final static String VICTORY = "src/fr/ul/acl/ressoucesGraphiques/victory.png";
 	private final static String GAME_OVER = "src/fr/ul/acl/ressoucesGraphiques/game-over.png";
@@ -45,12 +51,19 @@ public class Texture {
     private Image trap;
     private Image invincible;
 
+    private ArrayList<HashMap<Cmd,Image[]>> texturesSprite;
+
     private static Texture texture;
 
     private Texture() {
 
         try {
             floor = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/grass.png"));
+
+            //creation des textures du monstres standard
+            texturesSprite = new ArrayList<>();
+            createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/monstreSprite.png",INDEXMONSTRE);
+            createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/ghostSprite.png",INDEXGHOST);
 
             //creation du heros
             BufferedImage heros = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/herosSprite.png"));
@@ -86,7 +99,9 @@ public class Texture {
 
             lastMove = herosDown;
         }
-        catch (Exception e) {}
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
     
     public static Texture getInstance() {
@@ -94,6 +109,10 @@ public class Texture {
             texture = new Texture();
         }
         return texture;
+    }
+
+    public Image getSprite(Cmd c, int move,int type){
+        return texturesSprite.get(type).get(c)[move];
     }
     
     public BufferedImage getVictory() {
@@ -262,5 +281,43 @@ public class Texture {
     public Image getInvincible(){
         return invincible;
     }
-    
+
+
+    public void createTextureSprite(String adr,int index){
+        Image im[] = new Image[3];
+        BufferedImage m;
+        texturesSprite.add(new HashMap<>());
+        try {
+            m = ImageIO.read(new File(adr));
+
+            im = new Image[3];
+            //DOWN
+            im[0] = m.getSubimage(Resources.SCALING,Resources.SCALING*0, Resources.SCALING, Resources.SCALING);
+            im[1] = m.getSubimage(0,Resources.SCALING*0, Resources.SCALING, Resources.SCALING);
+            im[2] = m.getSubimage(Resources.SCALING*2,Resources.SCALING*0, Resources.SCALING, Resources.SCALING);
+            texturesSprite.get(index).put(Cmd.DOWN,im);
+            //LEFT
+            im = new Image[3];
+            im[0] = m.getSubimage(Resources.SCALING,Resources.SCALING*1, Resources.SCALING, Resources.SCALING);
+            im[1] = m.getSubimage(0,Resources.SCALING*1, Resources.SCALING, Resources.SCALING);
+            im[2] = m.getSubimage(Resources.SCALING*2,Resources.SCALING*1, Resources.SCALING, Resources.SCALING);
+            texturesSprite.get(index).put(Cmd.LEFT,im);
+            //RIGHT
+            im = new Image[3];
+            im[0] = m.getSubimage(Resources.SCALING,Resources.SCALING*2, Resources.SCALING, Resources.SCALING);
+            im[1] = m.getSubimage(0,Resources.SCALING*2, Resources.SCALING, Resources.SCALING);
+            im[2] = m.getSubimage(Resources.SCALING*2,Resources.SCALING*2, Resources.SCALING, Resources.SCALING);
+            texturesSprite.get(index).put(Cmd.RIGHT,im);
+            //DOWN
+            im = new Image[3];
+            im[0] = m.getSubimage(Resources.SCALING,Resources.SCALING*3, Resources.SCALING, Resources.SCALING);
+            im[1] = m.getSubimage(0,Resources.SCALING*3, Resources.SCALING, Resources.SCALING);
+            im[2] = m.getSubimage(Resources.SCALING*2,Resources.SCALING*3, Resources.SCALING, Resources.SCALING);
+            texturesSprite.get(index).put(Cmd.UP,im);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
