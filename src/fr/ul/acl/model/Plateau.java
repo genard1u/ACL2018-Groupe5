@@ -1,6 +1,10 @@
 package fr.ul.acl.model;
 
 import fr.ul.acl.Resources;
+import fr.ul.acl.model.magique.Invincible;
+import fr.ul.acl.model.magique.Teleport;
+import fr.ul.acl.model.magique.Trap;
+import fr.ul.acl.model.magique.Treasure;
 
 import java.awt.*;
 import java.util.ArrayList;

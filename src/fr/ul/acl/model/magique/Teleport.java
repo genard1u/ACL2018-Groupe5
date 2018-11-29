@@ -1,6 +1,7 @@
-package fr.ul.acl.model;
+package fr.ul.acl.model.magique;
 
 import fr.ul.acl.Resources;
+import fr.ul.acl.model.Heros;
 
 public class Teleport extends Magic {
 
@@ -28,8 +29,8 @@ public class Teleport extends Magic {
      */
     private Teleport(int posX, int posY, Teleport tlprt) {
         this(posX, posY);
-        this.toPosX = tlprt.toPosX;
-        this.toPosY = tlprt.toPosY;
+        this.toPosX = tlprt.getPosX();
+        this.toPosY = tlprt.getPosY();
     }
 
     /**

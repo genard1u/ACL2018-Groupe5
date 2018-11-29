@@ -4,6 +4,7 @@ import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
+import fr.ul.acl.model.magique.Magic;
 import fr.ul.acl.model.monstre.*;
 
 import java.awt.event.ActionEvent;

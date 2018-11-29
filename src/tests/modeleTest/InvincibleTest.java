@@ -2,7 +2,7 @@ package tests.modeleTest;
 
 import fr.ul.acl.Resources;
 import fr.ul.acl.model.Heros;
-import fr.ul.acl.model.Invincible;
+import fr.ul.acl.model.magique.Invincible;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

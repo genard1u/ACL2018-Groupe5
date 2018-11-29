@@ -1,4 +1,6 @@
-package fr.ul.acl.model;
+package fr.ul.acl.model.magique;
+
+import fr.ul.acl.model.Heros;
 
 public class Invincible extends Magic {
 

@@ -2,7 +2,7 @@ package tests.modeleTest;
 
 import fr.ul.acl.Resources;
 import fr.ul.acl.model.Heros;
-import fr.ul.acl.model.Trap;
+import fr.ul.acl.model.magique.Trap;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
