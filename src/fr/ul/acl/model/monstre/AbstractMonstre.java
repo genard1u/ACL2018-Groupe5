@@ -39,7 +39,6 @@ public abstract class AbstractMonstre extends Dynamique {
      * @param y
      * @return true si le déplacement à cette case est possible
      */
-
     protected abstract boolean verificationCase(Jeu jeu, int x, int y);
 
 
