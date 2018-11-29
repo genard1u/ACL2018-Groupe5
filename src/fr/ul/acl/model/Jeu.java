@@ -120,6 +120,10 @@ public class Jeu implements Game {
     	return plateau.isMagic(x, y);
     }
     
+    /**
+     * Temps écoulé depuis le début de la partie.
+     * @return temps en secondes
+     */
     public int getElapsedTime() {
     	return (int) ((System.currentTimeMillis() - launchTime) / 1000);
     }
@@ -203,7 +207,7 @@ public class Jeu implements Game {
 
     @Override
     public boolean isFinished() {
-        return getState() == State.GameOver;
+        return false;
     }
 
     public ArrayList<GestionnaireMonstre> getGestionnaireMonstre() {
