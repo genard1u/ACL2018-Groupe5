@@ -56,7 +56,7 @@ public class InvincibleTest {
     /**
      * teste effet avec null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void herosNull(){
         Invincible invincible =new Invincible(3,2);
         invincible.effet(null);
@@ -65,7 +65,7 @@ public class InvincibleTest {
     /**
      * teste effet avec un heros qui n'est pas sur la case
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void positionHeros(){
         Heros heros=new Heros(2,2);
         Invincible invincible =new Invincible(3,2);
