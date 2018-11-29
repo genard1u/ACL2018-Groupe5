@@ -31,6 +31,7 @@ public class Jeu implements Game {
     	plateau = new Plateau(Resources.getInstance().getWidth(),
     			              Resources.getInstance().getHeight()
         );   	
+    	startGame();
     }
     
     public Jeu(int largeur, int hauteur) {
@@ -116,6 +117,10 @@ public class Jeu implements Game {
     	return (int) ((System.currentTimeMillis() - launchTime) / 1000);
     }
     
+    public void setState(State updatedState) {
+    	state.setState(updatedState);
+    }
+    
     private void deplacementDesMonstres() {
     	if (iteration % speed == 0) {
     	    for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
@@ -134,14 +139,24 @@ public class Jeu implements Game {
     	}
     }
     
+    private void updateGameState() {
+    	if (heros.isDead()) {
+    		setState(State.GameOver);
+    	}
+    	else if (heros.isWinning()) {
+    		setState(State.Won);
+    	}
+    }
+    
     @Override
     public void evolve(Cmd userCmd) {
-        cmd = userCmd;
+        cmd = userCmd;       
+        updateGameState();
         
-        if (getState() == State.Running) {
+        if (getState() == State.Running) { 
+        	deplacementDesMonstres(); 
         	heros.move(plateau, userCmd);
-        	activerEffet();
-        	deplacementDesMonstres();       	       	       	
+        	activerEffet();        	
         }
         else if (getState() == State.Won) {}
         else if (getState() == State.Pause) {}

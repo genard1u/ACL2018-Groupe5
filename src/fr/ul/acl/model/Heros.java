@@ -91,7 +91,7 @@ public class Heros extends Dynamique {
      * la methode qui verifie l'état de l'heros;
      * @return true si l'heros est mort, false sinon.
      */
-    public boolean isDead(){
+    public boolean isDead() {
         return state.is(State.DEAD);
     }
 
