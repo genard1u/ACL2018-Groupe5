@@ -190,12 +190,11 @@ public class Jeu implements Game {
     @Override
     public void evolve(Cmd userCmd) {
         cmd = userCmd;       
-        updateGameState();
-
-        heros.refreshInvincibleTimer();
+        updateGameState();       
 
         if (getState() == State.Running) { 
         	moveMonsters(); 
+        	heros.refreshInvincibleTimer();
         	heros.move(plateau, userCmd);
         	triggerEffect();        	
         }
