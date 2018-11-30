@@ -5,7 +5,8 @@ import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.magique.Invincible;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 /**
  * teste de la case magique
  */

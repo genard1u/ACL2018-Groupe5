@@ -6,10 +6,10 @@ import fr.ul.acl.model.magique.Teleport;
 import fr.ul.acl.model.magique.Trap;
 import fr.ul.acl.model.magique.Treasure;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 /**
  * Les cases vides du plateau sont nulles.

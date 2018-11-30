@@ -1,9 +1,9 @@
 package fr.ul.acl;
 
 import fr.ul.acl.controller.LabyController;
-import fr.ul.acl.model.Jeu;
-import fr.ul.acl.view.*;
 import fr.ul.acl.engine.GameEngineGraphical;
+import fr.ul.acl.model.Jeu;
+import fr.ul.acl.view.LabyPainter;
 
 public class Laby {
 	

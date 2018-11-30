@@ -1,6 +1,6 @@
 package fr.ul.acl.engine;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * Interface graphique avec son controller et son afficheur

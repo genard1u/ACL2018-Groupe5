@@ -5,7 +5,10 @@ import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
 import fr.ul.acl.model.magique.Magic;
-import fr.ul.acl.model.monstre.*;
+import fr.ul.acl.model.monstre.Aetoile;
+import fr.ul.acl.model.monstre.GestionnaireMonstre;
+import fr.ul.acl.model.monstre.GestionnaireMonstreAliatoire;
+import fr.ul.acl.model.monstre.GestionnaireMonstreIntelligents;
 
 import java.util.ArrayList;
 

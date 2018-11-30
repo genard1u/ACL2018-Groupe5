@@ -1,5 +1,8 @@
 package fr.ul.acl.view;
 
+import fr.ul.acl.Resources;
+import fr.ul.acl.engine.Cmd;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,9 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import fr.ul.acl.Resources;
-import fr.ul.acl.engine.Cmd;
 
 public class Texture {
 

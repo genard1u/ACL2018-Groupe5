@@ -1,18 +1,14 @@
 package fr.ul.acl.view;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.GamePainter;
 import fr.ul.acl.model.Jeu;
 import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
-import fr.ul.acl.model.monstre.Monstre;
-import sun.security.util.Resources_sv;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Afficheur graphique pour le laby

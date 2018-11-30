@@ -1,9 +1,9 @@
 package tests.modeleTest;
 
 import fr.ul.acl.Resources;
+import fr.ul.acl.model.Jeu;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstreAliatoire;
-import fr.ul.acl.model.Jeu;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -11,9 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static junitparams.JUnitParamsRunner.$;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /**
  * Test de la classe GestionnaireMonstreAleatoire.

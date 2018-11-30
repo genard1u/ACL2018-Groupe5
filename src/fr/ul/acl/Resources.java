@@ -1,10 +1,8 @@
 package fr.ul.acl;
 
-import java.awt.Color;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-
 import fr.ul.acl.view.Texture;
+
+import java.awt.*;
 
 /**
  * Contient les constantes du jeu

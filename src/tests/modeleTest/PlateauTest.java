@@ -1,10 +1,9 @@
 package tests.modeleTest;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Ignore;
-
 import fr.ul.acl.model.Plateau;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 
 /**

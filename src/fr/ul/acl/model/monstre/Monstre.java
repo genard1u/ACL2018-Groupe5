@@ -1,7 +1,6 @@
 package fr.ul.acl.model.monstre;
 
 import fr.ul.acl.model.Jeu;
-import fr.ul.acl.model.monstre.AbstractMonstre;
 
 public class Monstre extends AbstractMonstre {
 	
