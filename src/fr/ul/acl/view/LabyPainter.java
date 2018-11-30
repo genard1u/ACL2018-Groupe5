@@ -72,8 +72,10 @@ public class LabyPainter implements GamePainter {
 
     private void drawLife(Graphics2D crayon){
         Image im = Texture.getInstance().getLife();
-        for(int i =0;i < jeu.getHeros().getLife();i++){
-            crayon.drawImage(im,8+i*8+i*im.getWidth(null),8,null);
+        for(int i =0;i < Resources.POINT_DE_VIE_HEROS;i++){
+            if(jeu.getHeros().getLife() >= i)
+                crayon.drawImage(im,8+i*8+i*im.getWidth(null),8,null);
+            else crayon.drawImage(Texture.getInstance().getDeadLife(),8+i*8+i*im.getWidth(null),8,null);
         }
     }
 

@@ -30,7 +30,7 @@ public final class Resources {
     public final static int POINT_DE_VIE_MONSTRE=50;
 	public final static int POINT_DE_VIE_FONTOME=50;
 
-	public final static int POINT_DE_VIE_HEROS=100;
+	public final static int POINT_DE_VIE_HEROS=10;
 
 	private static Resources resources;
     

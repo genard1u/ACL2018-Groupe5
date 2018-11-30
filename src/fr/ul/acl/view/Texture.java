@@ -42,6 +42,7 @@ public class Texture {
     private Image animHeal[];
     private Image animMort[];
     private Image animTrap[];
+    private Image deadLife;
 
     private ArrayList<HashMap<Cmd,Image[]>> texturesSprite;
 
@@ -73,7 +74,7 @@ public class Texture {
             invincible = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/invincible.png"));
             life = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/life.png"));
             heal = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/heal.png"));
-
+            deadLife = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/deadLife.png"));
             //creation de l'animation de heal
             animHeal = new Image[3];
             BufferedImage b = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/animHeal.png"));
@@ -113,6 +114,10 @@ public class Texture {
 
     public Image getAnimTrap(int i){
         return animTrap[i%6];
+    }
+
+    public Image getDeadLife() {
+        return deadLife;
     }
 
     public Image getAnimMort(int i){
