@@ -23,20 +23,21 @@ public final class Resources {
     public final static Color FONTOME_COLOR = Color.BLUE;
 
 
-    public final static int NBPIEGE = 3;
-    public final static int NBINVINCIBLE = 20;
-    public final static int NBTELEPORT = 4;
+    public final static int NBPIEGE = 5;
+    public final static int NBINVINCIBLE = 5;
+    public final static int NBTELEPORT = 6;
 
     public final static int POINT_DE_VIE_MONSTRE=10;
 	public final static int POINT_DE_VIE_FONTOME=10;
 
 	public final static int POINT_DE_VIE_HEROS=20;
 
-	public final static int HEALING_STRENGTH=10;
-	public final static int TRAP_DAMAGE_STRENGTH=10;
+	public final static int HEALING_STRENGTH=1;
+	public final static int TRAP_DAMAGE_STRENGTH=2;
 	public final static int HEROS_PUISSANTE = 2;
 	public final static int MONSTRE_PUISSANTE = 1;
-	public final static int FONTOME_PUISSANTE = 5;
+	public final static int FONTOME_PUISSANTE = 2;
+	public final static int NBHEAL = 4;
 
 	private static Resources resources;
     
@@ -64,7 +65,11 @@ public final class Resources {
 		int squareSize = Texture.getInstance().getSquareDimensions();
 		
 		WIDTH = ((int) (rectangle.getWidth() * 0.9)) / squareSize;
+		if(WIDTH % 2 == 0)
+			WIDTH -= 1;
 		HEIGHT = ((int) (rectangle.getHeight() * 0.9)) / squareSize;
+		if(HEIGHT % 2 == 0)
+			HEIGHT -= 1;
 	}
 	
 	public static int scaling(int i) {

@@ -116,6 +116,10 @@ public class LabyPainter implements GamePainter {
                         //dessin des cases magiques teleporteurs
                         crayon.drawImage(Texture.getInstance().getTeleport(),x,y,null);
                     }
+                    else if(jeu.getPlateau().getElement(i,j).getType().equals("HEAL")){
+                        //dessin des cases magiques heal
+                        crayon.drawImage(Texture.getInstance().getHeal(),x,y,null);
+                    }
                 }
             }
         }

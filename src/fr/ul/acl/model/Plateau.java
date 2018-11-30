@@ -1,10 +1,7 @@
 package fr.ul.acl.model;
 
 import fr.ul.acl.Resources;
-import fr.ul.acl.model.magique.Invincible;
-import fr.ul.acl.model.magique.Teleport;
-import fr.ul.acl.model.magique.Trap;
-import fr.ul.acl.model.magique.Treasure;
+import fr.ul.acl.model.magique.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +40,23 @@ public class Plateau {
         buildLaby();
     }
 
+    private void recordFreeSquares(){
+        if(caseLibre == null){
+            caseLibre = new ArrayList<>();
+        }
+        else{
+            caseLibre.clear();
+        }
+
+        for(int i = 0; i < matrice.length;i++){
+            for(int j =0; j < matrice[0].length;j++){
+                if(matrice[i][j] == null){
+                    caseLibre.add(new Point(i,j));
+                }
+            }
+        }
+    }
+
     /**
      * Construit les bordures, les obstacles, place une passerelle par défaut.
      */
@@ -51,22 +65,15 @@ public class Plateau {
     	assert hauteur > 1;
     	
     	buildBorders();
-    	buildObstacles();   
+    	buildObstacles();
+    	recordFreeSquares();
     	buildStart();
         buildTreasure();
-
-        //on recupère toute les cases lubres du laby
-        for(int i =0; i < matrice.length;i++){
-            for(int j =0;j < matrice[0].length;j++){
-                if(matrice[i][j] == null){
-                    caseLibre.add(new Point(i,j));
-                }
-            }
-        }
 
         buildTrap();
         buildInvincible();
         buildTeleport();
+        buildHeal();
 
     }
 
@@ -115,6 +122,21 @@ public class Plateau {
             p = caseLibre.get(rand);
             caseLibre.remove(rand);
             matrice[(int)p.getX()][(int)p.getY()] = new Trap((int)p.getX(),(int)p.getY());
+            i++;
+        }
+    }
+
+    /**
+     * On crée les piège du labyrinthe
+     */
+    private void buildHeal(){
+        int rand,i =0;
+        Point p;
+        while( i < Resources.NBHEAL && caseLibre.size() > 0){
+            rand = (int)(Math.random()*(caseLibre.size()-1));
+            p = caseLibre.get(rand);
+            caseLibre.remove(rand);
+            matrice[(int)p.getX()][(int)p.getY()] = new Heal((int)p.getX(),(int)p.getY());
             i++;
         }
     }
