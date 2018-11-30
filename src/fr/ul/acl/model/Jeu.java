@@ -6,6 +6,7 @@ import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
 import fr.ul.acl.model.magique.Invincible;
 import fr.ul.acl.model.magique.Magic;
+import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.Aetoile;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstreAliatoire;
@@ -326,6 +327,7 @@ public class Jeu implements Game {
             ismonstre=ismonstre||gestionnaireMonstre.isMonstre(x, y);
         return ismonstre;
     }
+    
     private AbstractMonstre selectMonstre(int x ,int y){
         AbstractMonstre monstre;
         for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
