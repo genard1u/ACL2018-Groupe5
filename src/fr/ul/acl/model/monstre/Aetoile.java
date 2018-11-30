@@ -120,10 +120,9 @@ public class Aetoile implements Algorithme {
             if (plateau.isAccessible(x, y - 1) || type == Fantome.FANTOME)
                 secc.add(String.valueOf(x) + ',' + String.valueOf(y - 1));
 
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-            return secc;
+        } catch (IllegalArgumentException e) {}
+
+        return secc;
     }
     /**
      selectionner les successeur qui peut amelioré le chemin
