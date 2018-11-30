@@ -33,6 +33,9 @@ public final class Resources {
 
 	public final static int POINT_DE_VIE_HEROS=100;
 
+	public final static int HEALING_STRENGTH=10;
+	public final static int TRAP_DAMAGE_STRENGTH=10;
+
 	private static Resources resources;
     
     

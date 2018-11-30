@@ -440,6 +440,19 @@ public class Plateau {
         }
     }
 
+    /**
+     * Cette methode permet d'inserer une case sur le plateau
+     * dans la position passé en params.
+     * @param x la position x ou inserer.
+     * @param y la position y ou inserer.
+     * @param caze la case a inserer
+     */
+    public void insertCase(int x, int y, Statique caze){
+        if (!isOutOfBounds(x, y)) {
+            matrice[x][y] = caze;
+        }
+    }
+
 }
 
 

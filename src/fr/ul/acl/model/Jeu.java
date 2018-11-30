@@ -4,6 +4,7 @@ import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
+import fr.ul.acl.model.magique.Invincible;
 import fr.ul.acl.model.magique.Magic;
 import fr.ul.acl.model.monstre.Aetoile;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
@@ -199,10 +200,15 @@ public class Jeu implements Game {
      * Si la case aux pieds du héros est magique, on déclenche son effet.
      */
     private void triggerEffect() {
-        Statique triggered = getSquare(heros.getPosX(), heros.getPosY());
+        int heroPosX = heros.getPosX();
+        int heroPosY = heros.getPosY();
+        Statique triggered = getSquare(heroPosX, heroPosY);
         
     	if (triggered != null && triggered.isMagic()) {
     		((Magic) triggered).effet(heros);
+    		if( triggered.getType() == Invincible.INVINCIBLE)
+    		    this.plateau.insertCase(heroPosX,heroPosY,null);
+
     	}
     }
     
@@ -250,8 +256,10 @@ public class Jeu implements Game {
         cmd = userCmd;       
         updateGameState();    
         
-        if (getState() == State.Running) { 
-        	moveMonsters(); 
+        if (getState() == State.Running) {
+            upDateMonsters();
+            upDateHeros();
+            moveMonsters();
         	heros.refreshInvincibleTimer();
         	heros.move(plateau, userCmd);
         	triggerEffect();
@@ -279,6 +287,52 @@ public class Jeu implements Game {
 
     public Cmd getCmd() {
         return cmd;
+    }
+
+
+    private void upDateMonsters() {
+        for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
+            gestionnaireMonstre.mise_a_jour();
+
+    }
+    private void upDateHeros() {
+        if(heros.getLife()<=0){
+            heros.kill();
+        }
+        if(cmd==Cmd.LEFT){
+            if(isMonstre(herosPosX()-1,herosPosY())){
+                heros.attacke(selectMonstre(herosPosX()-1,herosPosY()));
+            }
+        }
+        if(cmd==Cmd.RIGHT){
+            if(isMonstre(herosPosX()+1,herosPosY())){
+                heros.attacke(selectMonstre(herosPosX()+1,herosPosY()));
+            }
+        }
+        if(cmd==Cmd.UP){
+            if(isMonstre(herosPosX(),herosPosY()-1)){
+                heros.attacke(selectMonstre(herosPosX(),herosPosY()-1));
+            }
+        }
+        if(cmd==Cmd.DOWN){
+            if(isMonstre(herosPosX(),herosPosY()+1)){
+                heros.attacke(selectMonstre(herosPosX(),herosPosY()+1));
+            }
+        }
+    }
+    private boolean isMonstre(int x ,int y){
+        boolean ismonstre=false;
+        for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
+            ismonstre=ismonstre||gestionnaireMonstre.isMonstre(x, y);
+        return ismonstre;
+    }
+    private AbstractMonstre selectMonstre(int x ,int y){
+        AbstractMonstre monstre;
+        for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
+            if(gestionnaireMonstre.isMonstre(x, y)){
+                return gestionnaireMonstre.selectMonstre(x,y);
+            };
+        return null;
     }
     
 }

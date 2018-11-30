@@ -1,7 +1,9 @@
 package fr.ul.acl.model;
 
+import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.HeroState.State;
+import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
 import java.util.ArrayList;
@@ -135,6 +137,14 @@ public class Heros extends Dynamique {
     }
 
     /**
+     * Cette methode si l'heros a une max santé.
+     * @return true si oui, false sinon.
+     */
+    public boolean isHealthy(){
+        return this.state.is(State.HEALTHY);
+    }
+
+    /**
      * la methode qui fait gagner l'heros.
      */
     public void setWinning() {
@@ -171,5 +181,12 @@ public class Heros extends Dynamique {
 
         return 0;
     }
-    
+
+
+    public void attacke(AbstractMonstre monstre){
+        System.out.println("Points monstres : " + monstre.getPoint_de_vie());
+        if(monstre==null)throw new IllegalArgumentException();
+            monstre.prendre_degat(Resources.HEROS_PUISSANTE);
+    }
+
 }
