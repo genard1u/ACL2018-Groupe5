@@ -3,8 +3,8 @@ package fr.ul.acl.model.monstre;
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.Dynamique;
-import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.Jeu;
+import fr.ul.acl.model.Heros;
 
 public abstract class AbstractMonstre extends Dynamique {
 
@@ -12,6 +12,7 @@ public abstract class AbstractMonstre extends Dynamique {
 	private Cmd move;
 	private boolean hasBeenMoved = false;
 	private boolean attack;
+    private int deadSince = -1;
 
     public AbstractMonstre(int posX, int posY, String type) {
         super(posX, posY, type);
@@ -34,16 +35,28 @@ public abstract class AbstractMonstre extends Dynamique {
     public boolean deplacement(Jeu jeu, Cmd direction) {
         move = direction;
     	hasBeenMoved = false;
+
     	int[] adjustedPos = getAdjustedPos(jeu.getPlateau(), direction);
-        
-    	if (verificationCase(jeu, adjustedPos[0], adjustedPos[1])) {
-        	setPosition(adjustedPos[0], adjustedPos[1]);
-        	hasBeenMoved = true;
+        if(point_de_vie > 0) {
+            if (verificationCase(jeu, adjustedPos[0], adjustedPos[1])) {
+                setPosition(adjustedPos[0], adjustedPos[1]);
+                hasBeenMoved = true;
+            }
         }
-        
+        else deadSince++;
+
+
         return hasBeenMoved;
     }
-    
+
+    public int getDeadSince(){
+        return deadSince;
+    }
+
+    public void kill(){
+        this.point_de_vie = 0;
+    }
+
     /**
      * Vérification que le monstre peut se déplacer à la case (x,y).
      * @param jeu

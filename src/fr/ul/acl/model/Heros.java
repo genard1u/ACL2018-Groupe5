@@ -173,7 +173,6 @@ public class Heros extends Dynamique {
     public long refreshInvincibleTimer() {
 
         long elapsedTime = System.currentTimeMillis() - invStartTime;
-        System.out.println("Invincible elapsed time : " + elapsedTime);
         if( elapsedTime < MAX_INV_TIME*1000)
             return elapsedTime;
 
@@ -182,6 +181,7 @@ public class Heros extends Dynamique {
 
         return 0;
     }
+
 
     public void attacke(AbstractMonstre monstre){
         System.out.println("Points monstres : " + monstre.getPoint_de_vie());

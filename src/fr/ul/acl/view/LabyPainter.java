@@ -65,6 +65,7 @@ public class LabyPainter implements GamePainter {
                 animProgress--;
             }
 
+
         }
         catch (Exception e) {}
     }
@@ -141,7 +142,6 @@ public class LabyPainter implements GamePainter {
             tex = Texture.getInstance().INDEXINVINCIBLE;
         }
         anim = Texture.getInstance().getSprite(jeu.getCmd(),i/2,tex);
-
         if (!jeu.getHeros().isStationary()) {
             crayon.drawImage(anim, a - (Resources.SCALING / 6) * x*i, b - (Resources.SCALING / 6) * y*i, null);
         }
@@ -150,6 +150,10 @@ public class LabyPainter implements GamePainter {
             //animation de heal
             if(jeu.getPlateau().getType(jeu.getHeros().getPosX(),jeu.getHeros().getPosY()).equals("HEAL")){
                 crayon.drawImage(Texture.getInstance().getAnimHeal(animProgress/2),a,b,null);
+            }
+            //animation de piege
+            if(jeu.getPlateau().getType(jeu.getHeros().getPosX(),jeu.getHeros().getPosY()).equals("TRAP")){
+                crayon.drawImage(Texture.getInstance().getAnimTrap(animProgress),a,b,null);
             }
         }
     }
@@ -270,10 +274,17 @@ public class LabyPainter implements GamePainter {
             y = -1;
 
         Image anim;
-        anim = Texture.getInstance().getSprite(m.getMove(),(animProgress/2),index);
-        if(m.getHasBeenMoved())
-            crayon.drawImage(anim, a - (Resources.SCALING / 6) * x*(animProgress), b - (Resources.SCALING / 6) * y*(animProgress), null);
-        else crayon.drawImage(anim, a, b, null);
+        if(m.getDeadSince() <= 0) {
+            anim = Texture.getInstance().getSprite(m.getMove(), (animProgress / 2), index);
+            if (m.getHasBeenMoved())
+                crayon.drawImage(anim, a - (Resources.SCALING / 6) * x * (animProgress), b - (Resources.SCALING / 6) * y * (animProgress), null);
+            else crayon.drawImage(anim, a, b, null);
+        }
+        else{
+            if(m.getDeadSince() == 1){
+                crayon.drawImage(Texture.getInstance().getAnimMort(animProgress),a,b,null);
+            }
+        }
     }
     
 }

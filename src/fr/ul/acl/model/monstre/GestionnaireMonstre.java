@@ -5,14 +5,16 @@ import fr.ul.acl.model.Jeu;
 import fr.ul.acl.model.Plateau;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public abstract class GestionnaireMonstre {
-	
+
     protected ArrayList<AbstractMonstre> monstres;
     protected Plateau plateau;
     protected Jeu jeu;
-    
+    protected boolean attack;
+
     /**
      *  placer nbmonstres monstres et nbfontome fontomes
      * @param nbmonstres nombre de monstre
@@ -31,20 +33,14 @@ public abstract class GestionnaireMonstre {
             do {
                 posx = rand.nextInt(plateau.getLargeur());
                 posy = rand.nextInt(plateau.getHauteur());
-                int d=Math.min(Resources.getInstance().getWidth(),Resources.getInstance().getHeight());
-                ver_distence=herosDistance(posx,posy)<d/2;
-            } while (plateau.getType(posx, posy) != ""||ver_distence);
-            AbstractMonstre m = new Monstre(posx, posy);
-            m.setPoint_de_vie(Resources.POINT_DE_VIE_MONSTRE);
-            monstres.add(m);
+            } while (plateau.getType(posx, posy) != "");
+            monstres.add(new Monstre(posx,posy));
         }
         for (int i=0;i<nbfontome;i++) {
             do {
                 posx = rand.nextInt(plateau.getLargeur());
                 posy = rand.nextInt(plateau.getHauteur());
-                int d=Math.min(Resources.getInstance().getWidth(),Resources.getInstance().getHeight());
-                ver_distence=herosDistance(posx,posy)<d/2;
-            } while (plateau.getType(posx, posy) != ""||ver_distence);
+            } while (plateau.getType(posx, posy) != "");
             monstres.add(new Fantome(posx,posy));
             AbstractMonstre m = new Fantome(posx,posy);
             m.setPoint_de_vie(Resources.POINT_DE_VIE_FONTOME);
@@ -63,7 +59,7 @@ public abstract class GestionnaireMonstre {
      */
     public ArrayList<int[]>getPosMonstres(){
         ArrayList<int[]> pos=new ArrayList<int[]>();
-        
+
         for (AbstractMonstre m :monstres){
             int type=1;
             int etat=0;
@@ -71,9 +67,10 @@ public abstract class GestionnaireMonstre {
             if(m.isAttack())etat=1;
             pos.add(new int[]{m.getPosX(),m.getPosY(),type,etat});
         }
-        
+
         return pos;
     }
+
 
     /**
      * verification si la case (x,y) est une case de monstre
@@ -82,7 +79,7 @@ public abstract class GestionnaireMonstre {
      * @return true si il y a un monstre dans la position x , y
      */
     public boolean isMonstre(int x, int y){
-        for (AbstractMonstre m :monstres){
+    	for (AbstractMonstre m :monstres){
             if(m.getPosX()==x&&m.getPosY()==y)return true;
         }
         return false;
@@ -93,6 +90,12 @@ public abstract class GestionnaireMonstre {
      * @return liste des monstre
      */
     public ArrayList<AbstractMonstre> getMonstres() {
+        int i =0;
+        while(i < monstres.size()){
+            if(monstres.get(i).getDeadSince() > 1)
+                monstres.remove(i);
+            else i++;
+        }
         return monstres;
     }
 
