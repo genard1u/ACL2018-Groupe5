@@ -62,14 +62,10 @@ public class GameEngineGraphical {
 			this.game.evolve(c);
 			
 			// affiche le game
-			this.gui.paint();
-			Thread.sleep(150);
-			
-			this.gui.paint();
-			Thread.sleep(150);
-			
-			this.gui.paint();
-			Thread.sleep(150);
+			for(int i =0;i < 6;i++) {
+				this.gui.paint();
+				Thread.sleep(75);
+			}
 		}
 	}
 

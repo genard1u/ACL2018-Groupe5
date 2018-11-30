@@ -28,7 +28,7 @@ public class LabyPainter implements GamePainter {
         jeu = j;
         width = Resources.scaling(jeu.largeurPlateau());
         height = Resources.scaling(jeu.hauteurPlateau());
-        animProgress = 2;
+        animProgress = 5;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class LabyPainter implements GamePainter {
             drawMonstre(crayon);
             drawLife(crayon);
             if(animProgress == 0){
-                animProgress = 2;
+                animProgress = 5;
             }
             else{
                 animProgress--;
@@ -140,16 +140,16 @@ public class LabyPainter implements GamePainter {
         if(jeu.getHeros().isInvincible()){
             tex = Texture.getInstance().INDEXINVINCIBLE;
         }
-        anim = Texture.getInstance().getSprite(jeu.getCmd(),i,tex);
+        anim = Texture.getInstance().getSprite(jeu.getCmd(),i/2,tex);
 
         if (!jeu.getHeros().isStationary()) {
-            crayon.drawImage(anim, a - (Resources.SCALING / 3) * x*i, b - (Resources.SCALING / 3) * y*i, null);
+            crayon.drawImage(anim, a - (Resources.SCALING / 6) * x*i, b - (Resources.SCALING / 6) * y*i, null);
         }
         else {
             crayon.drawImage(anim,Resources.scaling(jeu.herosPosX()),Resources.scaling(jeu.herosPosY()),null);
             //animation de heal
             if(jeu.getPlateau().getType(jeu.getHeros().getPosX(),jeu.getHeros().getPosY()).equals("HEAL")){
-                crayon.drawImage(Texture.getInstance().getAnimHeal(animProgress),a,b,null);
+                crayon.drawImage(Texture.getInstance().getAnimHeal(animProgress/2),a,b,null);
             }
         }
     }
@@ -270,9 +270,9 @@ public class LabyPainter implements GamePainter {
             y = -1;
 
         Image anim;
-        anim = Texture.getInstance().getSprite(m.getMove(),animProgress,index);
+        anim = Texture.getInstance().getSprite(m.getMove(),(animProgress/2),index);
         if(m.getHasBeenMoved())
-            crayon.drawImage(anim, a - (Resources.SCALING / 3) * x*animProgress, b - (Resources.SCALING / 3) * y*animProgress, null);
+            crayon.drawImage(anim, a - (Resources.SCALING / 6) * x*(animProgress), b - (Resources.SCALING / 6) * y*(animProgress), null);
         else crayon.drawImage(anim, a, b, null);
     }
     
