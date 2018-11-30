@@ -16,6 +16,7 @@ public class Texture {
     public final int INDEXMONSTRE = 0;
     public final int INDEXGHOST = 1;
     public final int INDEXHEROS = 2;
+    public final int INDEXINVINCIBLE = 3;
 
 	private final static String VICTORY = "src/fr/ul/acl/ressoucesGraphiques/victory.png";
 	private final static String GAME_OVER = "src/fr/ul/acl/ressoucesGraphiques/game_over.png";
@@ -51,6 +52,7 @@ public class Texture {
             createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/monstreSprite.png",INDEXMONSTRE);
             createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/ghostSprite.png",INDEXGHOST);
             createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/herosSprite.png",INDEXHEROS);
+            createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/invincibleSprite.png",INDEXINVINCIBLE);
 
             /* Etats particuliers du jeu */
             victory = ImageIO.read(new File(VICTORY));
@@ -82,11 +84,11 @@ public class Texture {
 
     public Image getSprite(Cmd c, int move,int type){
         Image res;
-        if(type == INDEXHEROS && c == Cmd.IDLE){
+        if((type == INDEXHEROS || type == INDEXINVINCIBLE) && c == Cmd.IDLE){
             res = lastMove;
         }
         else res = texturesSprite.get(type).get(c)[move];
-        if(type == INDEXHEROS)
+        if(type == INDEXHEROS || type == INDEXINVINCIBLE)
             lastMove = res;
         return res;
     }

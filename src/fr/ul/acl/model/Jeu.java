@@ -243,7 +243,7 @@ public class Jeu implements Game {
         	moveMonsters(); 
         	heros.refreshInvincibleTimer();
         	heros.move(plateau, userCmd);
-        	triggerEffect();        	
+        	triggerEffect();
         }
         else if (getState() == State.Won) {
         	restartOrWait();

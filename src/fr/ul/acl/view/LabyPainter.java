@@ -52,7 +52,7 @@ public class LabyPainter implements GamePainter {
 
     private void drawGame(BufferedImage im) {
     	Graphics2D crayon = (Graphics2D) im.getGraphics();
-    	System.out.println(animProgress);
+
     	try {
             drawBackground(crayon);
             drawAnimHero(im,animProgress);
@@ -124,8 +124,11 @@ public class LabyPainter implements GamePainter {
             y = -1;
         
         Image anim;
-
-        anim = Texture.getInstance().getSprite(jeu.getCmd(),i,Texture.getInstance().INDEXHEROS);
+        int tex = Texture.getInstance().INDEXHEROS;
+        if(jeu.getHeros().isInvincible()){
+            tex = Texture.getInstance().INDEXINVINCIBLE;
+        }
+        anim = Texture.getInstance().getSprite(jeu.getCmd(),i,tex);
 
         if (!jeu.getHeros().isStationary()) {
             crayon.drawImage(anim, a - (Resources.SCALING / 3) * x*i, b - (Resources.SCALING / 3) * y*i, null);
