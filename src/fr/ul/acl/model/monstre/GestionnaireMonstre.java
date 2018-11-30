@@ -80,6 +80,12 @@ public abstract class GestionnaireMonstre {
      * @return liste des monstre
      */
     public ArrayList<AbstractMonstre> getMonstres() {
+        int i =0;
+        while(i < monstres.size()){
+            if(monstres.get(i).getDeadSince() > 1)
+                monstres.remove(i);
+            else i++;
+        }
         return monstres;
     }
 
