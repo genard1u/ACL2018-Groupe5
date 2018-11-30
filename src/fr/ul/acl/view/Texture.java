@@ -37,6 +37,7 @@ public class Texture {
     private Image teleport;
     private Image trap;
     private Image invincible;
+    private Image life;
 
     private ArrayList<HashMap<Cmd,Image[]>> texturesSprite;
 
@@ -66,7 +67,7 @@ public class Texture {
             teleport = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/teleport.png"));
             trap = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/trap.png"));
             invincible = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/invincible.png"));
-
+            life = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/life.png"));
 
             lastMove = getSprite(Cmd.DOWN,0,INDEXHEROS);
         }
@@ -103,6 +104,10 @@ public class Texture {
     
     public BufferedImage getPause() {
     	return pause;
+    }
+
+    public Image getLife(){
+        return life;
     }
     
     public int getVictoryHeight() {

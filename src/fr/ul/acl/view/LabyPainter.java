@@ -57,6 +57,7 @@ public class LabyPainter implements GamePainter {
             drawBackground(crayon);
             drawAnimHero(im,animProgress);
             drawMonstre(crayon);
+            drawLife(crayon);
             if(animProgress == 0){
                 animProgress = 2;
             }
@@ -67,7 +68,18 @@ public class LabyPainter implements GamePainter {
         }
         catch (Exception e) {}
     }
-                    
+
+    private void drawLife(Graphics2D crayon){
+        Image im = Texture.getInstance().getLife();
+        for(int i =0;i < jeu.getHeros().getLife();i++){
+            crayon.drawImage(im,8+i*8+i*im.getWidth(null),8,null);
+        }
+    }
+
+    /**
+     * dessin de tout les éléments statiques
+     * @param crayon
+     */
     private void drawBackground(Graphics2D crayon){
         for (int i = 0; i < jeu.largeurPlateau(); i ++) {
             for (int j = 0; j < jeu.hauteurPlateau(); j ++) {
