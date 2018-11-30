@@ -55,7 +55,7 @@ public class Jeu implements Game {
         heros.setGestionnaireMonstre(gestionnaireMonstres);
     }
     
-    private void buildMonsterManager() {
+    protected void buildMonsterManager() {
     	gestionnaireMonstres = new ArrayList<>();
         gestionnaireMonstres.add(new GestionnaireMonstreIntelligents(nbMonstres,
                                                                      0,
