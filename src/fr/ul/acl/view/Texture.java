@@ -41,6 +41,7 @@ public class Texture {
     private Image heal;
     private Image animHeal[];
     private Image animMort[];
+    private Image animTrap[];
 
     private ArrayList<HashMap<Cmd,Image[]>> texturesSprite;
 
@@ -86,7 +87,17 @@ public class Texture {
             for(int i =0;i < animMort.length;i++)
                 animMort[i] = b.getSubimage(i*Resources.SCALING,0,Resources.SCALING,Resources.SCALING);
 
+            //creation de l'animation piege
+            b = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/trapAnim.png"));
+            animTrap = new Image[6];
+            for(int i =animTrap.length-1;i >= 0;i--)
+                animTrap[i] = b.getSubimage(i*Resources.SCALING,0,Resources.SCALING,Resources.SCALING);
+
             lastMove = getSprite(Cmd.DOWN,0,INDEXHEROS);
+
+
+
+
         }
         catch (Exception e) {
             System.out.println(e.toString());
@@ -98,6 +109,10 @@ public class Texture {
             texture = new Texture();
         }
         return texture;
+    }
+
+    public Image getAnimTrap(int i){
+        return animTrap[i%6];
     }
 
     public Image getAnimMort(int i){
