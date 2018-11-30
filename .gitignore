@@ -1,3 +1,5 @@
+# folders
+.settings/
 bin/
 doc/
 jar/
@@ -5,11 +7,13 @@ notes/
 out/
 report/
 
+# hidden files
+.attach_*
 .classpath
 .idea
 .project
-.settings
 
+# files
 *~
 *.iml
 *.ipr
@@ -18,5 +22,5 @@ report/
 *.properties
 *.xml
 
-# suivi du script ant
+# ant script is tracked
 !build.xml

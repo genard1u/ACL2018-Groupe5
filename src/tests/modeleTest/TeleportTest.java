@@ -1,11 +1,21 @@
 package tests.modeleTest;
 
+import fr.ul.acl.Resources;
 import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.magique.Teleport;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import fr.ul.acl.Resources;
+import static org.junit.Assert.assertSame;
+
+/**
+ * Tests de la classe Teleport.
+ * Element Testé : Constructeur, effet.
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
+ */
 public class TeleportTest {
 
     /**
@@ -58,15 +68,15 @@ public class TeleportTest {
     /**
      * teste effet avec null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void effetNull(){
-        Teleport[] teleports =Teleport.getTeleportCase(1,1,1,1);
+        Teleport[] teleports =Teleport.getTeleportCase(1,1,2,2);
         teleports[0].effet(null);
     }
     /**
      * teste effet avec un heros qui n'est pas sur la case
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void effetPositionHeros(){
         Heros heros =new Heros(7,5);
         Teleport[] teleports=Teleport.getTeleportCase(2,2,3,3);

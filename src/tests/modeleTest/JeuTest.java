@@ -1,14 +1,29 @@
 package tests.modeleTest;
 
+import fr.ul.acl.Resources;
 import fr.ul.acl.model.Jeu;
+import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
  * Test de la classe Jeu.
- * Elements de test : Constructeur seulement (les autres méthodes sont "Too Small To Fail").
+ * Elements de test : Constructeur seulement.
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
  */
 public class JeuTest {
+
+    private int larg, haut;
+
+    @Before
+    public void setUp(){
+        Resources.getInstance().adaptGameSize();
+    }
 
     /**
      * Test de constructeur.
@@ -17,8 +32,7 @@ public class JeuTest {
      */
     @Test
     public void JeuHeroNotNull() {
-        int l = 10, h = 10;
-        Jeu j = getJeu(l, h);
+        Jeu j = getJeu();
         assertNotNull(j.getHeros());
     }
 
@@ -29,8 +43,7 @@ public class JeuTest {
      */
     @Test
     public void JeuPlateauNotNull() {
-        int l = 10, h = 10;
-        Jeu j = getJeu(l, h);
+        Jeu j = getJeu();
         assertNotNull(j.getPlateau());
     }
 
@@ -41,9 +54,8 @@ public class JeuTest {
      */
     @Test
     public void JeuDimLargeur() {
-        int l = 10, h = 10;
-        Jeu j = getJeu(l, h);
-        assertEquals(l, j.largeurPlateau());
+        Jeu j = getJeu();
+        assertEquals(Resources.getInstance().getWidth(), j.largeurPlateau());
     }
 
     /**
@@ -53,9 +65,8 @@ public class JeuTest {
      */
     @Test
     public void JeuDimHauteur() {
-        int l = 10, h = 10;
-        Jeu j = getJeu(l, h);
-        assertEquals(h, j.hauteurPlateau());
+        Jeu j = getJeu();
+        assertEquals(Resources.getInstance().getHeight(), j.hauteurPlateau());
     }
 
     /**
@@ -91,5 +102,22 @@ public class JeuTest {
     public static Jeu getJeu(int l,int h){
         return new Jeu(l,h);
     }
+
+    /**
+     * method factory de jeu
+     * cette methode retourne une instance de Jeu
+     * dont la methode buildMonsterManager est redifini (vidée).
+     * @return jeu une instance de Jeu
+     */
+    public static Jeu getJeu(){
+        return new Jeu(){
+            @Override
+            protected void buildMonsterManager() {
+                // Nothing interesting here.
+            }
+        };
+    }
+
+
 
 }

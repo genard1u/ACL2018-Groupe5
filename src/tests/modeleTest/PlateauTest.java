@@ -1,15 +1,19 @@
 package tests.modeleTest;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Ignore;
-
 import fr.ul.acl.model.Plateau;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 
 /**
  * Tests de la classe Plateau.
- * Elements de test : Constructeur, isAccessible (les autres methodes sont considérées comme "Too Small To Fail").
+ * Elements de test : Constructeur, isAccessible.
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
  */
 public class PlateauTest {
 
@@ -39,21 +43,10 @@ public class PlateauTest {
 
     /**
      * Test de Constructeur.
-     * Right.
-     * Matrice.
-     */
-    @Ignore
-    @Test
-    public void PlateauMatrix(){
-        fail("Not Implemented Yet : encore pas de solution sans boucle.");
-    }
-
-    /**
-     * Test de Constructeur.
      * Boundary.
      * Zero Hauteur.
      */
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void PlateauZeroHauteur(){
         int l=5,h=0;
         Plateau p = getPlateau(l,h);
@@ -177,13 +170,12 @@ public class PlateauTest {
      * Boundary.
      * Hors dimensions.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void isAccessibleOutOfBound(){
         int l=10,h=10;
         int x=15,y=0;
         Plateau p = getPlateau(l,h);
-        assertTrue(p.isAccessible(x,y));
-        fail("valeurs Hors dimensions no gérées.");
+        assertFalse(p.isAccessible(x,y));
     }
 
     /**

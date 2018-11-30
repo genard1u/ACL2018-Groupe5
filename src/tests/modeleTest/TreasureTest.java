@@ -5,8 +5,18 @@ import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.magique.Treasure;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+/**
+ * Test de la classe Treasure.
+ * Elements de test : Constructeur, effet.
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
+ */
 public class TreasureTest {
     @Test
     public void effetRhigt() {
@@ -46,7 +56,7 @@ public class TreasureTest {
     /**
      * teste effet avec null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void herosNull(){
         Treasure treasure=new Treasure(3,2);
         treasure.effet(null);
@@ -54,7 +64,7 @@ public class TreasureTest {
     /**
      * teste effet avec un heros qui n'est pas sur la case
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void positionHeros(){
         Heros heros=new Heros(2,2);
         Treasure treasure=new Treasure(3,2);

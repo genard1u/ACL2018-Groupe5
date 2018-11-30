@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LabyControllerTest {
     private KeyEvent getkey(char keychar,int keyCode){
@@ -49,7 +49,7 @@ public class LabyControllerTest {
         controller.keyPressed(key);
         assertEquals(Cmd.IDLE,controller.getCommand());
     }
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void keyPressedNullEvent() {
         LabyController controller= new LabyController();
         controller.keyPressed(null);

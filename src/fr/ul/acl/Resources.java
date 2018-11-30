@@ -1,10 +1,8 @@
 package fr.ul.acl;
 
-import java.awt.Color;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-
 import fr.ul.acl.view.Texture;
+
+import java.awt.*;
 
 /**
  * Contient les constantes du jeu
@@ -31,8 +29,10 @@ public final class Resources {
 
     public final static int POINT_DE_VIE_MONSTRE=50;
 	public final static int POINT_DE_VIE_FONTOME=50;
-	
-    private static Resources resources;
+
+	public final static int POINT_DE_VIE_HEROS=100;
+
+	private static Resources resources;
     
     
 	private Resources() {}

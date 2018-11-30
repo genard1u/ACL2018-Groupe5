@@ -1,15 +1,14 @@
 package fr.ul.acl.view;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.GamePainter;
 import fr.ul.acl.model.Jeu;
+import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Afficheur graphique pour le laby
@@ -21,14 +20,15 @@ public class LabyPainter implements GamePainter {
     private int height;
     
     private Jeu jeu;
-    private int anim;
+
+    private int animProgress;
 
     
     public LabyPainter(Jeu j) {
         jeu = j;
         width = Resources.scaling(jeu.largeurPlateau());
         height = Resources.scaling(jeu.hauteurPlateau());
-        anim = 3;
+        animProgress = 2;
     }
 
     @Override
@@ -47,26 +47,23 @@ public class LabyPainter implements GamePainter {
             	break;            
 		    default:
 			    break;       
-        }        
+        }
     }
 
     private void drawGame(BufferedImage im) {
     	Graphics2D crayon = (Graphics2D) im.getGraphics();
-    	
+    	System.out.println(animProgress);
     	try {
-            if(anim == 0){
-            	drawBackground(crayon);
-                drawHero(crayon);
-                anim = 2;
+            drawBackground(crayon);
+            drawAnimHero(im,animProgress);
+            drawMonstre(crayon);
+            if(animProgress == 0){
+                animProgress = 2;
             }
             else{
-            	drawBackground(crayon);
-                drawAnimHero(im,anim);
-                if(anim == 1)
-                    anim = 0;
-                else anim = 1;
+                animProgress--;
             }
-            drawMonstre(crayon);
+
         }
         catch (Exception e) {}
     }
@@ -108,18 +105,7 @@ public class LabyPainter implements GamePainter {
             }
         }
     }
-    
-    /**
-     * Dessin du héros
-     * @param crayon
-     */
-    private void drawHero(Graphics2D crayon) {
-        crayon.drawImage(Texture.getInstance().getHeros(jeu.getCmd()),
-        		         Resources.scaling(jeu.herosPosX()),
-        		         Resources.scaling(jeu.herosPosY()),
-        		         null
-        );
-    }
+
 
     public void drawAnimHero(BufferedImage im, int i) {
         Graphics2D crayon = (Graphics2D) im.getGraphics();
@@ -138,11 +124,9 @@ public class LabyPainter implements GamePainter {
             y = -1;
         
         Image anim;
-        
-        if (i == 1)
-            anim = Texture.getInstance().getHerosAnim(jeu.getCmd());
-        else anim = Texture.getInstance().getHerosAnim2(jeu.getCmd());
-        
+
+        anim = Texture.getInstance().getSprite(jeu.getCmd(),i,Texture.getInstance().INDEXHEROS);
+
         if (!jeu.getHeros().isStationary()) {
             crayon.drawImage(anim, a - (Resources.SCALING / 3) * x*i, b - (Resources.SCALING / 3) * y*i, null);
         }
@@ -234,21 +218,43 @@ public class LabyPainter implements GamePainter {
      * @param crayon
      */
     private void drawMonstre(Graphics2D crayon){
-        ArrayList<int[]> monstrepose =new ArrayList<>();
-        for (GestionnaireMonstre gestionnaireMonstre : jeu.getGestionnaireMonstre()) {
-            ArrayList<int[]> mpos = gestionnaireMonstre.getPosMonstres();
-            while (!mpos.isEmpty())monstrepose.add(mpos.remove(0));
-        }
         int x,y;
-        for (int[] p :monstrepose){
-            if(p[2]==0)
-                crayon.setColor(Resources.MONSTRE_COLOR);
-            else
-                crayon.setColor(Resources.FONTOME_COLOR);
-            x = Resources.scaling(p[0]);
-            y = Resources.scaling(p[1]);
-            crayon.fillRect(x,y, Resources.SCALING, Resources.SCALING);
+        AbstractMonstre m;
+        Cmd c,c2;
+        for (GestionnaireMonstre gestionnaireMonstre : jeu.getGestionnaireMonstre()) {
+            for(int i = 0;i < gestionnaireMonstre.getMonstres().size();i++){
+                m = gestionnaireMonstre.getMonstres().get(i);
+                if(gestionnaireMonstre.getMonstres().get(i).getType().equals("MONSTRE")){
+                    drawAnimMonstre(crayon,m,Texture.getInstance().INDEXMONSTRE);
+                }
+                else{
+                    drawAnimMonstre(crayon,m,Texture.getInstance().INDEXGHOST);
+                }
+            }
+
         }
+    }
+
+    private void drawAnimMonstre(Graphics2D crayon, AbstractMonstre m,int index) {
+        int a = Resources.scaling(m.getPosX());
+        int b = Resources.scaling(m.getPosY());
+        int x = 0;
+        int y = 0;
+        Cmd c = m.getMove();
+        if(c == Cmd.RIGHT)
+            x = 1;
+        if(c == Cmd.LEFT)
+            x = -1;
+        if(c == Cmd.DOWN)
+            y = 1;
+        if(c == Cmd.UP)
+            y = -1;
+
+        Image anim;
+        anim = Texture.getInstance().getSprite(m.getMove(),animProgress,index);
+        if(m.getHasBeenMoved())
+            crayon.drawImage(anim, a - (Resources.SCALING / 3) * x*animProgress, b - (Resources.SCALING / 3) * y*animProgress, null);
+        else crayon.drawImage(anim, a, b, null);
     }
     
 }

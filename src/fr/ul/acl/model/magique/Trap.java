@@ -21,8 +21,8 @@ public class Trap extends Magic {
      */
     @Override
     public void effet(Heros h) {
-        if(h==null)
-            throw new IllegalArgumentException();
+        if(h.getPosX() != this.posX || h.getPosY() != this.posY)
+            throw new IllegalArgumentException("L'heros n'est pas sur la case");
 
         if(!h.isInvincible())
             h.kill();

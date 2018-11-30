@@ -1,5 +1,7 @@
 package fr.ul.acl.model;
 
+import static fr.ul.acl.Resources.POINT_DE_VIE_HEROS;
+
 /**
  * la class état de l'heros.
  * Permet de gérer tous les diff. états de l'heros tous au long de la partie du Jeu.
@@ -11,11 +13,6 @@ public class HeroState {
      */
     public enum State {HEALTHY, DEAD, INJURED, WIN, INVINCIBLE};
 
-    /**
-     * la valeure maximale de vie.
-     */
-    public static final int MAX_LIFE = 3;
-
     private State state;
     private int life;
 
@@ -25,7 +22,7 @@ public class HeroState {
      */
     public HeroState(){
         this.state = State.HEALTHY;
-        this.life = MAX_LIFE;
+        this.life = POINT_DE_VIE_HEROS;
     }
 
     /**
@@ -52,8 +49,14 @@ public class HeroState {
      * @param state l'etat de l'heros
      */
     public void setState(State state){
-        assert state != State.DEAD;
+
+        if (state == State.INJURED && isLifeFull())
+            throw new IllegalArgumentException("You can't INJURE the hero because he has full life");
+        if (state == State.DEAD)
+            this.life = 0;
+
         this.state = state;
+
     }
 
     /**
@@ -65,20 +68,44 @@ public class HeroState {
     }
 
     /**
+     * life Setter
+     * @param life le nombre de vie.
+     */
+    public void setLife(int life){
+        if(life <= 0)
+            setState(State.DEAD);
+        else
+            this.life = life;
+
+        if(!isLifeFull() && state != State.INJURED)
+            setState(State.INJURED);
+    }
+
+    /**
+     * cette methode verifier si life est bien rempli. ( == MAX_Life)
+     * @return true si life est maximale, false sinon.
+     */
+    private boolean isLifeFull() {
+        return (this.life == POINT_DE_VIE_HEROS);
+    }
+
+    /**
      * Cette methode permet de décrémenter le nombre de vies (par exemple due a une attaque).
      * S'il ne reste plus de vies (0), l'état est changée a DEAD, sinon elle est changée a INJURED.
      */
     public void die() {
-        this.life = 0;
         this.setState(State.DEAD);
-        System.out.println("Die Die Die : " + getState());
     }
 
     /**
      * cette methode restitue l'etat normal de l'heros apres l'etat INVINCIBLE
      */
     public void resetState() {
-        if(this.life == MAX_LIFE)
+        State s = getState();
+        if(s == State.DEAD || s == State.WIN)
+            return;
+
+        if(this.life == POINT_DE_VIE_HEROS)
             setState(State.HEALTHY);
         else
             setState(State.INJURED);

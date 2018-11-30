@@ -6,10 +6,10 @@ import fr.ul.acl.model.magique.Teleport;
 import fr.ul.acl.model.magique.Trap;
 import fr.ul.acl.model.magique.Treasure;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 /**
  * Les cases vides du plateau sont nulles.
@@ -33,8 +33,8 @@ public class Plateau {
     
     
     public Plateau(int largeur, int hauteur) {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    	if (!(largeur > 1) || !(hauteur > 1))
+    	    throw new IllegalArgumentException("Largeur/Hauteur must be > 1");
     	    	
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -45,8 +45,6 @@ public class Plateau {
 
     /**
      * Construit les bordures, les obstacles, place une passerelle par défaut.
-     * @param largeur
-     * @param hauteur
      */
     private void buildLaby() {
     	assert largeur > 1;
@@ -305,9 +303,9 @@ public class Plateau {
     	return start;
     }
     
-    public boolean isAccessible(int x, int y) {
-    	assert x >= 0;
-    	assert y >= 0;
+    public boolean isAccessible(int x, int y) throws IllegalArgumentException {
+    	if( !(x >= 0) || !(y >= 0))
+    	    throw new IllegalArgumentException("X & Y incorrecte");
     	   	
     	String typeCase = getType(x, y);
     	boolean isAccessible = false;
