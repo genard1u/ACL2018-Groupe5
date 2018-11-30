@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Test de la classe Jeu.
  * Elements de test : Constructeur seulement.
- * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
  * - ils ont bcp de dépendences
  * - le code ne facilite pas l'injection.
  * - sont "Too Small To Fail"

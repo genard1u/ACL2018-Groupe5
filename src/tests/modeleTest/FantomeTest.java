@@ -13,9 +13,12 @@ import static org.junit.Assert.*;
 /**
  * Test de la classe Fantome.
  * Elements de test : Constructeur, deplacement.
- * Remarque : Pour les Autres methodes (ex: deplacement) il est defficile voire impossible de les tester
- * car ils ont bcp de dépendences et le code ne facilite pas l'injection.
- */
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
+  */
 @RunWith(JUnitParamsRunner.class)
 public class FantomeTest {
 

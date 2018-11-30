@@ -18,9 +18,12 @@ import static org.junit.Assert.fail;
 /**
  * Test de la classe GestionnaireMonstreAleatoire.
  * Elements de test : Constructeur.
- * Remarque : La methode deplacement n'est pas testée car son implémantation necéssite de déplacer
- * le new Random() vers l'exterieur de la methode pour faciliter l'injection.
- */
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
+  */
 @RunWith(JUnitParamsRunner.class)
 public class GestionnaireMonstreAleatoireTest {
 
@@ -31,7 +34,7 @@ public class GestionnaireMonstreAleatoireTest {
      */
     @Before
     public void setUp(){
-        Jeu j = JeuTest.getJeu(10, 10);
+        Jeu j = JeuTest.getJeu();
     }
 
     /**

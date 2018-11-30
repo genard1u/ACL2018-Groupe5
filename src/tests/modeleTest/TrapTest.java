@@ -7,6 +7,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test de la classe Trap.
+ * Element de test : Constructeur, effet.
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
+ */
 public class TrapTest {
     @Test
     public void effetRhigt() {
