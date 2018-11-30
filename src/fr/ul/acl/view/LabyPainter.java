@@ -11,11 +11,17 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * Afficheur graphique pour le laby
+ * Afficheur graphique pour le laby.
  * @author Horatiu Cirstea, Vincent Thomas
  */
 public class LabyPainter implements GamePainter {
 
+	private final static String VICTORY_ADVERT = "Partie remportée en : ";
+	private final static String GAMEOVER_ADVERT = "Vous avez été défait en : ";
+	
+	private final static Font ADVERT_FONT = new Font("Arial", Font.PLAIN, 25);
+    private final static Color ADVERT_COLOR = new Color(255, 0, 0, 255);
+	
     private int width;
     private int height;
     
@@ -23,6 +29,8 @@ public class LabyPainter implements GamePainter {
 
     private int animProgress;
 
+    private BufferedImage advert;
+    
     
     public LabyPainter(Jeu j) {
         jeu = j;
@@ -58,6 +66,7 @@ public class LabyPainter implements GamePainter {
             drawAnimHero(im,animProgress);
             drawMonstre(crayon);
             drawLife(crayon);
+            
             if(animProgress == 0){
                 animProgress = 5;
             }
@@ -164,7 +173,7 @@ public class LabyPainter implements GamePainter {
         }
     }
 
-    private void drawVictory(BufferedImage background) {
+    public void drawVictory(BufferedImage background) {
     	Graphics2D g = (Graphics2D) background.getGraphics();
     	int realVictoryWidth = getWidth() / 3;
     	int realVictoryHeight = getHeight() / 3;
@@ -182,15 +191,21 @@ public class LabyPainter implements GamePainter {
     			    Texture.getInstance().getVictoryHeight(),
     			    null
     	);
+    	
+    	/* drawGameDuration(background, 
+    			         VICTORY_ADVERT,
+    			         centerX - realVictoryWidth / 2,
+    			         centerY + realVictoryHeight / 2
+        ); */
     }
     
-    private void drawGameOver(BufferedImage background) {
+    public void drawGameOver(BufferedImage background) {
     	Graphics2D g = (Graphics2D) background.getGraphics();
     	int realGameOverWidth = getWidth() / 3;
     	int realGameOverHeight = getHeight() / 3;
     	int centerX = getWidth() / 2;
     	int centerY = getHeight() / 2;
-    	
+    	    	
     	g.drawImage(Texture.getInstance().getGameOver(),
     			    centerX - realGameOverWidth / 2,
     			    centerY - realGameOverHeight / 2,
@@ -202,9 +217,52 @@ public class LabyPainter implements GamePainter {
     			    Texture.getInstance().getGameOverHeight(),
     			    null
     	);
+    	
+    	/* drawGameDuration(background, 
+    			         GAMEOVER_ADVERT,
+    			         centerX - realGameOverWidth / 2,
+    			         centerY + realGameOverHeight / 2
+    	); */
     }
     
-    private void drawPause(BufferedImage background) {
+    public void drawGameDuration(BufferedImage background, String advertPrefix, int dx1, int dy1) {
+    	Graphics2D graphicBackground = (Graphics2D) background.getGraphics();
+    	
+        buildAdvert(advertPrefix);
+    	
+    	graphicBackground.drawImage(advert,
+    			                    dx1,
+    			                    dy1,
+    			                    dx1 + advert.getWidth(),
+    			                    dy1 + advert.getHeight(),
+    			                    0,
+    			                    0,
+    			                    advert.getWidth(),
+    			                    advert.getHeight(),
+    			                    null
+        );
+    }
+
+    private void buildAdvert(String advertPrefix) {
+        advert = new BufferedImage(getWidth() / 3, 
+        		                   getHeight() / 3,
+        		                   BufferedImage.TYPE_INT_ARGB
+        );
+    	
+    	Graphics2D graphicAdvert = (Graphics2D) advert.getGraphics();
+    	
+    	graphicAdvert.setFont(ADVERT_FONT);
+    	graphicAdvert.setPaint(ADVERT_COLOR);
+    	
+    	System.out.println(String.valueOf(jeu.getGameDuration()));
+    	
+    	graphicAdvert.drawString(advertPrefix + String.valueOf(jeu.getGameDuration()),
+    			                 0,
+    			                 0
+        );
+    }
+    
+    public void drawPause(BufferedImage background) {
     	Graphics2D g = (Graphics2D) background.getGraphics();
     	int realPauseWidth = getWidth() / 3;
     	int realPauseHeight = getHeight() / 3;

@@ -85,6 +85,7 @@ public abstract class AbstractMonstre extends Dynamique {
     public void setAttack(boolean attack) {
         this.attack = attack;
     }
+    
     protected void attack(Heros heros){
         if(!heros.isInvincible()) {
             int puissante = Resources.MONSTRE_PUISSANTE;
