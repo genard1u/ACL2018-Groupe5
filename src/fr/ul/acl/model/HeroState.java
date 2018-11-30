@@ -74,6 +74,8 @@ public class HeroState {
     public void setLife(int life){
         if(life <= 0)
             setState(State.DEAD);
+        else if(life > POINT_DE_VIE_HEROS)
+            this.life = POINT_DE_VIE_HEROS;
         else
             this.life = life;
 

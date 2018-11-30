@@ -135,6 +135,14 @@ public class Heros extends Dynamique {
     }
 
     /**
+     * Cette methode si l'heros a une max santé.
+     * @return true si oui, false sinon.
+     */
+    public boolean isHealthy(){
+        return this.state.is(State.HEALTHY);
+    }
+
+    /**
      * la methode qui fait gagner l'heros.
      */
     public void setWinning() {
