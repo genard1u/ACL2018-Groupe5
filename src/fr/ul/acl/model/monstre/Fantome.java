@@ -1,5 +1,6 @@
 package fr.ul.acl.model.monstre;
 
+import fr.ul.acl.Resources;
 import fr.ul.acl.model.Jeu;
 
 public class Fantome extends AbstractMonstre {
@@ -9,6 +10,7 @@ public class Fantome extends AbstractMonstre {
     public Fantome(int posX, int posY) {
         super(posX,posY,FANTOME);
         this.type = FANTOME;
+        setPoint_de_vie(Resources.POINT_DE_VIE_MONSTRE);
     }
     
     /**

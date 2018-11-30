@@ -46,7 +46,7 @@ public class Plateau {
     /**
      * Construit les bordures, les obstacles, place une passerelle par défaut.
      */
-    private void buildLaby() {
+    public void buildLaby() {
     	assert largeur > 1;
     	assert hauteur > 1;
     	

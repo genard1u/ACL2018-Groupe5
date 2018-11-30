@@ -1,5 +1,6 @@
 package fr.ul.acl.model.monstre;
 
+import fr.ul.acl.Resources;
 import fr.ul.acl.model.Jeu;
 
 public class Monstre extends AbstractMonstre {
@@ -12,7 +13,7 @@ public class Monstre extends AbstractMonstre {
      * @param posY la position y des monstres
      */
     public Monstre(int posX, int posY) {
-        super(posX, posY, MONSTRE);
+        super(posX, posY, MONSTRE);setPoint_de_vie(Resources.POINT_DE_VIE_MONSTRE);
     }
 
     /**

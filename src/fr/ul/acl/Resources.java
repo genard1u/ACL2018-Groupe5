@@ -27,13 +27,16 @@ public final class Resources {
     public final static int NBINVINCIBLE = 20;
     public final static int NBTELEPORT = 4;
 
-    public final static int POINT_DE_VIE_MONSTRE=50;
-	public final static int POINT_DE_VIE_FONTOME=50;
+    public final static int POINT_DE_VIE_MONSTRE=10;
+	public final static int POINT_DE_VIE_FONTOME=10;
 
-	public final static int POINT_DE_VIE_HEROS=10;
+	public final static int POINT_DE_VIE_HEROS=20;
 
 	public final static int HEALING_STRENGTH=10;
 	public final static int TRAP_DAMAGE_STRENGTH=10;
+	public final static int HEROS_PUISSANTE = 2;
+	public final static int MONSTRE_PUISSANTE = 1;
+	public final static int FONTOME_PUISSANTE = 5;
 
 	private static Resources resources;
     
