@@ -4,7 +4,7 @@ import fr.ul.acl.model.Jeu;
 import fr.ul.acl.model.monstre.AbstractMonstre;
 
 public class Monstre extends AbstractMonstre {
-	
+
     public static final String MONSTRE = "MONSTRE";
 
     /**
@@ -23,7 +23,7 @@ public class Monstre extends AbstractMonstre {
      * @param y position y de la case
      * @return true si le monstre peut situé dans la case x,y
      * @Override
-     */    
+     */
     protected boolean verificationCase(Jeu jeu, int x, int y){
         boolean ismonstre=false;
         for (GestionnaireMonstre gestionnaireMonstre:jeu.getGestionnaireMonstre())
