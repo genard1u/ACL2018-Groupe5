@@ -4,6 +4,7 @@ import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
+import fr.ul.acl.model.magique.Invincible;
 import fr.ul.acl.model.magique.Magic;
 import fr.ul.acl.model.monstre.Aetoile;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
@@ -199,10 +200,15 @@ public class Jeu implements Game {
      * Si la case aux pieds du héros est magique, on déclenche son effet.
      */
     private void triggerEffect() {
-        Statique triggered = getSquare(heros.getPosX(), heros.getPosY());
+        int heroPosX = heros.getPosX();
+        int heroPosY = heros.getPosY();
+        Statique triggered = getSquare(heroPosX, heroPosY);
         
     	if (triggered != null && triggered.isMagic()) {
     		((Magic) triggered).effet(heros);
+    		if( triggered.getType() == Invincible.INVINCIBLE)
+    		    this.plateau.insertCase(heroPosX,heroPosY,null);
+
     	}
     }
     
