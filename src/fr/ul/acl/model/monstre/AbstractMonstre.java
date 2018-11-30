@@ -1,6 +1,5 @@
 package fr.ul.acl.model.monstre;
 
-import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.Dynamique;
 import fr.ul.acl.model.Jeu;
@@ -11,7 +10,6 @@ public abstract class AbstractMonstre extends Dynamique {
 	private Cmd move;
 	private boolean hasBeenMoved = false;
 	private int deadSince = -1;
-	private boolean attack;
 
     public AbstractMonstre(int posX, int posY, String type) {
         super(posX, posY, type);
@@ -44,6 +42,7 @@ public abstract class AbstractMonstre extends Dynamique {
         }
         else deadSince++;
 
+        
         return hasBeenMoved;
     }
 
@@ -54,7 +53,7 @@ public abstract class AbstractMonstre extends Dynamique {
     public void kill(){
         this.point_de_vie = 0;
     }
-
+    
     /**
      * Vérification que le monstre peut se déplacer à la case (x,y).
      * @param jeu
@@ -72,24 +71,4 @@ public abstract class AbstractMonstre extends Dynamique {
     public boolean getHasBeenMoved(){
         return hasBeenMoved;
     }
-
-    public void prendre_degat(int degat){
-        this.point_de_vie-=degat;
-    }
-    public boolean isAttack() {
-        return attack;
-    }
-
-    public void setAttack(boolean attack) {
-        this.attack = attack;
-    }
-    protected void attack(Heros heros){
-        if(!heros.isInvincible()) {
-            int puissante = Resources.MONSTRE_PUISSANTE;
-            if (getType() == Fantome.FANTOME) puissante = Resources.FONTOME_PUISSANTE;
-            heros.setLife(heros.getLife() - puissante);
-            System.out.println("attack"+heros.getLife());
-        }
-    }
-
 }
