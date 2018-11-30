@@ -34,12 +34,11 @@ public class Plateau {
     
     public Plateau(int largeur, int hauteur) {
     	if (!(largeur > 1) || !(hauteur > 1))
-    	    throw new IllegalArgumentException("Largeur/Hauteur must be > 1");
+    	    throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
     	    	
         this.hauteur = hauteur;
         this.largeur = largeur;
-        this.matrice = new Statique[largeur][hauteur];       
-        buildLaby();
+        this.matrice = new Statique[largeur][hauteur];    
     }
 
     /**
