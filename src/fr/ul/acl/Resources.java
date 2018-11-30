@@ -10,8 +10,9 @@ import java.awt.*;
  */
 public final class Resources {
 
-	private static int WIDTH = 25;
-	private static int HEIGHT = 15;
+	private static int width = 25;
+	private static int height = 15;
+	
 	public final static int SCALING = 32;
 	public final static int CASE_W = 40;
 	public final static int CASE_H = 40;
@@ -45,11 +46,11 @@ public final class Resources {
 	}
 	
 	public int getWidth() {
-		return WIDTH;
+		return width;
 	}
 	
 	public int getHeight() {
-		return HEIGHT;
+		return height;
 	}
 	
 	public void adaptGameSize() {
@@ -57,8 +58,16 @@ public final class Resources {
 		Rectangle rectangle = ge.getMaximumWindowBounds();
 		int squareSize = Texture.getInstance().getSquareDimensions();
 		
-		WIDTH = ((int) (rectangle.getWidth() * 0.9)) / squareSize;
-		HEIGHT = ((int) (rectangle.getHeight() * 0.9)) / squareSize;
+		width = ((int) (rectangle.getWidth() * 0.9)) / squareSize;
+		height = ((int) (rectangle.getHeight() * 0.9)) / squareSize;
+		
+		if (((width % 2) == 0) && (width > 1)) {
+			width --;
+		}
+		
+		if (((height % 2) == 0) && (height > 1)) {
+			height --;
+		}
 	}
 	
 	public static int scaling(int i) {

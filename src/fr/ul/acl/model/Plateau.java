@@ -34,43 +34,56 @@ public class Plateau {
     
     public Plateau(int largeur, int hauteur) {
     	if (!(largeur > 1) || !(hauteur > 1))
-    	    throw new IllegalArgumentException("Largeur/Hauteur must be > 1");
+    	    throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
     	    	
         this.hauteur = hauteur;
         this.largeur = largeur;
         this.matrice = new Statique[largeur][hauteur];
-        caseLibre = new ArrayList<>();
-        buildLaby();
     }
 
     /**
      * Construit les bordures, les obstacles, place une passerelle par défaut.
      */
-    private void buildLaby() {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    public void buildLaby() {
+    	if (hauteur < 2 || largeur < 2) {
+    		throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
+    	}
     	
     	buildBorders();
-    	buildObstacles();   
+    	buildObstacles(); 
+    	
+    	recordFreeSquares();
+    	
     	buildStart();
         buildTreasure();
+        
+        buildTrap();
+        buildInvincible();
+        buildTeleport();
+    }
 
-        //on recupère toute les cases lubres du laby
-        for(int i =0; i < matrice.length;i++){
-            for(int j =0;j < matrice[0].length;j++){
-                if(matrice[i][j] == null){
+    private void recordFreeSquares() {
+    	if (caseLibre == null) {
+    		caseLibre = new ArrayList<>();
+    	}
+    	else {
+    		caseLibre.clear();
+    	}
+    	
+        for (int i = 0; i < matrice.length; i++) {
+            for (int j = 0; j < matrice[0].length; j++) {
+                if (matrice[i][j] == null) {
                     caseLibre.add(new Point(i,j));
                 }
             }
         }
-
-        buildTrap();
-        buildInvincible();
-        buildTeleport();
-
     }
-
-    private void buildTeleport(){
+    
+    private void buildTeleport() {
+    	if (caseLibre == null) {
+    		throw new NullPointerException("La liste des cases libres doit être créée.");
+    	}
+    	
         int rand,i =0;
         Point p,p2;
         Teleport[] t = new Teleport[2];
@@ -92,7 +105,11 @@ public class Plateau {
     /**
      * On crée les cases magiques invincibles
      */
-    private void buildInvincible(){
+    private void buildInvincible() {
+    	if (caseLibre == null) {
+    		throw new NullPointerException("La liste des cases libres doit être créée.");
+    	}
+    	
         int rand,i =0;
         Point p;
         while( i < Resources.NBINVINCIBLE && caseLibre.size() > 0){
@@ -107,7 +124,11 @@ public class Plateau {
     /**
      * On crée les piège du labyrinthe
      */
-    private void buildTrap(){
+    private void buildTrap() {
+    	if (caseLibre == null) {
+    		throw new NullPointerException("La liste des cases libres doit être créée.");
+    	}
+    	
         int rand,i =0;
         Point p;
         while( i < Resources.NBPIEGE && caseLibre.size() > 0){
@@ -125,8 +146,9 @@ public class Plateau {
      * @param hauteur
      */
     private void buildBorders() {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    	if (hauteur < 2 || largeur < 2) {
+    		throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
+    	}
     	
     	int border = 0;
     	
@@ -151,11 +173,11 @@ public class Plateau {
      * @param hauteur
      */
     private void buildObstacles() {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    	if (hauteur < 2 || largeur < 2) {
+    		throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
+    	}
     	
     	try {
-
     	    //On remplit la carte de mur, on les creusera ensuite pour faire les galelrie/chemin du labyrinthe
             for (int i = 0; i < matrice.length; i++) {
                 for (int j = 0; j < matrice[0].length; j++) {
@@ -163,7 +185,6 @@ public class Plateau {
                         matrice[i][j] = new Mur(i, j);
                 }
             }
-
 
             //creation du laby dans cette boucle, from est une sous matrice qui contient des cells
             //une cell est une intersection du labyrinthe, cahque celle aura donc 1 chemin vers une celle adjacente au minimum
@@ -185,6 +206,10 @@ public class Plateau {
                                 }
                                 break;
                             case 2:
+                            	if (hauteur < 2 || largeur < 2) {
+                            		throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
+                            	}
+                            	
                                 if (i > 0) {
                                     if (from[i - 1][k] == null || (from[i - 1][k].getFromX() != i && from[i - 1][k].getFromY() != k))
                                         from[i][k] = new Cell(-1, 0, i, k);
@@ -221,8 +246,6 @@ public class Plateau {
                     }
                 }
             }
-
-
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Une erreur c'est produite.");
@@ -253,7 +276,7 @@ public class Plateau {
     	matrice[start.getPosX()][start.getPosY()] = start;
     }
 
-    private void buildTreasure(){
+    private void buildTreasure() {
         treasure = new Treasure(this.matrice.length-2,this.matrice[0].length-2);
         matrice[treasure.getPosX()][treasure.getPosY()] = treasure;
     }

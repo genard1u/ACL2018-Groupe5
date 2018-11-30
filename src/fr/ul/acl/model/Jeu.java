@@ -60,11 +60,22 @@ public class Jeu implements Game {
         startGame();
     }
 
-    public void startGame() {   	  	
+    /**
+     * Lance une nouvelle partie.
+     */
+    public void startGame() {   
+    	buildLaby();
     	createHero();
     	prepareMonsters();
     	setState(State.Running); 
     	clockIsTicking();
+    }
+    
+    /**
+     * Construit un nouveau labyrinthe.
+     */
+    private void buildLaby() {
+    	plateau.buildLaby();
     }
     
     /**
