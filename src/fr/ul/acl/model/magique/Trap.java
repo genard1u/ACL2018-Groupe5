@@ -2,6 +2,9 @@ package fr.ul.acl.model.magique;
 
 import fr.ul.acl.model.Heros;
 
+import static fr.ul.acl.Resources.TRAP_DAMAGE_STRENGTH;
+
+
 public class Trap extends Magic {
 
     public static final String TRAP = "TRAP";
@@ -24,8 +27,8 @@ public class Trap extends Magic {
         if(h.getPosX() != this.posX || h.getPosY() != this.posY)
             throw new IllegalArgumentException("L'heros n'est pas sur la case");
 
-        if(!h.isInvincible())
-            h.kill();
+        if(!h.isInvincible() && h.isAlive())
+            h.setLife(h.getLife() - TRAP_DAMAGE_STRENGTH);
     }   
 
 }

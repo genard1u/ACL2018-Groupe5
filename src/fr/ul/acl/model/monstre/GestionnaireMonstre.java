@@ -1,21 +1,18 @@
 package fr.ul.acl.model.monstre;
 
 import fr.ul.acl.Resources;
-import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.Jeu;
 import fr.ul.acl.model.Plateau;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 public abstract class GestionnaireMonstre {
-
+	
     protected ArrayList<AbstractMonstre> monstres;
     protected Plateau plateau;
     protected Jeu jeu;
-    protected boolean attack;
-
+    
     /**
      *  placer nbmonstres monstres et nbfontome fontomes
      * @param nbmonstres nombre de monstre
@@ -66,7 +63,7 @@ public abstract class GestionnaireMonstre {
      */
     public ArrayList<int[]>getPosMonstres(){
         ArrayList<int[]> pos=new ArrayList<int[]>();
-
+        
         for (AbstractMonstre m :monstres){
             int type=1;
             int etat=0;
@@ -74,10 +71,9 @@ public abstract class GestionnaireMonstre {
             if(m.isAttack())etat=1;
             pos.add(new int[]{m.getPosX(),m.getPosY(),type,etat});
         }
-
+        
         return pos;
     }
-
 
     /**
      * verification si la case (x,y) est une case de monstre

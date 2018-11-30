@@ -43,6 +43,7 @@ public final class Resources {
 	public final static int HEROS_PUISSANTE=20;
 
 	public final static int HEALING_STRENGTH=10;
+	public final static int TRAP_DAMAGE_STRENGTH=10;
 
 	private static Resources resources;
     

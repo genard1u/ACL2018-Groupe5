@@ -184,8 +184,9 @@ public class Heros extends Dynamique {
     }
 
     public void attacke(AbstractMonstre monstre){
+        System.out.println("Points monstres : " + monstre.getPoint_de_vie());
         if(monstre==null)throw new IllegalArgumentException();
-        monstre.prendre_degat(Resources.HEROS_PUISSANTE);
+            monstre.prendre_degat(Resources.HEROS_PUISSANTE);
     }
 
 }

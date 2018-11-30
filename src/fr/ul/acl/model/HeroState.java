@@ -1,5 +1,7 @@
 package fr.ul.acl.model;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import static fr.ul.acl.Resources.POINT_DE_VIE_HEROS;
 
 /**
@@ -72,6 +74,9 @@ public class HeroState {
      * @param life le nombre de vie.
      */
     public void setLife(int life){
+        System.out.println(" STATE : " + state);
+        System.out.println(" Health : " + this.life);
+
         if(life <= 0)
             setState(State.DEAD);
         else if(life > POINT_DE_VIE_HEROS)
@@ -79,7 +84,7 @@ public class HeroState {
         else
             this.life = life;
 
-        if(!isLifeFull() && state != State.INJURED)
+        if(!isLifeFull() && state != State.INJURED && state!=State.DEAD)
             setState(State.INJURED);
     }
 

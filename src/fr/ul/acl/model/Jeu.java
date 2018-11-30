@@ -6,10 +6,7 @@ import fr.ul.acl.engine.Game;
 import fr.ul.acl.model.GameState.State;
 import fr.ul.acl.model.magique.Invincible;
 import fr.ul.acl.model.magique.Magic;
-import fr.ul.acl.model.monstre.Aetoile;
-import fr.ul.acl.model.monstre.GestionnaireMonstre;
-import fr.ul.acl.model.monstre.GestionnaireMonstreAliatoire;
-import fr.ul.acl.model.monstre.GestionnaireMonstreIntelligents;
+import fr.ul.acl.model.monstre.*;
 
 import java.util.ArrayList;
 
@@ -334,5 +331,5 @@ public class Jeu implements Game {
             };
         return null;
     }
-    
+
 }
