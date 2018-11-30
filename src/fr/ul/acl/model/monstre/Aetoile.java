@@ -108,11 +108,22 @@ public class Aetoile implements Algorithme {
         String[] pos = key.split(",");
         int x=Integer.valueOf(pos[0]);
         int y=Integer.valueOf(pos[1]);
-        if(plateau.isAccessible(x+1,y)||type== Fantome.FANTOME)secc.add(String.valueOf(x+1)+','+String.valueOf(y));
-        if(plateau.isAccessible(x-1,y)||type==Fantome.FANTOME)secc.add(String.valueOf(x-1)+','+String.valueOf(y));
-        if(plateau.isAccessible(x,y+1)||type==Fantome.FANTOME)secc.add(String.valueOf(x)+','+String.valueOf(y+1));
-        if(plateau.isAccessible(x,y-1)||type==Fantome.FANTOME)secc.add(String.valueOf(x)+','+String.valueOf(y-1));
-        return secc;
+
+        try {
+
+            if (plateau.isAccessible(x + 1, y) || type == Fantome.FANTOME)
+                secc.add(String.valueOf(x + 1) + ',' + String.valueOf(y));
+            if (plateau.isAccessible(x - 1, y) || type == Fantome.FANTOME)
+                secc.add(String.valueOf(x - 1) + ',' + String.valueOf(y));
+            if (plateau.isAccessible(x, y + 1) || type == Fantome.FANTOME)
+                secc.add(String.valueOf(x) + ',' + String.valueOf(y + 1));
+            if (plateau.isAccessible(x, y - 1) || type == Fantome.FANTOME)
+                secc.add(String.valueOf(x) + ',' + String.valueOf(y - 1));
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+            return secc;
     }
     /**
      selectionner les successeur qui peut amelioré le chemin
