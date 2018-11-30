@@ -1,5 +1,7 @@
 package fr.ul.acl.model;
 
+import fr.ul.acl.Resources;
+
 public abstract class Composant {
 
 	private final static String OUT_OF_BOUNDS = "Objet placé en dehors de la fenêtre";
@@ -18,7 +20,9 @@ public abstract class Composant {
     }
 
     private void isValidComponent(int posX, int posY, String type) {
-    	if (posX < 0 || posY < 0) {
+    	if (posX < 0 || posY < 0
+                || posX >= Resources.getInstance().getWidth()
+                || posY >= Resources.getInstance().getHeight()  ) {
             throw new IllegalArgumentException(OUT_OF_BOUNDS);
         }
         

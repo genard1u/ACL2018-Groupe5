@@ -51,6 +51,9 @@ public class LabyController implements GameController {
             case 's': case 'S': case KeyEvent.VK_DOWN:
                 commandeEnCours = Cmd.DOWN;
                 break;
+            case 'p': case 'P': case KeyEvent.VK_SPACE:
+            	commandeEnCours = Cmd.PAUSE;
+            	break;
             case KeyEvent.VK_ESCAPE:
             	System.exit(0);
             	break;

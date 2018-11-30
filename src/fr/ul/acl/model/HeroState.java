@@ -1,7 +1,5 @@
 package fr.ul.acl.model;
 
-import fr.ul.acl.Resources;
-
 import static fr.ul.acl.Resources.POINT_DE_VIE_HEROS;
 
 /**

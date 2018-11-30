@@ -1,10 +1,8 @@
 package fr.ul.acl.engine;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import javax.swing.JPanel;
 
 /**
  * @author Horatiu Cirstea, Vincent Thomas

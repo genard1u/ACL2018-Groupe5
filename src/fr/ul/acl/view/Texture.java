@@ -1,5 +1,8 @@
 package fr.ul.acl.view;
 
+import fr.ul.acl.Resources;
+import fr.ul.acl.engine.Cmd;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,17 +11,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fr.ul.acl.Resources;
-import fr.ul.acl.engine.Cmd;
-
 public class Texture {
 
     public final int INDEXMONSTRE = 0;
     public final int INDEXGHOST = 1;
     public final int INDEXHEROS = 2;
+    public final int INDEXINVINCIBLE = 3;
 
 	private final static String VICTORY = "src/fr/ul/acl/ressoucesGraphiques/victory.png";
-	private final static String GAME_OVER = "src/fr/ul/acl/ressoucesGraphiques/game-over.png";
+	private final static String GAME_OVER = "src/fr/ul/acl/ressoucesGraphiques/game_over.png";
 	private final static String PAUSE = "src/fr/ul/acl/ressoucesGraphiques/pause.png";
 	
 	/* Etats particuliers du jeu */
@@ -36,6 +37,9 @@ public class Texture {
     private Image teleport;
     private Image trap;
     private Image invincible;
+    private Image life;
+    private Image heal;
+    private Image animHeal[];
 
     private ArrayList<HashMap<Cmd,Image[]>> texturesSprite;
 
@@ -51,6 +55,7 @@ public class Texture {
             createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/monstreSprite.png",INDEXMONSTRE);
             createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/ghostSprite.png",INDEXGHOST);
             createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/herosSprite.png",INDEXHEROS);
+            createTextureSprite("src/fr/ul/acl/ressoucesGraphiques/invincibleSprite.png",INDEXINVINCIBLE);
 
             /* Etats particuliers du jeu */
             victory = ImageIO.read(new File(VICTORY));
@@ -64,7 +69,15 @@ public class Texture {
             teleport = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/teleport.png"));
             trap = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/trap.png"));
             invincible = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/invincible.png"));
+            life = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/life.png"));
+            heal = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/heal.png"));
 
+            //creation de l'animation de heal
+            animHeal = new Image[3];
+            BufferedImage b = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/animHeal.png"));
+            animHeal[0] = b.getSubimage(0,0, Resources.SCALING, Resources.SCALING);
+            animHeal[1] = b.getSubimage(Resources.SCALING,0, Resources.SCALING, Resources.SCALING);
+            animHeal[2] = b.getSubimage(Resources.SCALING*2,0, Resources.SCALING, Resources.SCALING);
 
             lastMove = getSprite(Cmd.DOWN,0,INDEXHEROS);
         }
@@ -80,13 +93,28 @@ public class Texture {
         return texture;
     }
 
+    public Image getHeal() {
+        return heal;
+    }
+
+    public Image getAnimHeal(int i){
+        return animHeal[i];
+    }
+
+    /**
+     * retourne l'image voulue correspondant au type de personnage demandé et au mouvement
+     * @param c
+     * @param move
+     * @param type
+     * @return une image de taille 32*32
+     */
     public Image getSprite(Cmd c, int move,int type){
         Image res;
-        if(type == INDEXHEROS && c == Cmd.IDLE){
+        if((type == INDEXHEROS || type == INDEXINVINCIBLE) && c == Cmd.IDLE){
             res = lastMove;
         }
         else res = texturesSprite.get(type).get(c)[move];
-        if(type == INDEXHEROS)
+        if(type == INDEXHEROS || type == INDEXINVINCIBLE)
             lastMove = res;
         return res;
     }
@@ -101,6 +129,10 @@ public class Texture {
     
     public BufferedImage getPause() {
     	return pause;
+    }
+
+    public Image getLife(){
+        return life;
     }
     
     public int getVictoryHeight() {
@@ -185,7 +217,8 @@ public class Texture {
     public void createTextureSprite(String adr,int index){
         Image im[] = new Image[3];
         BufferedImage m;
-        texturesSprite.add(new HashMap<>());
+        texturesSprite.add(new HashMap<Cmd,Image[]>());
+        
         try {
             m = ImageIO.read(new File(adr));
 

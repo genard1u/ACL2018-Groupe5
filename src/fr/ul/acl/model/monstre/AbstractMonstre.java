@@ -3,10 +3,7 @@ package fr.ul.acl.model.monstre;
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.Dynamique;
-import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.Jeu;
-
-import java.time.Clock;
 
 public abstract class AbstractMonstre extends Dynamique {
 

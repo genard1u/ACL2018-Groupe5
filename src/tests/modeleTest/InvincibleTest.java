@@ -5,7 +5,8 @@ import fr.ul.acl.model.Heros;
 import fr.ul.acl.model.magique.Invincible;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 /**
  * teste de la case magique
  */
@@ -56,7 +57,7 @@ public class InvincibleTest {
     /**
      * teste effet avec null
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void herosNull(){
         Invincible invincible =new Invincible(3,2);
         invincible.effet(null);
@@ -65,7 +66,7 @@ public class InvincibleTest {
     /**
      * teste effet avec un heros qui n'est pas sur la case
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void positionHeros(){
         Heros heros=new Heros(2,2);
         Invincible invincible =new Invincible(3,2);

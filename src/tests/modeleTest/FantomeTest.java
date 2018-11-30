@@ -1,22 +1,25 @@
 package tests.modeleTest;
 
 import fr.ul.acl.Resources;
-import fr.ul.acl.engine.Cmd;
-import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.Fantome;
-import fr.ul.acl.model.Jeu;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static junitparams.JUnitParamsRunner.$;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Test de la classe Fantome.
  * Elements de test : Constructeur, deplacement.
- */
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
+  */
 @RunWith(JUnitParamsRunner.class)
 public class FantomeTest {
 
@@ -87,63 +90,6 @@ public class FantomeTest {
     public void FantomeOutOfBoundMax(int x, int y){
         Fantome f = getFantome(x,y);
         fail("Out Of Bound Not handled Max");
-    }
-
-    /**
-     * Cette methode génère les parametres pour le test de la methode de deplacement.
-     * @return Les parametres de la methode.
-     */
-    public static Object[] getCmd() {
-        return $(   $(Cmd.UP,0,-1),
-                    $(Cmd.DOWN,0,1),
-                    $(Cmd.LEFT,-1,0),
-                    $(Cmd.RIGHT,1,0)   );
-    }
-
-    /**
-     * Test de la methode de deplacement.
-     * Cette methode est definie dans la classe abtraite AbstractMonstre.
-     * Donc elle est hérité par Fantome et Monstre.
-     * Mais elle sera testée que pour fantome (non pas pour monstre).
-     * Right.
-     * Deplacement Possible.
-     */
-    @Test
-    @Parameters(method = "getCmd")
-    public void deplacementPossible(Cmd cmd,int i,int j){
-        int x= 5,y=5;
-
-        AbstractMonstre f = new Fantome(x,y){
-            @Override
-            public boolean verificationCase(Jeu jeu, int x, int y) { return false; }
-        };
-
-        f.deplacement(JeuTest.getJeu(10,10),cmd);
-        assertEquals("Horizontal Position.",i+x,f.getPosX());
-        assertEquals("Vertical Position.",j+y,f.getPosY());
-    }
-
-    /**
-     * Test de la methode de deplacement.
-     * Cette methode est definie dans la classe abtraite AbstractMonstre.
-     * Donc elle est hérité par Fantome et Monstre.
-     * Mais elle sera testée que pour fantome (non pas pour monstre).
-     * Right.
-     * Deplacement Impossible.
-     */
-    @Test
-    @Parameters(method = "getCmd")
-    public void deplacementImpossible(Cmd cmd,int i,int j){
-        int x= 5,y=5;
-
-        AbstractMonstre f = new Fantome(x,y){
-            @Override
-            public boolean verificationCase(Jeu jeu, int x, int y) { return true; }
-        };
-
-        f.deplacement(JeuTest.getJeu(10,10),cmd);
-        assertEquals("Horizontal Position.",x,f.getPosX());
-        assertEquals("Vertical Position.",y,f.getPosY());
     }
 
     /**

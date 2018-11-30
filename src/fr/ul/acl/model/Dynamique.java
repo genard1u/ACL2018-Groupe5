@@ -1,7 +1,6 @@
 package fr.ul.acl.model;
 
 import fr.ul.acl.engine.Cmd;
-import fr.ul.acl.model.Composant;
 
 public abstract class Dynamique extends Composant {
 

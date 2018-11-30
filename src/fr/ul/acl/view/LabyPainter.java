@@ -1,18 +1,14 @@
 package fr.ul.acl.view;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.engine.GamePainter;
 import fr.ul.acl.model.Jeu;
 import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
-import fr.ul.acl.model.monstre.Monstre;
-import sun.security.util.Resources_sv;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Afficheur graphique pour le laby
@@ -32,7 +28,7 @@ public class LabyPainter implements GamePainter {
         jeu = j;
         width = Resources.scaling(jeu.largeurPlateau());
         height = Resources.scaling(jeu.hauteurPlateau());
-        animProgress = 2;
+        animProgress = 5;
     }
 
     @Override
@@ -56,13 +52,14 @@ public class LabyPainter implements GamePainter {
 
     private void drawGame(BufferedImage im) {
     	Graphics2D crayon = (Graphics2D) im.getGraphics();
-    	System.out.println(animProgress);
+
     	try {
             drawBackground(crayon);
             drawAnimHero(im,animProgress);
             drawMonstre(crayon);
+            drawLife(crayon);
             if(animProgress == 0){
-                animProgress = 2;
+                animProgress = 5;
             }
             else{
                 animProgress--;
@@ -71,7 +68,18 @@ public class LabyPainter implements GamePainter {
         }
         catch (Exception e) {}
     }
-                    
+
+    private void drawLife(Graphics2D crayon){
+        Image im = Texture.getInstance().getLife();
+        for(int i =0;i < jeu.getHeros().getLife();i++){
+            crayon.drawImage(im,8+i*8+i*im.getWidth(null),8,null);
+        }
+    }
+
+    /**
+     * dessin de tout les éléments statiques
+     * @param crayon
+     */
     private void drawBackground(Graphics2D crayon){
         for (int i = 0; i < jeu.largeurPlateau(); i ++) {
             for (int j = 0; j < jeu.hauteurPlateau(); j ++) {
@@ -128,14 +136,21 @@ public class LabyPainter implements GamePainter {
             y = -1;
         
         Image anim;
-
-        anim = Texture.getInstance().getSprite(jeu.getCmd(),i,Texture.getInstance().INDEXHEROS);
+        int tex = Texture.getInstance().INDEXHEROS;
+        if(jeu.getHeros().isInvincible()){
+            tex = Texture.getInstance().INDEXINVINCIBLE;
+        }
+        anim = Texture.getInstance().getSprite(jeu.getCmd(),i/2,tex);
 
         if (!jeu.getHeros().isStationary()) {
-            crayon.drawImage(anim, a - (Resources.SCALING / 3) * x*i, b - (Resources.SCALING / 3) * y*i, null);
+            crayon.drawImage(anim, a - (Resources.SCALING / 6) * x*i, b - (Resources.SCALING / 6) * y*i, null);
         }
         else {
             crayon.drawImage(anim,Resources.scaling(jeu.herosPosX()),Resources.scaling(jeu.herosPosY()),null);
+            //animation de heal
+            if(jeu.getPlateau().getType(jeu.getHeros().getPosX(),jeu.getHeros().getPosY()).equals("HEAL")){
+                crayon.drawImage(Texture.getInstance().getAnimHeal(animProgress/2),a,b,null);
+            }
         }
     }
 
@@ -255,9 +270,9 @@ public class LabyPainter implements GamePainter {
             y = -1;
 
         Image anim;
-        anim = Texture.getInstance().getSprite(m.getMove(),animProgress,index);
+        anim = Texture.getInstance().getSprite(m.getMove(),(animProgress/2),index);
         if(m.getHasBeenMoved())
-            crayon.drawImage(anim, a - (Resources.SCALING / 3) * x*animProgress, b - (Resources.SCALING / 3) * y*animProgress, null);
+            crayon.drawImage(anim, a - (Resources.SCALING / 6) * x*(animProgress), b - (Resources.SCALING / 6) * y*(animProgress), null);
         else crayon.drawImage(anim, a, b, null);
     }
     

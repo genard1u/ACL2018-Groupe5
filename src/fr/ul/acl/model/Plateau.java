@@ -6,10 +6,10 @@ import fr.ul.acl.model.magique.Teleport;
 import fr.ul.acl.model.magique.Trap;
 import fr.ul.acl.model.magique.Treasure;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 /**
  * Les cases vides du plateau sont nulles.
@@ -33,46 +33,59 @@ public class Plateau {
     
     
     public Plateau(int largeur, int hauteur) {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    	if (!(largeur > 1) || !(hauteur > 1))
+    	    throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
     	    	
         this.hauteur = hauteur;
         this.largeur = largeur;
-        this.matrice = new Statique[largeur][hauteur];
-        caseLibre = new ArrayList<>();
-        buildLaby();
+        this.matrice = new Statique[largeur][hauteur];    
     }
 
     /**
      * Construit les bordures, les obstacles, place une passerelle par défaut.
-     * @param largeur
-     * @param hauteur
      */
-    private void buildLaby() {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    public void buildLaby() {
+    	if (hauteur < 2 || largeur < 2) {
+    		throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
+    	}
     	
     	buildBorders();
-    	buildObstacles();   
+    	buildObstacles();  
+    	
     	buildStart();
         buildTreasure();
+        
+        recordFreeSquares();
+        buildTrap();
+        buildInvincible();
+        buildTeleport();
+    }
 
-        //on recupère toute les cases lubres du laby
-        for(int i =0; i < matrice.length;i++){
-            for(int j =0;j < matrice[0].length;j++){
-                if(matrice[i][j] == null){
+    /**
+     * On récupère toutes les cases libres du laby.
+     */
+    private void recordFreeSquares() {
+    	if (caseLibre == null) {
+    		caseLibre = new ArrayList<>();
+    	}
+    	else {
+    		caseLibre.clear();
+    	}
+    	
+        for (int i = 0; i < matrice.length; i++) {
+            for (int j = 0; j < matrice[0].length; j++) {
+                if (matrice[i][j] == null) {
                     caseLibre.add(new Point(i,j));
                 }
             }
         }
-
-        buildTrap();
-        buildInvincible();
-        buildTeleport();
-
     }
-
-    private void buildTeleport(){
+    
+    private void buildTeleport() {
+    	if (caseLibre == null) {
+    		throw new NullPointerException("La liste des cases libres doit être créée.");
+    	}
+    	
         int rand,i =0;
         Point p,p2;
         Teleport[] t = new Teleport[2];
@@ -92,9 +105,13 @@ public class Plateau {
     }
 
     /**
-     * On crée les cases magiques invincibles
+     * On crée les cases magiques invincibles.
      */
-    private void buildInvincible(){
+    private void buildInvincible() {
+    	if (caseLibre == null) {
+    		throw new NullPointerException("La liste des cases libres doit être créée.");
+    	}
+    	
         int rand,i =0;
         Point p;
         while( i < Resources.NBINVINCIBLE && caseLibre.size() > 0){
@@ -107,9 +124,13 @@ public class Plateau {
     }
 
     /**
-     * On crée les piège du labyrinthe
+     * On crée les piège du labyrinthe.
      */
-    private void buildTrap(){
+    private void buildTrap() {
+    	if (caseLibre == null) {
+    		throw new NullPointerException("La liste des cases libres doit être créée.");
+    	}
+    	
         int rand,i =0;
         Point p;
         while( i < Resources.NBPIEGE && caseLibre.size() > 0){
@@ -127,8 +148,9 @@ public class Plateau {
      * @param hauteur
      */
     private void buildBorders() {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    	if (hauteur < 2 || largeur < 2) {
+    		throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
+    	}
     	
     	int border = 0;
     	
@@ -153,11 +175,11 @@ public class Plateau {
      * @param hauteur
      */
     private void buildObstacles() {
-    	assert largeur > 1;
-    	assert hauteur > 1;
+    	if (hauteur < 2 || largeur < 2) {
+    		throw new IllegalArgumentException("Largeur/Hauteur doivent être > 1");
+    	}
     	
     	try {
-
     	    //On remplit la carte de mur, on les creusera ensuite pour faire les galelrie/chemin du labyrinthe
             for (int i = 0; i < matrice.length; i++) {
                 for (int j = 0; j < matrice[0].length; j++) {
@@ -165,7 +187,6 @@ public class Plateau {
                         matrice[i][j] = new Mur(i, j);
                 }
             }
-
 
             //creation du laby dans cette boucle, from est une sous matrice qui contient des cells
             //une cell est une intersection du labyrinthe, cahque celle aura donc 1 chemin vers une celle adjacente au minimum
@@ -305,9 +326,9 @@ public class Plateau {
     	return start;
     }
     
-    public boolean isAccessible(int x, int y) {
-    	assert x >= 0;
-    	assert y >= 0;
+    public boolean isAccessible(int x, int y) throws IllegalArgumentException {
+    	if( !(x >= 0) || !(y >= 0))
+    	    throw new IllegalArgumentException("X & Y incorrecte");
     	   	
     	String typeCase = getType(x, y);
     	boolean isAccessible = false;

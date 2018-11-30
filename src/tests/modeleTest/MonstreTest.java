@@ -8,11 +8,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static junitparams.JUnitParamsRunner.$;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Test de la classe Monstre.
  * Elements de test : Pas encore.
+ * Remarque : Pour les Autres methodes, il est defficile voire impossible de les tester car, soit :
+ * - ils ont bcp de dépendences
+ * - le code ne facilite pas l'injection.
+ * - sont "Too Small To Fail"
+ * - sont des methodes privées
  */
 @RunWith(JUnitParamsRunner.class)
 public class MonstreTest {
