@@ -60,11 +60,22 @@ public class Jeu implements Game {
         startGame();
     }
 
-    public void startGame() {   	  	
+    /**
+     * Lance une nouvelle partie.
+     */
+    public void startGame() {   
+    	buildLaby();
     	createHero();
     	prepareMonsters();
     	setState(State.Running); 
     	clockIsTicking();
+    }
+    
+    /**
+     * Construit un nouveau labyrinthe.
+     */
+    private void buildLaby() {
+    	plateau.buildLaby();
     }
     
     /**
@@ -239,8 +250,10 @@ public class Jeu implements Game {
         cmd = userCmd;       
         updateGameState();    
         
-        if (getState() == State.Running) { 
-        	moveMonsters(); 
+        if (getState() == State.Running) {
+            upDateMonsters();
+            upDateHeros();
+            moveMonsters();
         	heros.refreshInvincibleTimer();
         	heros.move(plateau, userCmd);
         	triggerEffect();
@@ -268,6 +281,52 @@ public class Jeu implements Game {
 
     public Cmd getCmd() {
         return cmd;
+    }
+
+
+    private void upDateMonsters() {
+        for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
+            gestionnaireMonstre.mise_a_jour();
+
+    }
+    private void upDateHeros() {
+        if(heros.getLife()<=0){
+            heros.kill();
+        }
+        if(cmd==Cmd.LEFT){
+            if(isMonstre(herosPosX()-1,herosPosY())){
+                heros.attacke(selectMonstre(herosPosX()-1,herosPosY()));
+            }
+        }
+        if(cmd==Cmd.RIGHT){
+            if(isMonstre(herosPosX()+1,herosPosY())){
+                heros.attacke(selectMonstre(herosPosX()+1,herosPosY()));
+            }
+        }
+        if(cmd==Cmd.UP){
+            if(isMonstre(herosPosX(),herosPosY()-1)){
+                heros.attacke(selectMonstre(herosPosX(),herosPosY()-1));
+            }
+        }
+        if(cmd==Cmd.DOWN){
+            if(isMonstre(herosPosX(),herosPosY()+1)){
+                heros.attacke(selectMonstre(herosPosX(),herosPosY()+1));
+            }
+        }
+    }
+    private boolean isMonstre(int x ,int y){
+        boolean ismonstre=false;
+        for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
+            ismonstre=ismonstre||gestionnaireMonstre.isMonstre(x, y);
+        return ismonstre;
+    }
+    private AbstractMonstre selectMonstre(int x ,int y){
+        AbstractMonstre monstre;
+        for(GestionnaireMonstre gestionnaireMonstre : gestionnaireMonstres)
+            if(gestionnaireMonstre.isMonstre(x, y)){
+                return gestionnaireMonstre.selectMonstre(x,y);
+            };
+        return null;
     }
     
 }

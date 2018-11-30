@@ -1,7 +1,9 @@
 package fr.ul.acl.model;
 
+import fr.ul.acl.Resources;
 import fr.ul.acl.engine.Cmd;
 import fr.ul.acl.model.HeroState.State;
+import fr.ul.acl.model.monstre.AbstractMonstre;
 import fr.ul.acl.model.monstre.GestionnaireMonstre;
 
 import java.util.ArrayList;
@@ -171,5 +173,10 @@ public class Heros extends Dynamique {
 
         return 0;
     }
-    
+
+    public void attacke(AbstractMonstre monstre){
+        if(monstre==null)throw new IllegalArgumentException();
+        monstre.prendre_degat(Resources.HEROS_PUISSANTE);
+    }
+
 }
