@@ -1,25 +1,25 @@
 package fr.ul.acl.model.magique;
-
 import fr.ul.acl.model.Heros;
 
-import static fr.ul.acl.Resources.TRAP_DAMAGE_STRENGTH;
+import static fr.ul.acl.Resources.HEALING_STRENGTH;
 
+public class Heal extends Magic{
 
-public class Trap extends Magic {
+    public static final String HEAL = "HEAL";
 
-    public static final String TRAP = "TRAP";
 
     /**
      * Constructeur
      * @param posX la position x
      * @param posY la position y
      */
-    public Trap(int posX, int posY) {
-        super(posX, posY, TRAP);
+    public Heal(int posX, int posY) {
+        super(posX, posY, HEAL);
     }
-    
+
     /**
-     * la methode responsable de la degradation de l'etat de l'heros
+     * la methode qui affecte l'etat de l'heros
+     * elle soigne l'heros
      * @param h l'heros.
      */
     @Override
@@ -27,8 +27,9 @@ public class Trap extends Magic {
         if(h.getPosX() != this.posX || h.getPosY() != this.posY)
             throw new IllegalArgumentException("L'heros n'est pas sur la case");
 
-        if(!h.isInvincible() && h.isAlive())
-            h.setLife(h.getLife() - TRAP_DAMAGE_STRENGTH);
-    }   
+        if(!h.isHealthy() && h.isAlive()) {
+            h.setLife(h.getLife() + HEALING_STRENGTH);
+        }
+    }
 
 }
