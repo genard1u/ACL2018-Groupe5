@@ -167,4 +167,5 @@ public class Heros extends Dynamique {
 
         return 0;
     }
+    
 }

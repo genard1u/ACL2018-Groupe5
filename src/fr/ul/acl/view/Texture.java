@@ -11,7 +11,7 @@ import fr.ul.acl.engine.Cmd;
 public class Texture {
 
 	private final static String VICTORY = "src/fr/ul/acl/ressoucesGraphiques/victory.png";
-	private final static String GAME_OVER = "src/fr/ul/acl/ressoucesGraphiques/game-over.png";
+	private final static String GAME_OVER = "src/fr/ul/acl/ressoucesGraphiques/game_over.png";
 	private final static String PAUSE = "src/fr/ul/acl/ressoucesGraphiques/pause.png";
 	
 	/* Etats particuliers du jeu */
