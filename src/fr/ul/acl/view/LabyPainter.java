@@ -147,6 +147,10 @@ public class LabyPainter implements GamePainter {
         }
         else {
             crayon.drawImage(anim,Resources.scaling(jeu.herosPosX()),Resources.scaling(jeu.herosPosY()),null);
+            //animation de heal
+            if(jeu.getPlateau().getType(jeu.getHeros().getPosX(),jeu.getHeros().getPosY()).equals("HEAL")){
+                crayon.drawImage(Texture.getInstance().getAnimHeal(animProgress),a,b,null);
+            }
         }
     }
 

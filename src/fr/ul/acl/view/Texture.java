@@ -38,6 +38,8 @@ public class Texture {
     private Image trap;
     private Image invincible;
     private Image life;
+    private Image heal;
+    private Image animHeal[];
 
     private ArrayList<HashMap<Cmd,Image[]>> texturesSprite;
 
@@ -68,6 +70,14 @@ public class Texture {
             trap = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/trap.png"));
             invincible = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/invincible.png"));
             life = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/life.png"));
+            heal = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/heal.png"));
+
+            //creation de l'animation de heal
+            animHeal = new Image[3];
+            BufferedImage b = ImageIO.read(new File("src/fr/ul/acl/ressoucesGraphiques/animHeal.png"));
+            animHeal[0] = b.getSubimage(0,0, Resources.SCALING, Resources.SCALING);
+            animHeal[1] = b.getSubimage(Resources.SCALING,0, Resources.SCALING, Resources.SCALING);
+            animHeal[2] = b.getSubimage(Resources.SCALING*2,0, Resources.SCALING, Resources.SCALING);
 
             lastMove = getSprite(Cmd.DOWN,0,INDEXHEROS);
         }
@@ -83,6 +93,21 @@ public class Texture {
         return texture;
     }
 
+    public Image getHeal() {
+        return heal;
+    }
+
+    public Image getAnimHeal(int i){
+        return animHeal[i];
+    }
+
+    /**
+     * retourne l'image voulue correspondant au type de personnage demandé et au mouvement
+     * @param c
+     * @param move
+     * @param type
+     * @return une image de taille 32*32
+     */
     public Image getSprite(Cmd c, int move,int type){
         Image res;
         if((type == INDEXHEROS || type == INDEXINVINCIBLE) && c == Cmd.IDLE){
